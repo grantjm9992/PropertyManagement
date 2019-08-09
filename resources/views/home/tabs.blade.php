@@ -1,0 +1,2 @@
+@inject('translator', 'App\Providers\TranslationProvider')
+<li role="presentation" class="{{ $class }}"><a href="#{{ $cat->hashid }}" aria-controls="{{ $cat->hashid }}" role="tab" data-toggle="tab">{{ $cat->name }}</a></li>

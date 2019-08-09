@@ -1,0 +1,273 @@
+
+
+.menu {
+  box-shadow: 0 0px 7px 0px rgba(0,0,0,.5);
+  color: black;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+}
+
+
+.adminBody {
+  margin-left: 220px;
+  width: calc( 100% - 220px );
+  padding: 40px;
+}
+
+
+.menu > a:hover {
+  text-decoration: none;
+  background: rgba(0,0,0,.03);
+}
+.menu > a {
+  display: block;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 12px;
+  font-weight: 300;
+  color: black;
+  overflow: hidden;
+  -webkit-box-shadow: inset 0px 1px 0px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0px 1px 0px rgba(0,0,0,.2);
+  box-shadow: inset 0px 1px 0px rgba(0,0,0,.2);
+}
+
+
+.upload-holder
+{
+  width: calc( 100% - 40px );
+  margin: 0 20px;
+  border: 4px dashed #e1e1e1;
+  padding: 40px 25px;
+  text-align: center;
+}
+
+.upload-text {
+  margin: 0 auto;
+}
+.adminBody > h3 {
+  width: 100%;
+  padding: 0 15px 15px 15px;
+  border-bottom: 2px solid #e1e1e1;
+}
+.buttons {
+  float: right;
+}
+
+.buttons > * {
+  margin: 0 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+.cc-sortable
+{
+  border-radius: 4px;
+  background: #e1e1e1;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.sortable-title
+{
+  width: calc( 100% - 80px );
+}
+
+.menu-btns
+{
+  float: right;
+  cursor: pointer;
+  display: none;
+}
+
+@media screen and ( max-width: 800px )
+{
+  .menu-btns
+  {
+    display: inline-block;
+  }
+  .menu
+  {
+    display: none;
+    position: unset;
+    width: 100%;
+    height: unset;
+  }
+
+  .adminBody {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .adminBody > .container-fluid
+  {
+    margin-top: 20px;
+  }
+
+  .buttons {
+    margin-left: -5px;
+    margin-top: 10px;
+    float: unset;
+  }
+  .sortable-title > div {
+    overflow: hidden;
+  }
+}
+
+
+.switch {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ed8591;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.disable_nav
+{
+  color: lightgray !important;
+  cursor: default !important;
+}
+
+.btn-outline-black
+{
+  color: black;
+  border-color: black;
+  background-color: #fff;
+}
+
+.btn-outline-black:hover
+{
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+.btn-black
+{
+  color: white;
+  border-color: white;
+  background-color: black;
+}
+
+.btn-black:hover
+{
+  color: black;
+  background-color: white;
+  border-color: black;
+}
+
+.width100
+{
+  width: 100%;
+}
+
+.gallery-sortable .btn {
+  display: none;
+  margin-top: 130px;
+}
+
+.gallery-sortable:hover .btn {
+  display: inline-block;
+}
+
+input:checked + .slider {
+  background-color: #86fc8e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #86fc8e;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.contact-card
+{
+  width: 94%;
+  margin: 10px auto;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+  padding: 20px;
+}
+
+.paging-holder
+{
+  margin: 20px auto;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.paging-holder > *
+{
+  cursor: pointer;
+}
+
+.md-hide
+{
+  display: none;
+}
+
+@media screen and (max-width: 768px)
+{
+  .md-hide
+  {
+    display: inline-block;
+  }
+}
