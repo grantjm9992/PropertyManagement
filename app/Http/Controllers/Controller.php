@@ -50,8 +50,6 @@ class Controller extends BaseController
 
     public $selectIds = "";
 
-    public $user;
-
     // Para cada página. Botonera será para añadir, volver, guardar, borrar... etc.
     protected $pageTitle;
     protected $iconClass;
@@ -82,7 +80,6 @@ class Controller extends BaseController
         $this->translator = new TranslationProvider();
         $this->errors = "";
         $this->bodyClass = "bodyMargin bg-light";
-        if ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) $this->user = \UserLogic::getUser();
         $this->setHeaderAndFooter();
 
         
@@ -111,15 +108,13 @@ class Controller extends BaseController
 
     protected function setHeaderAndFooter()
     {
-        $this->cont->footer = ( $this->secure !== 1 ) ? view('layout/footer') : view('layout/footer_admin');
-        $this->cont->header = ( $this->secure !== 1 ) ? view('layout/header', array( "properties" => "" )) : view('layout/header_admin', array( "permissions" => $this->user->getPermissionArray(), "user" => $this->user ) );
+        $this->cont->footer = view('layout/footer');
+        $this->cont->header = view('layout/header', array( "properties" => "" ));
     }
 
     protected function RenderView() {
         $_SESSION['errors'] = "";
-        if ( $this->secure === 1 && (!isset( $_SESSION['id'] ) || $_SESSION['id'] == "" ) ) \Redirect::to('Login')->send();
-        $extra = ( isset( $_COOKIE['the_resorts_92'] ) || $this->secure === 1 ) ? "" : view('comun/cookies');
-        $template = ( $this->secure !== 1 ) ? "layout/app" : "layout/app_admin";
+        $template = "layout/app";
         return view($template, array(
             'bodyClass' => $this->bodyClass,
             'title' => $this->title,
@@ -132,7 +127,7 @@ class Controller extends BaseController
             "botonera" => $this->botonera,
             "keywords" => $this->keywords,
             "description" => $this->description
-        )).$extra;
+        ));
     }
 
     protected function getErrors() {

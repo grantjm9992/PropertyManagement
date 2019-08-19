@@ -1,5 +1,6 @@
 @inject('translator', 'App\Providers\TranslationProvider')
 <div id="menu" class="menu">
+	<div>
 	<a href="Admin">
 		<i class="fas fa-tachometer-alt"></i> Dashboard
 	</a>
@@ -79,4 +80,5 @@
 		<i class="fas fa-user-slash"></i> End virtual session
 	</a>
 	@endif
+	</div>
 </div>

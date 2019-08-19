@@ -55,26 +55,18 @@
 	<script src="{{ asset('/js/dropzone.js') }}"></script>
 	<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-        <div class="adminBody">
+        {!! $header !!}
+        <div class="body">
 			<h3>
 				<i class="fas {!! $iconClass !!}"></i> {!! $titulo !!}
-                <div class="menu-btns" onclick="toggleMenu()">
-                    <i class="fas fa-chevron-circle-down"></i>
-                </div>
 				<div class="buttons">
 					{!! $botonera !!}
                 </div>
 			</h3>
-        	{!! $header !!}
             {!! $content !!}
         </div>
         <script>
 
-            function toggleMenu()
-            {
-                $('#menu').toggle(500);
-            }
-            
             $(document).ready( function() {
                 function reportWindowSize() {
                     var width = window.innerWidth;

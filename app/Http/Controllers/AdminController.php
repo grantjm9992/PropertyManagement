@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller as BaseController;
+use App\Http\Controllers\AdministrationController as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -14,9 +14,12 @@ use Illuminate\Http\Request;
 class AdminController extends BaseController
 {
 
+    protected $widgets;
+
     public function __construct() {
         $this->secure = 1;
         parent::__construct();
+        $this->widgets = \WidgetsUser::getWidgets();
     }
     
     public function defaultAction() {
@@ -40,8 +43,10 @@ class AdminController extends BaseController
 
     protected function SuperAdmin()
     {
+        $widgets = \WidgetsUser::getWidgets();
         return view('admin/index', array(
-            "user" => $this->user
+            "user" => $this->user,
+            "widgets" => $this->widgets
         ));
     }
 
@@ -52,7 +57,8 @@ class AdminController extends BaseController
         return view('admin/index', array(
             "user" => $this->user,
             "arrivals" => $arrivals,
-            "messages" => $messages
+            "messages" => $messages,
+            "widgets" => $this->widgets
         ));
     }
 
@@ -63,7 +69,8 @@ class AdminController extends BaseController
         return view('admin/index', array(
             "user" => $this->user,
             "arrivals" => $arrivals,
-            "messages" => $messages
+            "messages" => $messages,
+            "widgets" => $this->widgets
         ));
     }
 
@@ -74,7 +81,8 @@ class AdminController extends BaseController
         return view('admin/index', array(
             "user" => $this->user,
             "arrivals" => $arrivals,
-            "messages" => $messages
+            "messages" => $messages,
+            "widgets" => $this->widgets
         ));
     }
 
@@ -85,7 +93,8 @@ class AdminController extends BaseController
         return view('admin/index', array(
             "user" => $this->user,
             "arrivals" => $arrivals,
-            "messages" => $messages
+            "messages" => $messages,
+            "widgets" => $this->widgets
         ));
     }
 

@@ -225,6 +225,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'UserLogic' => App\Classes\UserLogic::class,
+        'WidgetsUser' => App\Classes\WidgetsUser::class,
 
     ],
 
