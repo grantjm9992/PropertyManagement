@@ -25,23 +25,10 @@ class HomeController extends BaseController
     }
     
     public function defaultAction() {
-        $properties = \App\Apartments::take(4)->get();
-        $types = \App\PropertyTypes::orderBy('order', 'ASC')->get();
-        $data = \App\Pages::orderBy('order', 'ASC')->get();
-        $pages = "";
-        foreach ( $data as $row )
-        {
-            $pages .= view('pages/page', array(
-                "page" => $row
-            ));
-        }
+        
         $this->cont->body = view('home/index', 
-        array(
-            "types" => $types,
-            "pageHTML" => $pages,
-            "properties" => $properties
-
-    ));
+            array(
+        ));
         return $this->RenderView();
     }
 
@@ -122,5 +109,14 @@ class HomeController extends BaseController
     public function acceptCookiesAction()
     {
         setcookie("the_resorts_92", "1");
+    }
+
+    public function changeLanguageAction()
+    {
+        if ( isset( $_REQUEST['locale'] ) && $_REQUEST['locale'] != "" )
+        {
+            TranslationProvider::_setLocale( $_REQUEST["locale"] );
+        }
+        return "OK";
     }
 }

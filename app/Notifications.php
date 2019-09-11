@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notifications extends Model
 {
+
+    protected $fillable = ["id_user", "id_sender", "text", "type", "is_seen"];
     
     public static function getUnseenForUser( $id = null)
     {

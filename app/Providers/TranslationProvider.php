@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use \App\Translations;
+use \App\Trads;
 
 class TranslationProvider extends ServiceProvider
 {
@@ -33,12 +33,12 @@ class TranslationProvider extends ServiceProvider
 
     public static function get_translation($key)
     {
-        if ( isset($_COOKIE['connecto_couriers_locale']) && $_COOKIE['connecto_couriers_locale'] != "" ) {
-            $locale = $_COOKIE['connecto_couriers_locale'];
+        if ( isset($_COOKIE['prop_m_locale']) && $_COOKIE['prop_m_locale'] != "" ) {
+            $locale = $_COOKIE['prop_m_locale'];
         } else {
             $locale = "en";
         }
-        $results = Translations::where('key', $key)
+        $results = Trads::where('key', $key)
                                 ->where('locale', $locale)
                                 ->first();
         
@@ -50,12 +50,12 @@ class TranslationProvider extends ServiceProvider
     }
 
     public function get($key) {
-        if ( isset($_COOKIE['connecto_couriers_locale']) && $_COOKIE['connecto_couriers_locale'] != "" ) {
-            $locale = $_COOKIE['connecto_couriers_locale'];
+        if ( isset($_COOKIE['prop_m_locale']) && $_COOKIE['prop_m_locale'] != "" ) {
+            $locale = $_COOKIE['prop_m_locale'];
         } else {
             $locale = "en";
         }
-        $results = Translations::where('key', $key)
+        $results = Trads::where('key', $key)
                                 ->where('locale', $locale)
                                 ->first();
         
@@ -63,6 +63,51 @@ class TranslationProvider extends ServiceProvider
             return $results->text;
         } else {
             return "";
+        }
+    }
+
+    public function getLocale()
+    {
+        if ( isset($_COOKIE['prop_m_locale']) && $_COOKIE['prop_m_locale'] != "" ) {
+            if ( in_array( $_COOKIE['prop_m_locale'], $this->getLocales() ) ) return $_COOKIE['prop_m_locale'];
+        }
+        $locales = $this->getLocales();
+        return $locales[0];
+    }
+
+    public function getLocales()
+    {
+        return array('en', 'es');
+    }
+
+    public static function _getLocales()
+    {
+        return array('en', 'es');
+    }
+
+    public function setLocale($locale)
+    {
+        $locales = $this->getLocales();
+        if ( in_array( $locale, $locales ) )
+        {
+            setcookie("prop_m_locale", $locale);
+        }
+        else
+        {
+            setcookie("prop_m_locale", $locales[0]);
+        }
+    }
+
+    public static function _setLocale($locale)
+    {
+        $locales = self::_getLocales();
+        if ( in_array( $locale, $locales ) )
+        {
+            setcookie("prop_m_locale", $locale);
+        }
+        else
+        {
+            setcookie("prop_m_locale", $locales[0]);
         }
     }
 }

@@ -21,7 +21,7 @@ class MyProfileController extends BaseController
     
     public function defaultAction() {
         $widgets = \App\Widgets::get();
-        $widgetsUser = \App\WidgetsUser::where( 'id_user', $this->user->id )->get();
+        $widgetsUser = \App\WidgetsUser::where( 'id_user', $this->user->id )->orderBy('order', 'ASC')->get();
         $idArray = array();
         $html = "";
         foreach ( $widgetsUser as $row ) 

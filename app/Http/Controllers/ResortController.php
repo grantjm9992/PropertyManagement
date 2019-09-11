@@ -11,15 +11,17 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use \App\Providers\TranslationProvider;
 use Illuminate\Http\Request;
 
-class PropertiesController extends BaseController
+class ResortController extends BaseController
 {
 
     public function __construct() {
+        $page = \App\Pages::where('id', 1)->first();
+        if ( (int)$page->active !== 1 ) return \Redirect::to(url('/'));
         parent::__construct();
     }
     
     public function defaultAction() {
-        $page = \App\Pages::where('id_company', \AppConfig::id_company )->where('id', 3 )->first();
+        $page = \App\Pages::where('id',3 )->first();
         $this->title = ( $page->meta_title != "" ) ? $page->meta_title : $this->title;
         $this->description = ( $page->meta_description != "" ) ? $page->meta_description : $this->description;
         $this->keywords = ( $page->meta_keywords != "" ) ? $page->meta_keywords : $this->keywords;

@@ -1,12 +1,3 @@
-/* =================================
-------------------------------------
-	HALO - Photography Portfolio
-	Version: 1.0
- ------------------------------------ 
- ====================================*/
-
-
-
 'use strict';
 
 $(window).on('load', function() {
@@ -19,161 +10,13 @@ $(window).on('load', function() {
 });
 
 (function($) {
-
-	
-	AOS.init();
-
-	/*------------------
-		Navigation
-	--------------------*/
-	$('.nav-switch').on('click', function(event) {
-		$('.main-menu').slideToggle(400);
-		event.preventDefault();
-	});
-
-
-	/*------------------
-		PORTFOLIO
-	--------------------*/
-	if($('.portfolio-warp').length > 0 ) {
-		var containerEl = document.querySelector('.portfolio-warp');
-		var mixer = mixitup(containerEl);
-	}
-
-
-	/*------------------
-		Background set
-	--------------------*/
 	$('.set-bg').each(function() {
 		var bg = $(this).data('setbg');
 		$(this).css('background-image', 'url(' + bg + ')');
 	});
-
-
-
-	/*------------------
-		Hero Slider
-	--------------------*/
-	
-	var owl = $('.hero-slider').owlCarousel({
-		animateOut: 'slideOutDown',
-		animateIn: 'slideInDown',
-		loop: true,
-		nav: true,
-		dots: true,
-		mouseDrag: false,
-		navText: [' ', ''],
-		items: 1,
-		autoplay: true
-	});
-
-	var dot = $('.hero-slider .owl-dot');
-	dot.each(function() {
-		var index = $(this).index() + 1;
-		if(index < 10){
-			$(this).html('0').append(index);
-			$(this).append('<span>.</span>');
-		}else{
-			$(this).html(index);
-			$(this).append('<span>.</span>');
-		}
-	});
-
-
-	/*------------------
-		Review Slider
-	--------------------*/
-	$('.review-slider').owlCarousel({
-		margin: 10,
-		loop: true,
-		nav: false,
-		dots: false,
-		items: 1,
-		autoplay: true,
-	});
-
-
-	/*------------------
-		Work Slider
-	--------------------*/
-	$('.work-slider').owlCarousel({
-		margin: 0,
-		loop: true,
-		nav: true,
-		dots: false,
-		items: 1,
-		autoplay: true,
-		animateOut: 'fadeOut',
-    	animateIn: 'fadeIn',
-	});
-
-
-	/*------------------
-		Circle progress
-	--------------------*/
-	$('.circle-progress').each(function() {
-		var cpvalue = $(this).data("cpvalue");
-		var cpcolor = $(this).data("cpcolor");
-		var cptitle = $(this).data("cptitle");
-		var cpid 	= $(this).data("cpid");
-
-		$(this).append('<div class="'+ cpid +'"></div><div class="progress-info"><h2>'+ cpvalue +'%</h2><p>'+ cptitle +'</p></div>');
-
-		if (cpvalue < 100) {
-
-			$('.' + cpid).circleProgress({
-				value: '0.' + cpvalue,
-				size: 240,
-				thickness: 3,
-				fill: cpcolor,
-				emptyFill: "rgba(0, 0, 0, 0)"
-			});
-		} else {
-			$('.' + cpid).circleProgress({
-				value: 1,
-				size: 240,
-				thickness: 3,
-				fill: cpcolor,
-				emptyFill: "rgba(0, 0, 0, 0)"
-			});
-		}
-
-	});
-
-
-	/*------------------
-		Accordions
-	--------------------*/
-	$('.panel-link').on('click', function (e) {
-		$('.panel-link').parent('.panel-header').removeClass('active');
-		var $this = $(this).parent('.panel-header');
-		if (!$this.hasClass('active')) {
-			$this.addClass('active');
-		}
-		e.preventDefault();
-	});
-
-	$('.single-portfolio').click( function() {
-		closeHolder();
-		var url = $(this).attr('data-setbg');
-		var holder = document.createElement('div');
-		holder.id = "img_holder";
-		$(holder).css({
-			height: "100vh",
-			width: "100vw",
-			background: "rgba(0,0,0,0.75)",
-			position: "fixed",
-			top: 0,
-			left: 0,
-			padding: "50px",
-			lineHeight: "calc(100vh - 100px)",
-			textAlign: "center"
-		});
-		$(holder).html('<img src="'+url+'" style="max-height: 100%; max-width: 100%;">');
-		$('body').append(holder);
-		$(holder).click( function() {
-			closeHolder();
-		});
+	$('.nav-switch').on('click', function(event) {
+		$('.main-menu').slideToggle(400);
+		event.preventDefault();
 	});
 	$('.openimg').click( function() {
 		var url = $(this).attr('src');
@@ -203,7 +46,22 @@ $(window).on('load', function() {
 			closeHolder();
 		}
 	});
+	window.onscroll = function() {myFunction()};
+	
+	var navbar = document.getElementById("navbar");
+	var sticky = navbar.offsetTop;
+	function myFunction() {
+	  if (window.pageYOffset >= 90) {
+		navbar.classList.add("default-color")
+	  } else {
+		navbar.classList.remove("default-color");
+	  }
+	}
 
+	$('.drop-tag').on("click", function() {
+		var toggle = $(this).attr('toggle');
+		$("[toggleAtt='"+toggle+"']").toggle();
+	});
 
 })(jQuery);
 
@@ -213,29 +71,21 @@ function closeHolder()
 }
 
 
-function register()
+function changeLanguage(locale)
 {
-	$('#register').remove();
 	$.ajax({
 		type: "POST",
-		url: "Home.registerModal",
 		headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+		url: "Home.changeLanguage",
+		data: {
+			locale: locale
+		},
 		success: function(data)
 		{
-			$('body').append(data);
-		}
-	})
-}
-
-function acceptCookies()
-{
-	$('#cookies').remove();
-	$.ajax({
-		type: "POST",
-		url: "Home.acceptCookies",
-		headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-		success: function(data)
-		{
+			if ( data == "OK" )
+			{
+				window.location.reload();
+			}
 		}
 	})
 }

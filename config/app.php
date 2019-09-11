@@ -223,7 +223,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        /**
+         * Custom Shit
+         */
+        'AppConfig' => App\Classes\AppConfig::class,
         'UserLogic' => App\Classes\UserLogic::class,
         'WidgetsUser' => App\Classes\WidgetsUser::class,
 

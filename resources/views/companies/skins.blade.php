@@ -58,6 +58,13 @@
                     Lorem Ipsum Oletete
                 </div>
             </div>
+            <div class="col-12 form-group">
+                <label for="">Header Style</label>
+                <select name="id_header" id="id_header" class="form-control">
+                    <option value="0">Header style 1</option>
+                    <option value="1">Header style 2</option>
+                </select>
+            </div>
         </div>
         <button type="submit" id="submit" hidden></button>
     </div>
@@ -111,6 +118,8 @@ $(document).ready ( function() {
     $('#t4').ejColorPicker({value: '{{ $skin->t4 }}', select: function(args) {
         $('#result4').css('color', args.value);
     }});
+
+    $('#id_header').val('{{ $skin->id_header }}');
 
 
     $('[scheme]').on("change", function() {

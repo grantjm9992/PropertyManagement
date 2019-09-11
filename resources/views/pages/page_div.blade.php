@@ -9,7 +9,7 @@
     padding: 0px 15px;
     border-radius: 4px;
     border: 1px solid rgba(0,123,255,.25);">
-            {{ $page->name }}
+            {{ $page->menu_title }}
         </div>
         <div inputid="{{ $page->id }}" class="input-group" style="display: none;">
             <div class="input-group-prepend">

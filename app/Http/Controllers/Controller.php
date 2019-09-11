@@ -108,11 +108,26 @@ class Controller extends BaseController
 
     protected function setHeaderAndFooter()
     {
+        $pages = \App\Pages::where('id_company', \AppConfig::id_company)
+                            ->where('id', '>', 0)
+                            ->where('active', 1)
+                            ->orderBy('order', 'ASC')
+                            ->get();
+        
+        $headers = ["layout/header", "layout/header2"];
+        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $header = ( is_object( $skin ) ) ? $headers[ $skin->id_header ] : $headers[0];
         $this->cont->footer = view('layout/footer');
-        $this->cont->header = view('layout/header', array( "properties" => "" ));
+        $this->cont->header = view($header, array( "pages" => $pages ));
     }
 
     protected function RenderView() {
+        
+        $safari = false;
+        $ua = $_SERVER["HTTP_USER_AGENT"];      // Get user-agent of browser
+        $safariorchrome = strpos($ua, 'Safari') ? true : false;     // Browser is either Safari or Chrome (since Chrome User-Agent includes the word 'Safari')
+        $chrome = strpos($ua, 'Chrome') ? true : false;             // Browser is Chrome
+        if($safariorchrome === true AND $chrome === false){ $safari = true; }
         $_SESSION['errors'] = "";
         $template = "layout/app";
         return view($template, array(
@@ -126,7 +141,8 @@ class Controller extends BaseController
             "titulo" => $this->pageTitle,
             "botonera" => $this->botonera,
             "keywords" => $this->keywords,
-            "description" => $this->description
+            "description" => $this->description,
+            "safari" => $safari
         ));
     }
 

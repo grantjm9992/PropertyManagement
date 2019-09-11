@@ -67,7 +67,7 @@
 				</a>
 			</li>
 			@endif
-			@if ( in_array(3, $permissions ) || in_array(2, $permissions) )
+			@if ( in_array($user->role, ["SA", "WA", "AA" ]) )
 			<li class="nav-item active">
 				<a class="nav-link" title="Analytics" href="Analytics">
 					<i class="fas fa-chart-line"></i>

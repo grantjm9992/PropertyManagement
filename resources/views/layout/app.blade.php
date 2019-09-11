@@ -23,11 +23,11 @@
 		<link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ asset('/css/slick.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/swipebox.min.css') }}">
+		@if ( !$safari )
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/style.css?v2.1"/>
-		<link rel="stylesheet" href="css/resorts.css?v2.4"/>
+		@endif
+		<link rel="stylesheet" href="css/style.css"/>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
@@ -39,14 +39,14 @@
         <script src="{{ asset('/js/slick.min.js')}}"></script>
         <script src="{{ asset('/js/jquery.swipebox.min.js')}}"></script>
         <script src="{{ asset('/js/sweetalert.min.js')}}"></script>
+		@if ( !$safari )
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		@endif
 		<script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js')}}"></script>
-
         <div class="{{ $bodyClass }}">
-            {!! $errors !!}
             {!! $content !!}
 		</div>
 		{!! $footer !!}
-		<script src="js/main.js?v2.2"></script>
+		<script src="js/main.js?v2.3"></script>
     </body>
 </html>

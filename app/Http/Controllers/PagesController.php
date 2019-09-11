@@ -23,7 +23,7 @@ class PagesController extends BaseController
         $this->pageTitle = "Pages";
         $this->iconClass = "fas fa-sticky-note";
         $page_html = "";
-        $pages = \App\Pages::orderBy('order')->get();
+        $pages = \App\Pages::where('id', '>', 0)->orderBy('order')->get();
         foreach ( $pages as $page )
         {
             $page_html .= view('pages/page_div', array(
@@ -79,7 +79,7 @@ class PagesController extends BaseController
     {
         $id = $_REQUEST['id'];
         $page = \App\Pages::where('id', $id)->first();
-        $page->title = $_REQUEST['name'];
+        $page->menu_title = $_REQUEST['name'];
         $page->save();
         return "OK";
     }

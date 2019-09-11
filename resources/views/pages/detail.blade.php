@@ -1,29 +1,67 @@
 @inject('translator', 'App\Providers\TranslationProvider')
 <form action="Pages.save" id="form">
-<div class="row">
-    <input type="text" name="id" value="{{ $page    ->id }}" hidden>
-    <div class="form-group col-12">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" value="{{ $page->name }}">
+    <div class="container-fluid">
+        <div class="row">
+            <input type="text" name="id" value="{{ $page->id }}" hidden>
+            <h4 style="width: 100%;">Main menu settings</h4>
+            <div class="col-12 col-md-3 form-group">
+                <label style="font-weight: normal; font-size: 18px;" for="">Active</label>
+                <input type="text" id="active" value="{{ $page->active }}" name="active" hidden>
+                <label class="switch" style="display: block;">
+                    <input type="checkbox" id="active_checkbox">
+                    <span class="slider round"></span>
+                </label>                
+            </div>
+            <div class="col-12 col-md-9 form-group">
+                <label for="">Title</label>
+                <input type="text" name="menu_title" value="{{ $page->menu_title }}" class="form-control">
+            </div>
+            <h4 style="width: 100%;">Meta settings</h4>
+            <div class="col-12 col-lg-4 form-group">
+                <label for="">Meta title</label>
+                <input type="text" name="meta_title" value="{{ $page->meta_title }}" class="form-control">
+            </div>
+            <div class="col-12 col-lg-8 form-group">
+                <label for="">Meta description</label>
+                <input type="text" name="meta_description" value="{{ $page->meta_description }}" class="form-control">
+            </div>
+            <div class="col-12 form-group">
+                <label for="">Meta keywords</label>
+                <input type="text" name="meta_keywords" value="{{ $page->meta_keywords }}" class="form-control">
+            </div>
+            <h4 style="width: 100%;">
+                Page settings
+            </h4>
+            .col-12
+            <h4 style="width: 100%;">
+                Homepage settings
+                <div class="buttons">
+                    <label style="font-weight: normal; font-size: 18px;" for="">Show on homepage slider</label>
+                    <input type="text" id="include_slider" value="{{ $page->include_slider }}" name="include_slider" hidden>
+                    <label class="switch">
+                        <input type="checkbox" id="slider_checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!--  SWITCH GOES HERE  -->
+            </h4>
+            <div class="col-12 col-lg-4 form-group">
+                <label for="">Slider title</label>
+                <input type="text" name="slider_title" value="{{ $page->slider_title }}" class="form-control">
+            </div>
+            <div class="col-12 col-lg-4 form-group">
+                <label for="">Slider subtitle</label>
+                <input type="text" name="slider_subtitle" value="{{ $page->slider_subtitle }}" class="form-control">
+            </div>
+            <div class="col-12 col-lg-4 form-group">
+                <label for="">Slider button text</label>
+                <input type="text" name="slider_txt_button" value="{{ $page->slider_txt_button }}" class="form-control">
+            </div>
+        </div>
     </div>
-    <div class="form-group col-12">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" name="description" value="{{ $page->description }}">
-    </div>
-    <div class="form-group col-12">
-        <label for="meta_title">Page title (SEO)</label>
-        <input type="text" class="form-control" name="meta_title" value="{{ $page->meta_title }}">
-    </div>
-    <div class="form-group col-12">
-        <label for="meta_keywords">Page keywords</label>
-        <input type="text" class="form-control" name="meta_keywords" value="{{ $page->meta_keywords }}">
-    </div>
-    <div class="form-group col-12">
-        <label for="meta_description">Page description (SEO)</label>
-        <input type="text" class="form-control" name="meta_description" value="{{ $page->meta_description }}">
-    </div>
-</div>
 </form>
+
+
 <div class="row" style="margin-bottom: 20px;">
     @if ( $image === 1 )
     <div class="col-12" style="text-align: center;" id="img">
@@ -62,6 +100,32 @@
 </div>
 
 <script>
+
+    $(document).ready ( function() {
+        if ( $('#active').val() == "1" ) $('#active_checkbox').click();
+        $('#active_checkbox').change( function() {
+            if ( $(this).is(':checked') )
+            {
+                $('#active').val(1);
+            }
+            else
+            {
+                $('#active').val(0);
+            }
+        });
+        if ( $('#include_slider').val() == "1" ) $('#slider_checkbox').click();
+        $('#slider_checkbox').change( function() {
+            if ( $(this).is(':checked') )
+            {
+                $('#include_slider').val(1);
+            }
+            else
+            {
+                $('#include_slider').val(0);
+            }
+        });
+    })
+
     function deleteSection(id)
     {
         var options = Array();

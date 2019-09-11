@@ -24,7 +24,7 @@ class AdministrationController extends BaseController
     protected function setHeaderAndFooter()
     {
         $this->cont->footer = view('layout/footer_admin');
-        $this->cont->header = view('layout/header_admin2', array( "permissions" => $this->user->getPermissionArray(), "user" => $this->user ) );
+        $this->cont->header = view('layout/header_admin2', array( "user" => $this->user ) );
     }
     
     protected function RenderView() {
