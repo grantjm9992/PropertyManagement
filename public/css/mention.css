@@ -1,0 +1,43 @@
+.mention
+{
+    background: #fff;
+    color: grey;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(34,47,62,.1);
+    overflow: hidden;
+    max-width: 600px;
+}
+
+.mention div
+{
+    border-bottom: 0.5px solid rgba(0,0,0,.2);
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.active-mention
+{
+    background: rgba(0,0,0,.15);
+}
+.mention-alert
+{
+    border-radius: 25px;
+    padding: 5px 8px;
+    justify-content: space-between;
+    display: inline-flex;
+    max-width: 90%;
+    margin: 0 !important;
+}
+.mention-alert > div
+{
+    text-overflow: ellipsis;
+    max-width: calc( 100% - 15px );
+    height: 20px;
+    overflow: hidden;
+}
+.mention-alert i
+{
+    font-size: 20px;
+    cursor: pointer;
+}

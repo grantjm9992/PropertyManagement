@@ -16,7 +16,7 @@ class MyProfileController extends BaseController
     public function __construct() {
         $this->secure = 1;
         parent::__construct();
-        $this->user = \UserLogic::getUser();
+        $this->user = \UserLogic::getUser( $this->user->id );
     }
     
     public function defaultAction() {

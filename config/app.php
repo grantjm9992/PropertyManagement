@@ -228,6 +228,7 @@ return [
          */
         'AppConfig' => App\Classes\AppConfig::class,
         'UserLogic' => App\Classes\UserLogic::class,
+        'NotificationLogic' => App\Classes\NotificationLogic::class,
         'WidgetsUser' => App\Classes\WidgetsUser::class,
 
     ],

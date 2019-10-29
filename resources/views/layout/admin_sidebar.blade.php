@@ -1,0 +1,61 @@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+      <div class="logo">
+		Property Management
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active  ">
+            <a class="nav-link" href="{{ url('Admin') }}">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#formsExamples">
+              <i class="material-icons">assignment_ind</i>
+              <p>Tasks</p>
+            </a>
+            <div class="collapse" id="formsExamples" style="">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url('Tasks') }}">
+                    <span class="sidebar-normal">All tasks</span>
+                  </a>
+                </li>
+                @foreach ( $types as $type )
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url('Tasks') }}?id_type={{$type->id}}">
+                    <span class="sidebar-normal">{{ $type->description }}</span>
+                  </a>
+                </li>
+                @endforeach
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('Notifications') }}">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('MyProfile') }}">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('AdminProperties') }}">
+              <i class="material-icons">home</i>
+              <p>Properties</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('Users') }}">
+              <i class="material-icons">people</i>
+              <p>Users</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>

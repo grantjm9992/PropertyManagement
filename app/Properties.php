@@ -28,4 +28,9 @@ class Properties extends Model
     {
         return true;
     }
+
+    public function getImages()
+    {
+        
+    }
 }

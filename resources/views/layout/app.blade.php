@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ asset('/css/slick.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/mention.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/swipebox.min.css') }}">
 		@if ( !$safari )
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -39,6 +40,7 @@
         <script src="{{ asset('/js/slick.min.js')}}"></script>
         <script src="{{ asset('/js/jquery.swipebox.min.js')}}"></script>
         <script src="{{ asset('/js/sweetalert.min.js')}}"></script>
+        <script src="{{ asset('/js/mention.js')}}"></script>
 		@if ( !$safari )
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		@endif

@@ -26,7 +26,7 @@
                 <label for="role">Role</label>
                 <select name="role" id="role" class="form-control">
                     @foreach ( $roles as $role )
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->code }}">{{ $role->title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -51,6 +51,10 @@
 </form>
 
 <script>
+    $(document).ready( function() {
+        $('#role').val( "{{ $user->role }}" );
+        $('#id_company').val( "{{ $user->id_company }}" );
+    })
     function submitForm()
     {
         if ( $('#password').val() != $('#password2').val() && $('#password').val() != "" )

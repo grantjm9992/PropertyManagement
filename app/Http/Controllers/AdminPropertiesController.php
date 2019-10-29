@@ -64,6 +64,10 @@ class AdminPropertiesController extends BaseController
         if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to('AdminProperties');
         $property = \App\Properties::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $property ) )  return \Redirect::to('AdminProperties');
+        $owner = \App\User::where("id", $property->id_property_owner)->first();
+        $property->owner = (is_object($owner) ) ? $owner->name." ".$owner->surname : "";
+        $user = \App\User::where("id", $property->id_assigned_to)->first();
+        $property->assigned_to = (is_object( $user ) ) ? $user->name." ".$user->surname : "";
 
         $this->pageTitle = "Manage Property";
         $this->iconClass = "fas fa-home";

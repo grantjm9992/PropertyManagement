@@ -9,11 +9,11 @@
             @else
                 @foreach ( $notifications as $notification)
                     <div class="message">
-                        <div class="title">
+                        <!--<div class="title">
                             {{ $notification->type }}
-                        </div>
+                        </div>-->
                         <div class="message-text">
-                            {{ $notification->text }}
+                            {!! $notification->text !!}
                         </div>
                     </div>
                 @endforeach

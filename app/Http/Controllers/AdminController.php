@@ -15,29 +15,15 @@ class AdminController extends BaseController
 {
 
     protected $widgets;
+    protected $translator;
 
     public function __construct() {
-        $this->secure = 1;
         parent::__construct();
-        $this->widgets = \WidgetsUser::getWidgets();
+        $this->translator = new TranslationProvider();
     }
     
     public function defaultAction() {
-        $this->pageTitle = "Dashboard";
-        $this->iconClass = "fa-tachometer-alt";
-        switch( $this->user->role )
-        {
-            case "SA":
-                $this->cont->body = $this->SuperAdmin();
-            case "WA":
-                $this->cont->body = $this->WebsiteAdmin();
-            case "AA":
-                $this->cont->body = $this->AreaAdmin();
-            case "M":
-                $this->cont->body = $this->Manager();
-            case "PO":
-                $this->cont->body = $this->PropertyOwner();
-        }
+        $this->cont->body = "<div class='row'>".\WidgetsUser::getWidgets()."</div>";
         return $this->RenderView();
     }
 

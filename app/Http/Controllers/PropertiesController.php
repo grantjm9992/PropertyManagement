@@ -38,4 +38,18 @@ class PropertiesController extends BaseController
         return $this->RenderView();
     }
 
+    public function detailAction()
+    {
+        if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to("Properties")->send();
+        $id = base64_decode( $_REQUEST['id'] );
+        $property = \App\Properties::where('id', $id)->first();
+
+        if ( !is_object( $property ) ) return \Redirect::to("Properties")->send();
+
+        //$calendar = $this->getCalendarAction();
+        $property->getImages();
+        $property->getFeatures();
+        $reviews = null;
+    }
+
 }

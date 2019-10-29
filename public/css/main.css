@@ -190,6 +190,19 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+
+.quick-action
+{
+  padding: 10px 13px;
+  background-color: #800080;
+  color: #fff;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
 .disable_nav
 {
   color: lightgray !important;
@@ -450,4 +463,23 @@ input:checked + .slider:before {
 {
   background-color: #800080 !important;
   color: #fff !important;
+}
+
+.side-bar
+{
+  width: 250px;
+}
+
+.file
+{
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.file i 
+{
+  cursor: pointer;
 }

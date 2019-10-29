@@ -17,7 +17,6 @@ class UsersController extends BaseController
     public function __construct() {
         $this->secure = 1;
         parent::__construct();
-        $this->user = \UserLogic::getUser();
     }
     
     public function defaultAction() {
@@ -36,6 +35,12 @@ class UsersController extends BaseController
     public function listadoAction()
     {
         $this->data = \App\User::get();
+        foreach ( $this->data as $row )
+        {
+            $row->fullname = $row->name." ".$row->surname;
+            $company = \App\Companies::where('id', $row->id_company)->first();
+            $row->cc = ( is_object( $company ) ) ? $company->name : "";
+        }
 
         $this->campos[] = array(
             "title" => "Name",
@@ -68,7 +73,7 @@ class UsersController extends BaseController
         if ( !isset( $_REQUEST['id'] ) ) return \Redirect::to('Users')->send();
         $user = \App\User::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $user ) ) return \Redirect::to('Users')->send();
-        $roles = \App\roles::get();
+        $roles = \App\Roles::get();
         $companies = \App\Companies::get();
         $this->cont->body = view('users/detail', array(
             "user" => $user,
@@ -100,5 +105,29 @@ class UsersController extends BaseController
         $user = ( isset( $_REQUEST['id'] ) && $_REQUEST['id'] != "" ) ? \App\User::where('id', $_REQUEST['id'])->first() : \App\User::create();
         $user->update( $_REQUEST );
         return \Redirect::to('Users')->send();
+    }
+
+
+    public function getMentionAction()
+    {
+        $user = $_REQUEST["title"];
+        $where = "";
+        if ( isset ( $_REQUEST["role"] ) && $_REQUEST["role"] != "" ) $where .= " AND role='".$_REQUEST["role"]."' ";
+        if ( isset ( $_REQUEST["assignproperty"] ) && $_REQUEST["assignproperty"] != "" ) $where .= " AND role IN ('M', 'AA') ";
+        if ( isset ( $_REQUEST["mycompany"] ) && $_REQUEST["mycompany"] != "" && $this->user->id_company !== -1 ) $where .= " AND id_company = ".$this->user->id_company;
+        $contacts = \App\User::whereRaw(" (name LIKE '%$user%' OR surname LIKE '%$user%') $where ")->get();
+        
+        $return = array();
+        foreach ( $contacts as $contact )
+        {
+            $fullname = strtoupper( $contact->name." ".$contact->surname );
+            $fullname = str_replace(strtoupper($user), strtoupper("<b>$user</b>"), $fullname);
+
+            $con = array();
+            $con["id"] = $contact->id;
+            $con["title"] = $fullname;
+            array_push($return, $con);
+        }
+        die(json_encode($return));
     }
 }

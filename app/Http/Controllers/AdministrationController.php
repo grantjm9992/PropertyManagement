@@ -17,32 +17,37 @@ use \App\Messages;
 class AdministrationController extends BaseController
 {
     public function __construct() {
-        if ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) $this->user = \UserLogic::getUser();
+        $this->user = \App\User::where('id', $_SESSION["id"])->first();
         parent::__construct();
     }
 
     protected function setHeaderAndFooter()
     {
+        $types = \App\TaskType::get();
+        $notifications = \App\Notifications::getUnseenForUser();
+        $count = ( is_null( $notifications ) ) ? 0 : count( $notifications );
+
         $this->cont->footer = view('layout/footer_admin');
-        $this->cont->header = view('layout/header_admin2', array( "user" => $this->user ) );
+        $this->cont->sidebar = view("layout/admin_sidebar", array(
+            "types" => $types
+        ));
+        $this->cont->header = view('layout/admin_header', array(
+            "notifications" => $notifications,
+            "count_notifications" => $count
+        ));
     }
     
     protected function RenderView() {
         $_SESSION['errors'] = "";
-        if ( !isset( $_SESSION['id'] ) || $_SESSION['id'] == "" ) \Redirect::to('Login')->send();
         $template =  "layout/app_admin";
         return view($template, array(
-            'bodyClass' => $this->bodyClass,
-            'title' => $this->title,
-            'errors' => $this->errors,
-            'header' => $this->cont->header,
-            'footer' => $this->cont->footer,
-            'content' => $this->cont->body,
+            "sidebar" => $this->cont->sidebar,
+            "navbar" => $this->cont->header,
+            "content" => $this->cont->body,
+            "footer" => $this->cont->footer,
+            "pageTitle" => $this->pageTitle,
             "iconClass" => $this->iconClass,
-            "titulo" => $this->pageTitle,
-            "botonera" => $this->botonera,
-            "keywords" => $this->keywords,
-            "description" => $this->description
+            "botonera" => $this->botonera
         ));
     }
 
