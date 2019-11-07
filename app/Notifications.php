@@ -17,7 +17,7 @@ class Notifications extends Model
         foreach ( $notifications as $notif )
         {
             $sender = \App\User::where('id', $notif->id_sender)->first();
-            $notif->sender = $sender->user." ".$sender->surname;
+            $notif->sender = (is_object( $sender ) ) ? $sender->user." ".$sender->surname : "";
         }
         return $notifications;        
     }

@@ -446,8 +446,7 @@ h3
 
 .apartment-image-holder
 {
-	width: 1170px;
-	height: 780px;
+	height: 400px;
 	margin: auto;
 }
 .apartment-image-holder div
@@ -459,86 +458,26 @@ h3
 
 @media screen and ( max-width: 1200px)
 {
-	.apartment-image-holder
-	{
-		width: 930px;
-		height: 740px;
-	}
-	.apartment-image-holder div
-	{
-		width: 930px;
-		height: 740px;
-	}
 }
 
 @media screen and ( max-width: 992px)
 {
-	.apartment-image-holder
-	{
-		width: 750px;
-		height: 280px;
-	}
-	.apartment-image-holder div
-	{
-		width: 750px;
-		height: 280px;
-	}
 }
 
 @media screen and ( max-width: 992px)
 {
-	.apartment-image-holder
-	{
-		width: 750px;
-		height: 380px;
-	}
-	.apartment-image-holder div
-	{
-		width: 750px;
-		height: 380px;
-	}
 }
 
 @media screen and ( max-width: 768px)
 {
-	.apartment-image-holder
-	{
-		width: 450px;
-		height: 230px;
-	}
-	.apartment-image-holder div
-	{
-		width: 450px;
-		height: 230px;
-	}
 }
 
 @media screen and ( max-width: 500px)
 {
-	.apartment-image-holder
-	{
-		width: 300px;
-		height: 230px;
-	}
-	.apartment-image-holder div
-	{
-		width: 300px;
-		height: 230px;
-	}
 }
 
 @media screen and ( max-width: 300px)
 {
-	.apartment-image-holder
-	{
-		width: 200px;
-		height: 230px;
-	}
-	.apartment-image-holder div
-	{
-		width: 200px;
-		height: 230px;
-	}
 }
 
 .dropdown-menu
@@ -855,4 +794,73 @@ h3
 	background-color: rgba(0,0,0,.5) !important;
 	color: #fff !important;
 	border: #fff !important;
+}
+
+
+.native-holder
+{
+	position: relative;
+	padding-bottom: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.native-holder > h3
+{
+	font-weight: 600;
+    font-size: 2rem;
+}
+
+.native-under::after
+{
+	content: '';
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background-color: #2eca6a;
+    bottom: 20px;
+    left: 0;
+}
+
+.bodyMargin
+{
+	margin-top: 100px;
+}
+
+#carousel .owl-next, #carousel .owl-prev
+{
+	padding: .7rem 1.5rem !important;
+    display: inline-block;
+    transition: all 0.6s ease-in-out;
+    color: #ffffff;
+    background-color: #2eca6a;
+    opacity: .9;
+}
+
+#carousel .owl-prev
+{
+	margin-right: 1.5px;
+}
+
+#carousel .owl-nav
+{
+	position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+}
+
+.tabby
+{
+	color: black;
+}
+
+.active .tabby::after
+{
+	content: '';
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    background-color: #2eca6a;
+    bottom: 20px;
+    left: 10%;
 }

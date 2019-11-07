@@ -20,15 +20,9 @@ class TasksController extends BaseController
     
     public function defaultAction() {
         if ( !is_object( $this->user ) ) return \Redirect::to("Admin");
-        $tasks = ( isset( $_REQUEST["id_user"] ) && $_REQUEST["id_user"] != "" ) ? \App\Tasks::getForUser( $_REQUEST["id_user"] ) : \App\Tasks::getForUser( $this->user->id ); 
-        $taskHTML = "";
-        foreach ( $tasks as $task )
-        {
-            $taskHTML .= view('tasks/taskcard', array(
-                "task" => $task
-            ));
-        }
+        
 
+        $listado = $this->getTasksAction();
         $companies = \App\Companies::orderBy("name", "ASC")->get();
         $types = \App\TaskType::orderBy("description", "ASC")->get();
 
@@ -36,7 +30,7 @@ class TasksController extends BaseController
         $this->iconClass = "fa-calendar";
         $this->botonera = view("tasks/btns");
         $this->cont->body = view('tasks/index', array(
-            "tasks" => $taskHTML,
+            "tasks" => $listado,
             "user" => $this->user,
             "companies" => $companies,
             "types" => $types
@@ -46,15 +40,72 @@ class TasksController extends BaseController
 
     public function getTasksAction()
     {
-        $tasks = ( isset( $_REQUEST["id_user"] ) && $_REQUEST["id_user"] != "" ) ? \App\Tasks::getForUser( $_REQUEST["id_user"] ) : \App\Tasks::getForUser( $this->user->id ); 
-        $taskHTML = "";
-        foreach ( $tasks as $task )
+        $this->data = \App\Tasks::whereRaw( $this->makeWhere() )->get();
+        $this->campos[] = array(
+            "title"=> "Title",
+            "name" => "title"
+        );
+        if ( $this->user->role != "PO" )
         {
-            $taskHTML .= view('tasks/taskcard', array(
-                "task" => $task
-            ));
+            $this->decorateRow();
+            $this->campos[] = array(
+                "title" => "User",
+                "name" => "user"
+            );
         }
-        return $taskHTML;
+        $this->campos[] = array(
+            "title"=> "From",
+            "name" => "date_start"
+        );
+        $this->campos[] = array(
+            "title"=> "To",
+            "name" => "date_end"
+        );
+        $this->detailURL = "AdminProperties.detail?id=";
+        if ( count( $this->data ) > 0 ) return $this->createTable();
+        return view("comun/nodata");
+    }
+
+    protected function decorateRow()
+    {
+        foreach ( $this->data as $row )
+        {
+            $user = \App\User::where("id", $row->id_user )->first();
+            $row->user = $user->name." ".$user->surname;
+        }
+    }
+
+    public function makeWhere()
+    {
+        $where = " 1 ";
+        if ( !isset( $_REQUEST["id_user"] ) || $_REQUEST["id_user"] == "")
+        {
+            if ( $this->user->role == "AA" )
+            {
+                $where .= " AND id_company = ".$this->user->id_company;
+            }
+            if ( $this->user->role == "M" )
+            {
+                $where .= " AND ( id_user = ".$this->user->id." OR id_user IN ( SELECT id_property_owner FROM properties WHERE id_assigned_to = ".$this->user->id." ) ) ";
+            }
+            if ( $this->user->role == "PO" )
+            {
+                $where .= " AND id_user = ".$this->user->id." ";
+            }
+        }
+        if ( !isset( $_REQUEST["from"] ) ) $where .= " AND ( DATE( date_start )  >= DATE( NOW() ) OR date_start IS NULL ) ";
+        if ( isset( $_REQUEST["id_type"] ) && $_REQUEST["id_type"] != "" ) $where .= " AND id_type = ".$_REQUEST["id_type"];
+        if ( isset( $_REQUEST["status"] ) && $_REQUEST["status"] != "" ) $where .= " AND status = ".$_REQUEST["status"];
+        if ( isset( $_REQUEST["id_company"] ) && $_REQUEST["id_company"] != "" ) $where .= " AND id_company = ".$_REQUEST["id_company"];
+        if ( isset( $_REQUEST["id_property"] ) && $_REQUEST["id_property"] != "" ) $where .= " AND id_property = ".$_REQUEST["id_property"];
+        if ( isset( $_REQUEST["id_user"] ) && $_REQUEST["id_user"] != "" ) $where .= " AND id_user = ".$_REQUEST["id_user"];
+        if ( isset( $_REQUEST["pp"] ) && $_REQUEST["pp"] == "1" ) $where .= " AND date_start < NOW() ";
+        if ( isset( $_REQUEST["pp"] ) && $_REQUEST["pp"] == "all" ) $where .= "  ";
+        if ( isset( $_REQUEST["from"] ) && $_REQUEST["from"] != "" ) $where .= " AND DATE( date_start ) >= DATE( '".$_REQUEST["from"]."' ) ";
+        if ( isset( $_REQUEST["to"] ) && $_REQUEST["to"] != "" ) $where .= " AND DATE( date_start ) <= DATE( '".$_REQUEST["to"]."' ) ";
+
+
+        return $where ;
     }
 
     public function editAction()

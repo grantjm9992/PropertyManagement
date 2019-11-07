@@ -2,6 +2,20 @@
     <div class="container-fluid">
         <div class="row">
             <input type="text" name="id" value="{{ $property->id }}" hidden>
+            @isset( $specialurl )
+            <div class="col-12">
+                <h6>
+                    Encoded URL:
+                    <input type="text" id="encoded" value="{{ $specialurl }}" hidden>
+                    <a  target="_blank" href="{{ $specialurl }}" class="btn btn-success">
+                        {{ $specialurl }}
+                    </a>
+                    <div onclick="copyLink()" class="btn btn-warning">
+                        <i class="far fa-copy"></i>
+                    </div>
+                </h6>
+            </div>
+            @endisset
             <div class="col-12 col-lg-6 form-group">
                 <label for="">Title</label>
                 <input type="text" name="title" value="{{ $property->title }}" class="form-control">
@@ -242,5 +256,33 @@
 		$('#id_property_owner').val( info.id );
 	}
 
+    function copyLink()
+    {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($("#encoded").val()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        md.showNotification("top", "center", "Copied to clipboard");
+    }
 
+
+    function addPropertyTask()
+    {
+        $.ajax({
+            type: "POST",
+		    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: "Tasks.addModal",
+            data:
+            {
+                id_property: "{{ $property->id }}"
+            },
+            success: function( data ) 
+            {
+                $('#modal').remove();
+                $('body').append(data);
+                $('#modal').show();
+            }
+        })
+    }
 </script>

@@ -3,7 +3,13 @@
 </div>
 <a href="Users" class="btn btn-secondary">
     <i class="fas fa-arrow-left"></i> Back
-</a><!--
+</a>
+@if ( $user->role == "SA" )
+<a href="Admin.viewAs?id={{$thisUser->id}}" class="btn btn-success">
+    <i class="fas fa-user-secret"></i> View as user
+</a>
+@endif
+<!--
 <div class="btn btn-success" onclick="addToContacts()">
     <i class="fas fa-user-plus"></i> Add to contacts
 </div>-->

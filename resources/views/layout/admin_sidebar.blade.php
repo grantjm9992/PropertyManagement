@@ -44,6 +44,15 @@
               <p>User Profile</p>
             </a>
           </li>
+          @if ( $user->role == "PO" )
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('MyProperties') }}">
+              <i class="material-icons">home</i>
+              <p>My properties</p>
+            </a>
+          </li>
+          @endif
+          @if ( $user->role != "PO" )
           <li class="nav-item ">
             <a class="nav-link" href="{{ url('AdminProperties') }}">
               <i class="material-icons">home</i>
@@ -56,6 +65,15 @@
               <p>Users</p>
             </a>
           </li>
+          @endif
+          @if( $user->role == "WA" || $user->role == "SA" )
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('WebAdmin') }}">
+              <i class="material-icons">developer_mode</i>
+              <p>Website admin</p>
+            </a>
+          </li>
+          @endif
         </ul>
       </div>
     </div>

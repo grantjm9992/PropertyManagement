@@ -16,7 +16,10 @@ use \App\Messages;
 
 class AdministrationController extends BaseController
 {
+
+    public $returnURL;
     public function __construct() {
+        if ( !isset( $_SESSION["id"] ) ) die( \Redirect::to("Login")->send() );
         $this->user = \App\User::where('id', $_SESSION["id"])->first();
         parent::__construct();
     }
@@ -27,17 +30,25 @@ class AdministrationController extends BaseController
         $notifications = \App\Notifications::getUnseenForUser();
         $count = ( is_null( $notifications ) ) ? 0 : count( $notifications );
 
-        $this->cont->footer = view('layout/footer_admin');
-        $this->cont->sidebar = view("layout/admin_sidebar", array(
-            "types" => $types
+        $this->cont->footer = view('layout/footer_admin', array(
+            "user" => $this->user
         ));
+        $this->cont->sidebar = view("layout/admin_sidebar", array(
+            "types" => $types,
+            "user" => $this->user
+        ));
+        $back = ( isset( $_SERVER["HTTP_REFERER"] ) ) ? $_SERVER["HTTP_REFERER"] : url("/Admin");
+        $back = $this->returnURL != "" ? $this->returnURL : $back;
         $this->cont->header = view('layout/admin_header', array(
             "notifications" => $notifications,
-            "count_notifications" => $count
+            "count_notifications" => $count,
+            "back" => $back,
+            "user" => $this->user
         ));
     }
     
     protected function RenderView() {
+        $this->setHeaderAndFooter();
         $_SESSION['errors'] = "";
         $template =  "layout/app_admin";
         return view($template, array(

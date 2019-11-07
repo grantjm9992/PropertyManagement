@@ -27,8 +27,13 @@ class AdminPropertiesController extends BaseController
 
         $listado = $this->listadoAction();
 
+        $companies = \App\Companies::get();
+        $resorts = \App\Resorts::get();
         $this->cont->body = view('adminproperties/index', array(
-            "listado" => $listado
+            "listado" => $listado,
+            "user" => $this->user,
+            "companies" => $companies,
+            "resorts" => $resorts
         ));
         return $this->RenderView();
     }
@@ -50,10 +55,20 @@ class AdminPropertiesController extends BaseController
         $property = new \App\Properties();
         $this->pageTitle = "New property";
         $this->iconClass = "fa-briefcase";
-        $this->botonera = view('adminproperties/editbuttons');
+        $this->botonera = view('adminproperties/editbuttons', array("property" => $property));
+
+        $resorts = \App\Resorts::where('id_company', $this->user->id_company)->get();
+        $propertytypes = \App\PropertyTypes::get();
+        $sections = \App\InfoSections::where('id_company', $this->user->id_company)->get();
+        $images = \App\PropertiesImages::where('id_property', $property->id)->orderBy('order', 'ASC')->get();
 
         $this->cont->body = view('adminproperties/detail', array(
-            "property" => $property
+            "property" => $property,
+            "resorts" => $resorts,
+            "propertytypes" => $propertytypes,
+            "sections" => $sections,
+            "images" => $images,
+            "featuresGrid" => $this->featuresGridAction()
         ));
 
         return $this->RenderView();
@@ -71,7 +86,8 @@ class AdminPropertiesController extends BaseController
 
         $this->pageTitle = "Manage Property";
         $this->iconClass = "fas fa-home";
-        $this->botonera = view('adminproperties/editbuttons');
+        $this->botonera = view('adminproperties/editbuttons', array("property" => $property));
+        $this->returnURL = "AdminProperties";
 
         /**
          * Get all selects
@@ -88,10 +104,22 @@ class AdminPropertiesController extends BaseController
             "propertytypes" => $propertytypes,
             "sections" => $sections,
             "images" => $images,
-            "featuresGrid" => $this->featuresGridAction()
+            "featuresGrid" => $this->featuresGridAction(),
+            "specialurl" => $this->createURL( $property->id )
         ));
 
         return $this->RenderView();
+    }
+
+    protected function createURL( $id, $paid = false )
+    {
+        $base = url("/");
+
+        $string = "id=".base64_encode( $id );
+        if( $paid ) $string .= "&conf=1";
+
+        $string = "?p=".base64_encode( $string );
+        return "$base/$string";
     }
 
     public function saveAction()
@@ -264,5 +292,28 @@ class AdminPropertiesController extends BaseController
         }
 
         return $where;
+    }
+
+    public function cloneAction()
+    {
+        $id = $_REQUEST["id"];
+
+        $property = \App\Properties::where("id", $id)->first();
+        $new_property = $property->replicate();
+        $new_property->title = "(clone) $new_property->title";
+        $new_property->save();
+        if ( !is_dir( "img/properties/$new_property->id/" ) ) mkdir("img/properties/$new_property->id/", 0777);
+
+        $images = \App\PropertiesImages::where("id_property", $id)->get();
+        foreach ( $images as $image )
+        {
+            $newImage = $image->replicate();
+            $newImage->id_property = $new_property->id;
+            $newImage->path = str_replace("properties/$id/", "properties/$new_property->id/", $newImage->path);
+            $newImage->save();
+            \copy($image->path, $newImage->path);
+        }
+
+        return \Redirect::to("AdminProperties.detail?id=$new_property->id")->send();
     }
 }

@@ -20,20 +20,23 @@ class PropertyCalendarController extends BaseController
     }
     
     public function defaultAction() {
-        $this->pageTitle = "Dashboard";
-        $this->iconClass = "fa-tachometer-alt";
+        $this->pageTitle = "Rentals";
+        $this->iconClass = "fa-suitcase-rolling";
         
         if ( !isset ( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to('AdminProperties')->send();
 
-        $property = \App\Properties::where('id', $_REQUEST['id'])->first();
-        
+        $this->returnURL = "AdminProperties.detail?id=".$_REQUEST["id"];
+        $property = \App\Properties::where('id', $_REQUEST['id'])->first();        
         if ( !is_object( $property ) )  return \Redirect::to('AdminProperties')->send();
-
-        $calendar = $this->getCalendarAction( $property );
+        
+        $this->botonera = view("admin/calendar/addbtn", array(
+            "property" => $property
+        ));
 
         $this->cont->body = view('admin/calendar/index', array(
             "property" => $property,
-            "calendar" => view('comun/schedule', array( "property" => $property ) )
+            "calendar" => view('comun/schedule', array( "property" => $property, "rentals" => $this->getCalendarAction() ) ),
+            
         ));
         return $this->RenderView();
     }
@@ -47,8 +50,8 @@ class PropertyCalendarController extends BaseController
         }
 
         $rentals = \App\Rentals::getCalendar( $property->id );
-
-        return json_encode( $rentals );
+        
+        return  $rentals;
         
     }
 }

@@ -16,8 +16,8 @@
               </div>
               <div class="col-12 form-group">
                 <label for="user">Assigned to</label>
-                <input type="text" id="user" required class="form-control" autocomplete="off">
-                <input type="text" hidden name="id_user" id="id_user" required>
+                <input type="text" id="user_modal" required class="form-control" autocomplete="off">
+                <input type="text" hidden name="id_user" id="id_user_modal" required>
               </div>
               <div class="form-group col-12">
                 <label for="">Type of task</label>
@@ -29,16 +29,22 @@
               </div>
               <div class="form-group col-12">
                 <label for="">Start</label>
-                <input type="text" name="date_start" id="date_start" class="form-control" required autocomplete="off">
+                <input type="text" name="date_start" id="date_startTask" class="form-control" required autocomplete="off">
               </div>
               <div class="form-group col-12">
                 <label for="">End</label>
-                <input type="text" name="date_end" id="date_end" class="form-control" required autocomplete="off">
+                <input type="text" name="date_end" id="date_endTask" class="form-control" required autocomplete="off">
               </div>
               <div class="form-group col-12">
                 <textarea name="description" id="description" cols="30" rows="3" placeholder="Further details..." class="form-control"></textarea>
               </div>
             </div>
+            @isset( $_REQUEST["id_property"] )
+              <input name="id_property" value="{{ $_REQUEST['id_property'] }}" hidden/>
+            @endisset
+            @isset( $_REQUEST["id_reservation"] )
+              <input name="id_reservation" value="{{ $_REQUEST['id_reservation'] }}" hidden/>
+            @endisset
           </form>          
       </div>
       <div class="modal-footer">
@@ -51,33 +57,35 @@
 
 <script>
   $(document).ready( function() {
+    $('#user_modal').mention({
+			url: "Users.getMention",
+			selectFunction: selectContact,
+			alertId: 'mentionAlertModal',
+			alertHash: '#mentionAlertModal'
+		});
     var now = new Date();
     $('#modal').modal("show");
-    var to = $('#date_start').datetimepicker({
+    var to = $('#date_startTask').datetimepicker({
       minDate: now,
       onShow:function( ct ){
         this.setOptions({
-          minDate:jQuery('#date_end').val()?jQuery('#date_end').val():false
+          minDate:jQuery('#date_endTask').val()?jQuery('#date_endTask').val():false
         })
       }
     });
-    var from = $('#date_end').datetimepicker({
+    var from = $('#date_endTask').datetimepicker({
       minDate: now,
       onShow:function( ct ){
         this.setOptions({
-          minDate:jQuery('#date_start').val()?jQuery('#date_start').val():false
+          minDate:jQuery('#date_startTask').val()?jQuery('#date_startTask').val():false
         })
       }
     });
-    $('#user').mention({
-			url: "Users.getMention",
-			selectFunction: selectContact
-		});
   });
 
   function submitTaskForm()
   {
-    if ( $("#id_user").val() != "" )
+    if ( $("#id_user_modal").val() != "" )
     {
       if ( $("#taskForm").validate() )
       {
@@ -88,16 +96,15 @@
 
 	function selectContact( info )
 	{
-		$('#id_user').val( info.id );
+		$('#id_user_modal').val( info.id );
 	}
 
 	function refreshMention()
 	{
-		$('#id_user').val('');
-		$('#user').val('');
-		$('#user').show();
-		$('.mention-alert').remove();
-		$('#mentionAlert').remove();
-		$('#user').focus();
+		$('#id_user_modal').val('');
+		$('#user_modal').val('');
+		$('#user_modal').show();
+		$('#mentionAlertModal').remove();
+		$('#user_modal').focus();
 	}
 </script>

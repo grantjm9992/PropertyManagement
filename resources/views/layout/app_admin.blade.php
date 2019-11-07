@@ -32,7 +32,9 @@
     <link rel="stylesheet" href="css/mention.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/17.3.0.9/js/web/bootstrap-theme/ej.web.all.min.css">
     <link rel="stylesheet" href="css/dropzone.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.css">
     <link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
@@ -63,8 +65,6 @@
   <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="assets/js/plugins/fullcalendar.min.js"></script>
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
   <script src="assets/js/plugins/jquery-jvectormap.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -81,7 +81,9 @@
   <script src="assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="https://cdn.syncfusion.com/17.3.0.9/js/web/ej.web.all.min.js"></script>
   <script src="js/dropzone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.js"></script>
   <script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js')}}"></script>
 
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
@@ -90,6 +92,21 @@
   <script src="assets/demo/demo.js"></script>
   <script src="js/mention.js"></script>
   <script>
+  
+  function addTask()
+    {
+        $.ajax({
+            type: "POST",
+		    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: "Tasks.addModal",
+            success: function( data ) 
+            {
+                $('#modal').remove();
+                $('body').append(data);
+                $('#modal').show();
+            }
+        })
+    }
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -361,7 +378,9 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <span>
-                            <i class="fas {{ $iconClass }}"></i>{!! $pageTitle !!}
+                          <h4>
+                            <i class="fas {{ $iconClass }}"></i>  {!! $pageTitle !!}
+                          </h4>
                         </span>
                         <div class="buttons">
                             {!! $botonera !!}

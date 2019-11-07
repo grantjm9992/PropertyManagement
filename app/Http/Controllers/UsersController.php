@@ -69,12 +69,15 @@ class UsersController extends BaseController
     {
         $this->pageTitle = "Edit user";
         $this->iconClass = "fa-user-edit";
-        $this->botonera = view('users/botonera');
         if ( !isset( $_REQUEST['id'] ) ) return \Redirect::to('Users')->send();
         $user = \App\User::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $user ) ) return \Redirect::to('Users')->send();
         $roles = \App\Roles::get();
         $companies = \App\Companies::get();
+        $this->botonera = view('users/botonera', array(
+            "user" => $this->user,
+            "thisUser" => $user
+        ));
         $this->cont->body = view('users/detail', array(
             "user" => $user,
             "roles" => $roles,
@@ -114,7 +117,7 @@ class UsersController extends BaseController
         $where = "";
         if ( isset ( $_REQUEST["role"] ) && $_REQUEST["role"] != "" ) $where .= " AND role='".$_REQUEST["role"]."' ";
         if ( isset ( $_REQUEST["assignproperty"] ) && $_REQUEST["assignproperty"] != "" ) $where .= " AND role IN ('M', 'AA') ";
-        if ( isset ( $_REQUEST["mycompany"] ) && $_REQUEST["mycompany"] != "" && $this->user->id_company !== -1 ) $where .= " AND id_company = ".$this->user->id_company;
+        if ( isset ( $_REQUEST["mycompany"] ) && $_REQUEST["mycompany"] != "" && $this->user->id_company !== -1 ) $where .= " AND  id_company = ".$this->user->id_company;
         $contacts = \App\User::whereRaw(" (name LIKE '%$user%' OR surname LIKE '%$user%') $where ")->get();
         
         $return = array();

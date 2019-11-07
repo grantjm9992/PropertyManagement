@@ -1,39 +1,25 @@
-
-<link href='fullcalendar/core/main.css' rel='stylesheet' />
-<link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
-<link href='fullcalendar/timegrid/main.css' rel='stylesheet' />
-
-<script src='fullcalendar/core/main.js'></script>
-<script src='fullcalendar/daygrid/main.js'></script>
-<script src='fullcalendar/timegrid/main.js'></script>
-
-<script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    $(function () {            
-            $.ajax({
-                type: "POST",
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                url: "PropertyCalendar.getCalendar",
-                data: {
-                    id: "{{ $property->id }}"
-                },
-                success: function(data)
-                {
-                    var s = jQuery.parseJSON( data );
-                    
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                        events: s,
-                        plugins: [ 'timeGrid' ],
-                        defaultView: 'timeGridWeek'
-                    });
-                    calendar.render();
-                }
-            })
-        });
-    });
-
-</script>
-<div id="calendar"></div>
+<div class="container-fluid" id="rentals">
+@if ( count( $rentals ) > 0 )
+    @foreach ( $rentals as $row )
+        <a href="Reservations.detail?id={{ $row->id }}">
+            <div rental="{{ $row->id}}" class="rental row">
+                <div class="col-12 col-xl-4">
+                    Rental for: {{ $row->title }}
+                </div>
+                <div class="col-12 col-lg-6 col-xl-4">
+                    <i class="fas fa-clock"></i> From: {{ $row->date_start }}
+                </div>
+                <div class="col-12 col-lg-6 col-xl-4">
+                    <i class="fas fa-clock"></i> To: {{ $row->date_end }}
+                </div>
+            </div>
+        </a>
+    @endforeach
+@else
+    <div class="alert alert-warning">
+        <h5>
+            <i class="fas fa-thumbs-down text-light"></i> There are no reservations for this property
+        </h5>
+    </div>
+@endif
+</div>

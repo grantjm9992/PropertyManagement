@@ -80,7 +80,6 @@ class Controller extends BaseController
         $this->translator = new TranslationProvider();
         $this->errors = "";
         $this->bodyClass = "bodyMargin bg-light";
-        $this->setHeaderAndFooter();
 
         
         /* DEFAUTL GRID PARAMS */
@@ -122,6 +121,7 @@ class Controller extends BaseController
     }
 
     protected function RenderView() {
+        $this->setHeaderAndFooter();
         
         $safari = false;
         $ua = $_SERVER["HTTP_USER_AGENT"];      // Get user-agent of browser

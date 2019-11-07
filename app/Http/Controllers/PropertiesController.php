@@ -41,15 +41,67 @@ class PropertiesController extends BaseController
     public function detailAction()
     {
         if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to("Properties")->send();
-        $id = base64_decode( $_REQUEST['id'] );
+        //$id = base64_decode( $_REQUEST['id'] );
+        $id = $_REQUEST["id"];
         $property = \App\Properties::where('id', $id)->first();
 
         if ( !is_object( $property ) ) return \Redirect::to("Properties")->send();
+        $images = \App\PropertiesImages::where("id_property", $id)->get();
+        $feateurs = \App\PropertiesFeatures::where("id_property", $id)->get();
+        $feats = array();
+        foreach ( $feateurs as $row )
+        {
+            $f = \App\Features::where("id", $row->id_feature)->first();
+            $feats[] = $f;
+        }
 
-        //$calendar = $this->getCalendarAction();
-        $property->getImages();
-        $property->getFeatures();
-        $reviews = null;
+        $resort = \App\Resorts::where("id", $property->id_resort)->first();
+
+        $this->cont->body = view("properties/detail", array(
+            "property" => $property,
+            "images" => $images,
+            "features" => $feats,
+            "resort" => $resort
+        ));
+
+        return $this->RenderView();
+        
+    }
+
+
+    public function getUnavailableDatesAction()
+    {
+        if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to("Properties")->send();
+        $id = $_REQUEST["id"];
+        $reservations = \App\Rentals::where("id_property", $id)->get();
+        $res = array();
+        foreach ( $reservations as $row )
+        {
+            $start = new \DateTime( $row->date_start );
+            $end = new \DateTime( $row->date_end );
+            $start->setTime("12", "00");
+            $end->setTime("12", "00");
+            while ( $start < $end )
+            {
+                $res[] = $start->format("d/m/Y");
+                $start->modify("+1 days");
+            }
+        }
+
+        return $res;
+    }
+
+    public function getUntiWhenAction()
+    {
+        $id = $_REQUEST["id"];
+        $day = $_REQUEST["date"];
+        $day = new \DateTime( $day );
+        $day = $day->format("Y-m-d");
+
+        $reservation = \App\Rentals::where("id_property", $id)->whereRaw(" date_start > $day ")->first();
+        $until = new \DateTime( $reservation->date_start );
+
+        return $until->format("d/m/Y");
     }
 
 }

@@ -29,6 +29,15 @@ class NotificationLogic extends AdminOU
         $notification->save();
     }
 
+    public static function addedArrivalInfo( $reservation )
+    {
+        $property = \App\Properties::where("id", $reservation->id_property)->first();
+        $notification = new \App\Notifications();
+        $notification->id_user = $property->id_assigned_to;
+        $notification->text = "<a href='Reservations.detail?id=$reservation->id'>The guest for $reservation->date_start for $property->title has added their arrival information</a>";
+        $notification->save();
+    }
+
     public static function updateStatusTask( $task )
     {
         $status = ( (int)$task->status === 1 ) ? "pending" : "complete";
