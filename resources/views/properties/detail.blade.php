@@ -1,6 +1,11 @@
-<section class="intro-section">
+<section class="intro-section p-5">
     <div class="container">
         <div class="native-holder">
+            <div class="buttons">
+                <a href="Properties" class="label alert-green-outline">
+                    <i class="fas fa-arrow-left"></i> Back to property list
+                </a>
+            </div>
             <h3 class="w-100 p-4 native-under">
                 {{ $property->title }}
             </h3>

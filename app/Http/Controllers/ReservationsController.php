@@ -69,6 +69,16 @@ class ReservationsController extends BaseController
 
     }
 
+    public function updateAction()
+    {
+        $id = $_REQUEST["id"];
+        $reservation = \App\Rentals::where("id", $id)->first();
+        $reservation->update( $_REQUEST );
+        $reservation->save();
+
+        return \Redirect::to("Reservations?id_property=$reservation->id_property")->send();
+    }
+
     public function getCalendarAction( $property = null )
     {
         if ( $property === null)

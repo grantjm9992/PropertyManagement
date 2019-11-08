@@ -46,18 +46,72 @@ class ResortsController extends BaseController
         $sectionHTML = "";
         foreach ( $sections as $section )
         {
-            $sectionHTML .= view('sections/page_div', array(
-                "page" => $section
+            $sectionHTML .= view('resorts/resortsection_div', array(
+                "section" => $section
             ));
         }
 
-        $img = ( file_exists( $page->image ) ) ? 1 : 0;
+        $img = ( file_exists( $resort->image ) ) ? 1 : 0;
 
         $this->cont->body = view('resorts/detail', array(
-            "page" => $page,
+            "resort" => $resort,
             "sections" => $sectionHTML,
             "image" => $img          
         ));
+
+        return $this->RenderView();
+    }
+
+    public function uploadSectionImageAction()
+    {
+        $id = $_REQUEST["id"];
+        $section = \App\ResortsSections::where("id", $id)->first();
+    }
+
+
+    public function sectionDetailAction()
+    {
+        $sectionHTML = "";
+        $this->pageTitle = "Edit section";
+        $this->iconClass = "fas fa-";
+        $id = $_REQUEST['id'];
+        $section = \App\ResortsSections::where('id', $id)->first();
+        $this->botonera = view('resorts/sectioneditbuttons', array(
+            "section" => $section
+        ));
+        $img = ( file_exists( $section->image ) ) ? 1 : 0;
+        $this->cont->body = view('resorts/sectiondetail', array(
+            "section" => $section,
+            "image" => $img
+        ));
+        return $this->RenderView();
+    }
+
+    public function newSectionAction()
+    {
+        $section = \App\ResortsSections::create($_REQUEST);
+        return view('resorts/resortsection_div', array(
+            "section" => $section
+        ));
+    }
+
+    public function deleteSectionAction()
+    {
+        $id = $_REQUEST["id"];
+        $rs = \App\ResortsSections::where("id", $id)->first();
+        $rs->delete();
+        if ( \file_exists( $rs->image ) ) \unlink( $rs->image );
+
+        return "OK";
+    }
+
+    public function updateSectionAction()
+    {
+        $id = $_REQUEST["id"];
+        $rs = \App\ResortsSections::where("id", $id)->first();
+        $rs->title = $_REQUEST["name"];
+        $rs->update();
+        return "OK";
     }
 
     

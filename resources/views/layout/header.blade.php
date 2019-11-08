@@ -1,8 +1,8 @@
 @inject('translator', 'App\Providers\TranslationProvider')
 <!--Navbar -->
-<header class="header-section pl-4" id="navbar">
+<header class="header-section pl-4 {{ $headerClass }}" id="navbar">
 	<a href="{{ url('/') }}" class="site-logo">
-		<img src="img/logo.png" alt="">
+		<img src="img/logo_colour.png" alt="">
   </a>
   <!--
   <div class="drop-drop">
@@ -54,3 +54,19 @@
 <!--
 -->
 <!--/.Navbar -->
+@if ( $headerClass == "" )
+<script>
+$(document).ready( function() {  
+	var navbar = document.getElementById("navbar");
+	var sticky = navbar.offsetTop;
+	function myFunction() {
+	  if (window.pageYOffset >= 90) {
+		navbar.classList.add("default-color")
+	  } else {
+		navbar.classList.remove("default-color");
+	  }
+	}
+	window.onscroll = function() {myFunction()};
+})
+@endif
+</script>

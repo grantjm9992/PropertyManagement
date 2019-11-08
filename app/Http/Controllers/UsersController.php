@@ -133,4 +133,13 @@ class UsersController extends BaseController
         }
         die(json_encode($return));
     }
+
+    public function updateForNotificationsAction()
+    {
+        $id = $_REQUEST["id"];
+        $user = \App\User::where("id", $id)->first();
+        $user->notify_email = $_REQUEST["notify_email"];
+        $user->email = $_REQUEST["email"];
+        $user->save();
+    }
 }

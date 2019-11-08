@@ -26,7 +26,12 @@ class Properties extends Model
 
     public function isEmpty()
     {
-        return true;
+        $response = true;
+        $reservations = \App\Rentals::where("id_property", $this->id)->get();
+        if ( count( $reservations) > 0 ) $response = "You cannot delete a property which has reservations associated with it";
+        
+
+        return $response;
     }
 
     public function getImages()

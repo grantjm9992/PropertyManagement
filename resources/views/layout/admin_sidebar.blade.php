@@ -1,6 +1,6 @@
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-      <div class="logo">
-		Property Management
+      <div class="logo text-center">
+        <img src="img/logo_colour.png" style="max-width: 80%; margin: 0 auto;" alt="">
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">

@@ -8,7 +8,7 @@ class Rentals extends Model
 {
 
     protected $fillable = [
-        "id_property", "name", "surname", "email", "phone", "date_start", "date_end"
+        "id_property", "name", "surname", "email", "phone", "date_start", "date_end", "is_confirmed"
     ];
     
     public static function getCalendar( $id_property )

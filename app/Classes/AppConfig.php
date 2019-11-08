@@ -10,4 +10,61 @@ class AppConfig
     {
         
     }
+
+
+    const propertyInfo = array(
+        "HeadlineInformation" => array(
+            array(
+                "title" => "Have you rented out the property before",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            ),
+            array(
+                "title" => "",
+                "value" => "",
+                "notes" => ""
+            )
+        )
+    );
+
 }

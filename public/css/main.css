@@ -578,3 +578,11 @@ input:checked + .slider:before {
 {
   top: 0;
 }
+
+.little-grey-text
+{
+  padding: 0 2.5rem;
+  font-size: 13px;
+  margin-top: -10px;
+  color: gray;
+}

@@ -38,7 +38,8 @@ class Controller extends BaseController
     protected $pageSize;
     protected $urlNew;
 
-    
+
+    public $headerClass = "default-color";
     public $controller;
     public $tableTemplate;
     public $columns;
@@ -117,7 +118,7 @@ class Controller extends BaseController
         $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
         $header = ( is_object( $skin ) ) ? $headers[ $skin->id_header ] : $headers[0];
         $this->cont->footer = view('layout/footer');
-        $this->cont->header = view($header, array( "pages" => $pages ));
+        $this->cont->header = view($header, array( "pages" => $pages, "headerClass" => $this->headerClass ));
     }
 
     protected function RenderView() {

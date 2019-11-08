@@ -7,6 +7,9 @@ body *
 .fa, .far, .fas {
     font-family: "Font Awesome 5 Free" !important;
 }
+.fab{
+	font-family: "Font Awesome 5 Brands" !important;
+}
 .nav-link
 {
 	font-weight: bold;
@@ -57,10 +60,6 @@ body *
 	.navbar
 	{
 		background: black;
-	}
-	.body
-	{
-		margin-top: 96px;
 	}
 }
 .navbar *
@@ -816,7 +815,7 @@ h3
     position: absolute;
     width: 70px;
     height: 4px;
-    background-color: #2eca6a;
+    background-color: #f57e20;
     bottom: 20px;
     left: 0;
 }
@@ -832,7 +831,7 @@ h3
     display: inline-block;
     transition: all 0.6s ease-in-out;
     color: #ffffff;
-    background-color: #2eca6a;
+    background-color: #f57e20;
     opacity: .9;
 }
 
@@ -860,7 +859,30 @@ h3
     position: absolute;
     width: 80%;
     height: 4px;
-    background-color: #2eca6a;
+    background-color: #f57e20;
     bottom: 20px;
     left: 10%;
+}
+
+.contact-info
+{
+	margin: 15px 0;
+	color: lightgrey;
+}
+
+.social
+{
+	padding: 10px 13px;
+    font-size: 30px;
+	color: #222;
+	background-color: lightgrey;
+	border-radius: 50%;
+	border: 1px solid lightgrey;
+}
+
+.social:hover
+{
+	border: 1px solid lightgrey;
+	color: lightgrey;
+	background-color: transparent;
 }

@@ -13,7 +13,7 @@ class Notifications extends Model
     {
         $id = ( is_null( $id ) ) ? $_SESSION['id'] : $id;
 
-        $notifications = self::where('id_user', $id)->where('is_seen', 0)->get();
+        $notifications = self::where('id_user', $id)->where('is_seen', 0)->orderBy("date", "DESC")->get();
         foreach ( $notifications as $notif )
         {
             $sender = \App\User::where('id', $notif->id_sender)->first();

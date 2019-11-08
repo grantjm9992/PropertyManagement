@@ -142,12 +142,34 @@ class AdminPropertiesController extends BaseController
     public function deleteAction()
     {
         $property = \App\Properties::where('id', $_REQUEST['id'])->first();
-
-        if ( $property->isEmpty() )
+        $resp = $property->isEmpty();
+        $error = "";
+        if ( $resp === true )
         {
+            $images = \App\PropertiesImages::where("id_property", $property->id)->get();
+            foreach ( $images as $image )
+            {
+                if ( \file_exists( $image->path ) ) \unlink ( $image->path );
+                $image->delete();
+            }
+            $features = \App\PropertiesFeatures::where("id_property", $property->id)->get();
+            foreach ( $features as $row )
+            {
+                $row->delete();
+            }
             $property->delete(); 
-            return "OK";
+            $success = 1;
         }
+        else
+        {
+            $success = 0;
+            $error = $resp;
+        }
+
+        return json_encode( array(
+            "success" => $success,
+            "error" => $error
+        ) );
     }
 
     public function featuresGridAction()

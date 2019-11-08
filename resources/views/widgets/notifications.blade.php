@@ -14,6 +14,11 @@
                         </div>-->
                         <div class="message-text">
                             {!! $notification->text !!}
+                            <div class="buttons">
+                                <div class="grey-text">
+                                    {{ $notification->date }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach

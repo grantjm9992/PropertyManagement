@@ -1,4 +1,5 @@
-<form action="Reservations.update">
+<form action="Reservations.update" id="form">
+<input type="text" name="id" value="{{ $data->id }}" hidden>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -12,6 +13,17 @@
                         <i class="far fa-copy"></i>
                     </div>
                 </h6>
+            </div>
+            <div class="col-12 form-group">
+                <label for="">Confirmed</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="{{ $data->is_confirmed }}" name="is_confirmed" id="is_confirmed">
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
             </div>
             <div class="col-12 col-lg-6 form-group">
                 <label for="">Name</label>
@@ -52,6 +64,19 @@
 <script>
 
 $(document).ready( function() {
+    @if ( (int)$data->is_confirmed === 1 )
+    $('#is_confirmed').click();
+    @endif
+    $('#is_confirmed').on("click", function() {
+        if ( $('#is_confirmed').is(":checked") )
+        {
+            $("#is_confirmed").val(1);
+        }
+        else
+        {
+            $("#is_confirmed").val(0);
+        }
+    })
     
     $("#date_start").datepicker({
   dateFormat: "yy-mm-dd"
@@ -93,5 +118,10 @@ function addReservationTask()
             $('#modal').show();
         }
     })
+}
+
+function submitForm()
+{
+    $('#form').submit();
 }
 </script>

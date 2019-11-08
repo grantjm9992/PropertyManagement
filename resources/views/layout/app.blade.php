@@ -35,7 +35,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body style="">
-        {!! $header !!}
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/owl.carousel.min.js"></script>
@@ -48,10 +47,16 @@
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		@endif
 		<script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js')}}"></script>
+        {!! $header !!}
         <div class="{{ $bodyClass }}">
             {!! $content !!}
 		</div>
 		{!! $footer !!}
 		<script src="js/main.js?v2.3"></script>
+		<script>
+		$(document).ready( function() {
+			AOS.init();
+		})
+		</script>
     </body>
 </html>

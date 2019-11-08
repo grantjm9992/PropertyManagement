@@ -46,17 +46,7 @@ $(window).on('load', function() {
 			closeHolder();
 		}
 	});
-	window.onscroll = function() {myFunction()};
 	
-	var navbar = document.getElementById("navbar");
-	var sticky = navbar.offsetTop;
-	function myFunction() {
-	  if (window.pageYOffset >= 90) {
-		navbar.classList.add("default-color")
-	  } else {
-		navbar.classList.remove("default-color");
-	  }
-	}
 
 	$('.drop-tag').on("click", function() {
 		var toggle = $(this).attr('toggle');

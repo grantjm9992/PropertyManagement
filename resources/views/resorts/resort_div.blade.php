@@ -19,6 +19,6 @@
         </div>
     </div>
     <div style="line-height: 38px; width: 50px; display: inline-flex; justify-content: space-around;">
-        <a href="Pages.item?id={{ $resort->id }}"><i class="fas fa-pencil-alt"></i></a>
+        <a href="Resorts.detail?id={{ $resort->id }}"><i class="fas fa-pencil-alt"></i></a>
     </div>
 </div>

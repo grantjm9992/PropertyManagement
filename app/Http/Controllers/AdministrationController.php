@@ -26,7 +26,7 @@ class AdministrationController extends BaseController
 
     protected function setHeaderAndFooter()
     {
-        $types = \App\TaskType::get();
+        $types = \App\TaskType::where("menu", "1")->get();
         $notifications = \App\Notifications::getUnseenForUser();
         $count = ( is_null( $notifications ) ) ? 0 : count( $notifications );
 

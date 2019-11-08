@@ -4,6 +4,12 @@ namespace App\Classes;
 
 class NotificationLogic extends AdminOU
 {
+
+    public $now;
+
+    public function __construct()
+    {
+    }
     public static function getUserNotifications()
     {
         //First try for logged user
@@ -15,11 +21,19 @@ class NotificationLogic extends AdminOU
         return $user->getNotifications();
     }
 
+    protected static function now()
+    {
+        
+        $date = new \DateTime();
+        return $date->format("Y-m-d H:i:s");
+    }
+
 
 
     public static function newTask( $task )
     {
         $notification = new \App\Notifications();
+        $notification->date = self::now();
         $notification->id_user = $task->id_user;
         $notification->id_sender = $task->id_created_by;
         $creator = \App\User::where("id", $task->id_created_by)->first();
@@ -33,6 +47,7 @@ class NotificationLogic extends AdminOU
     {
         $property = \App\Properties::where("id", $reservation->id_property)->first();
         $notification = new \App\Notifications();
+        $notification->date = self::now();
         $notification->id_user = $property->id_assigned_to;
         $notification->text = "<a href='Reservations.detail?id=$reservation->id'>The guest for $reservation->date_start for $property->title has added their arrival information</a>";
         $notification->save();
@@ -42,6 +57,7 @@ class NotificationLogic extends AdminOU
     {
         $status = ( (int)$task->status === 1 ) ? "pending" : "complete";
         $notification = new \App\Notifications();
+        $notification->date = self::now();
         $notification->id_user = $task->id_user;
         $user = ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) ? \App\User::where('id', $_SESSION['id'])->first() : null;
         $notification->id_sender = $user->id;
@@ -53,6 +69,7 @@ class NotificationLogic extends AdminOU
         foreach ( $watchers as $row )
         {
             $notification = new \App\Notifications();
+            $notification->date = self::now();
             $notification->id_user = $row->id_user;
             $user = ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) ? \App\User::where('id', $_SESSION['id'])->first() : null;
             $notification->id_sender = $user->id;
@@ -66,6 +83,7 @@ class NotificationLogic extends AdminOU
     public static function editTask( $task )
     {
         $notification = new \App\Notifications();
+        $notification->date = self::now();
         $notification->id_user = $task->id_user;
         $user = ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) ? \App\User::where('id', $_SESSION['id'])->first() : null;
         $notification->id_sender = $user->id;
@@ -77,6 +95,7 @@ class NotificationLogic extends AdminOU
         foreach ( $watchers as $row )
         {
             $notification = new \App\Notifications();
+            $notification->date = self::now();
             $notification->id_user = $row->id_user;
             $user = ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) ? \App\User::where('id', $_SESSION['id'])->first() : null;
             $notification->id_sender = $user->id;

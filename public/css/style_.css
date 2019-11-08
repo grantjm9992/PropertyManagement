@@ -41,7 +41,7 @@ body
 
 .dropdown-item:hover
 {
-	color: #03C4EB;
+	color: #f57e20;
 	cursor: pointer;
 }
 
@@ -194,7 +194,7 @@ body
 	left: 0;
 	top: 0;
 	z-index: 111;
-	padding-top: 40px;
+	padding-top: 20px;
 	padding-bottom: 20px;
 	transition: 0.5s;
 }
@@ -206,7 +206,7 @@ body
 
 .site-logo img
 {
-	height: 45px;
+	height: 62px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -221,15 +221,15 @@ body
 	.dropdown-menu.show
 	{
 		background: #fff;
-		border: 1px solid #03C4EB;
+		border: 1px solid #f57e20;
 	}	
 	.dropdown-item
 	{
-		color: #03C4EB;
+		color: #f57e20;
 	}
 	.dropdown-item:hover
 	{
-		background-color: #03C4EB;
+		background-color: #f57e20;
 		color: #fff;
 		cursor: pointer;
 	}
@@ -345,7 +345,7 @@ footer
 {
 	width: 50px;
     height: 3px;
-    background: #03C4EB;
+    background: #f57e20;
     margin: 0 auto;
     margin-bottom: 20px;
 }
@@ -381,11 +381,11 @@ h2 > .btn
 
 .icon-span
 {
-    background: #03C4EB;
+    background: #f57e20;
     padding: 10px;
     border-radius: 50%;
     transition: 0.5s;
-    border: 1px solid #03C4EB;
+    border: 1px solid #f57e20;
     height: 70px;
     width: 70px;
     text-align: center;
@@ -406,7 +406,7 @@ h2 > .btn
 
 .icon-span:hover > i
 {
-	color: #03C4EB;
+	color: #f57e20;
 }
 
 
@@ -429,7 +429,61 @@ h2 > .btn
 	right: 15px;
 	z-index: 10;
 	padding: 15px;
-	background-color: #2eca6a;
+	background-color: #f57e20;
 	color:#fff;
 	border-radius: 5px;
 }
+
+
+
+.panel {
+	border-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #property-list img {
+	max-width: 100%;
+	margin: 0 auto;
+	border: 5px solid #ecf0f1;
+	margin-bottom: 7px;
+  }
+  
+  .label-danger {
+	background-color: #f57e20;
+  }
+  
+  #property-list h4.title-real-estates a {
+	color: #f57e20;
+  }
+  
+  #property-list h4.title-real-estates a:hover {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+	color: #f57e20;
+  }
+  
+  #property-list h4 span {
+	color: #f57e20;
+  }
+
+  .alert-green-outline
+  {
+	  padding: 8px;
+	  border-radius: 5px;
+	  border: 1px solid #f57e20;
+  }
+
+  a.alert-green-outline
+  {
+	  color: #f57e20;
+  }
+  a.alert-green-outline:hover
+  {
+	  text-decoration: none;
+	  color: #fff !important;
+	  background: #f57e20 !important;
+  }

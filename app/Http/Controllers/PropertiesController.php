@@ -19,23 +19,47 @@ class PropertiesController extends BaseController
     }
     
     public function defaultAction() {
-        $page = \App\Pages::where('id_company', \AppConfig::id_company )->where('id', 3 )->first();
-        $this->title = ( $page->meta_title != "" ) ? $page->meta_title : $this->title;
-        $this->description = ( $page->meta_description != "" ) ? $page->meta_description : $this->description;
-        $this->keywords = ( $page->meta_keywords != "" ) ? $page->meta_keywords : $this->keywords;
-        $data = \App\Sections::where('id_page', 3)->get();
-        $sections = "";
-        $i = 1;
-        foreach ( $data as $row )
-        {
-            $sections .= view('sections/section', array(
-                "i" => $i,
-                "section" => $row
-            ));
-            $i++;
-        }
-        $this->cont->body = "";
+        
+        $listings = $this->getListingsAction();
+        $resorts = \App\Resorts::get();
+
+        $this->cont->body = view("properties/index", array(
+            "listings" => $listings,
+            "resorts" => $resorts
+        ));
+
         return $this->RenderView();
+    }
+
+    public function getListingsAction()
+    {
+        $html = "";
+        $properties = \App\Properties::whereRaw( $this->makeWhere() )->get();
+        foreach( $properties as $row )
+        {
+            if ( \strlen( $row->description ) > 123 ) $row->description = substr($row->description, 0, 120)."..";
+
+
+            $html .= view("properties/listingcard", array(
+                "property" => $row
+            ));
+        }
+
+        if( $html == "" ) $html = '<div class="alert alert-warning w-100"><i class="fas fa-exclamation"></i>&nbsp;There are no properties that match your search</div>';
+        return $html;
+    }
+
+    protected function makeWhere()
+    {
+        $where = " 1 ";
+
+        if ( isset( $_REQUEST["beds"] ) && $_REQUEST["beds"] != "" ) $where .= " AND bed >= ".$_REQUEST["beds"]." ";
+        if ( isset( $_REQUEST["sleeps"] ) && $_REQUEST["sleeps"] != "" ) $where .= " AND sleeps >= ".$_REQUEST["sleeps"]." ";
+        if ( isset( $_REQUEST["bedrooms"] ) && $_REQUEST["bedrooms"] != "" ) $where .= " AND bedrooms >= ".$_REQUEST["bedrooms"]." ";
+        if ( isset( $_REQUEST["id_resort"] ) && $_REQUEST["id_resort"] != "" ) $where .= " AND id_resort = ".$_REQUEST["id_resort"]." ";
+        if ( isset( $_REQUEST["location"] ) && $_REQUEST["location"] != "" ) $where .= " AND location = '".$_REQUEST["location"]."' ";
+
+        return $where;
     }
 
     public function detailAction()
@@ -89,6 +113,29 @@ class PropertiesController extends BaseController
         }
 
         return $res;
+    }
+
+    public function getLocationMention()
+    {
+        $title = $_REQUEST["title"];
+
+        $locations =  DB::table('properties')
+        ->select(DB::raw('DISTINCT(location) as location '))
+        ->whereRaw(" location LIKE'%$title%' ")
+        ->get();
+        
+        $return = array();
+        foreach ( $locations as $row )
+        {
+            $location = strtoupper( $row->location );
+            $location = str_replace(strtoupper($title), strtoupper("<b>$title</b>"), $location);
+
+            $con = array();
+            $con["id"] = $row->id;
+            $con["title"] = $location;
+            array_push($return, $con);
+        }
+        die(json_encode($return));
     }
 
     public function getUntiWhenAction()

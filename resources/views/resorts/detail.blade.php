@@ -5,11 +5,11 @@
             <input type="text" name="id" value="{{ $resort->id }}" hidden>
             <div class="col-12 form-group">
                 <label for="">Name</label>
-                <input type="text" name="menu_title" value="{{ $resort->menu_title }}" class="form-control">
+                <input type="text" name="title" value="{{ $resort->name }}" class="form-control">
             </div>
             <div class="col-12 form-group">
                 <label for="">Description</label>
-                <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
+                <textarea name="description" id="" cols="30" rows="5" class="form-control">{{ $resort->description }}</textarea>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
     {
         $.ajax({
             type: "POST",
-            url: "Sections.delete",
+            url: "Resorts.deleteSection",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 id: id
@@ -162,7 +162,7 @@
         $('[divid='+val+']').html(name);
         $.ajax({
             type: "POST",
-            url: "Sections.update",
+            url: "Resorts.updateSection",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 id: val,
@@ -194,10 +194,10 @@
     {
         $.ajax({
             type: "POST",
-            url: "Sections.new",
+            url: "Resorts.newSection",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
-                id_page: "{{ $resort->id }}"
+                id_resort: "{{ $resort->id }}"
             },
             success: function(data)
             {
@@ -215,7 +215,7 @@
         }
         $.ajax({
             type: "POST",
-            url: "Sections.updateOrder",
+            url: "Resorts.updateSectionOrder",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 ids: ids,

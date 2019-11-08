@@ -4,7 +4,7 @@
         <a href="Reservations.detail?id={{ $row->id }}">
             <div rental="{{ $row->id}}" class="rental row">
                 <div class="col-12 col-xl-4">
-                    Rental for: {{ $row->title }}
+                    Rental for: {{ $row->name }} {{ $row->surname }}
                 </div>
                 <div class="col-12 col-lg-6 col-xl-4">
                     <i class="fas fa-clock"></i> From: {{ $row->date_start }}

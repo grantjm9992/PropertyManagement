@@ -285,4 +285,46 @@
             }
         })
     }
+
+    
+function deleteModel()
+{
+	var options = Array();
+	options.icon = "warning";
+	options.text = "Are you sure that you want to delete this property? This can't be undone";
+	options.title = "Warning";
+	options.type = "confirm";
+	options.thenFunction = confirmDelete;
+	sweetAlert( options );
+}
+
+function confirmDelete()
+{
+	$.ajax({
+		type: "POST",
+		url: "AdminProperties.delete",
+		headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+		data:
+		{
+			id: "{{ $property->id }}"
+		},
+		success: function(data)
+		{
+			var s = jQuery.parseJSON( data );
+			if ( s.success === 1 )
+			{
+				window.location.href = "AdminProperties";
+			}
+			else
+			{
+				var options = Array();
+				options.icon = "error";
+				options.text = s.error;
+				options.title = "Error";
+				sweetAlert( options );
+			}
+		}
+	})
+}
+
 </script>

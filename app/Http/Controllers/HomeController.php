@@ -20,6 +20,7 @@ class HomeController extends BaseController
     );
 
     public function __construct() {
+        $this->headerClass = "";
         parent::__construct();
         $this->bodyClass = "body";
     }
