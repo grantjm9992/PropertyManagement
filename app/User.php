@@ -31,6 +31,24 @@ class User extends Model
     {
     }
 
+    public static function getContactsForUser($user)
+    {
+        if ( $user->role == "PO" )
+        {
+            $users = self::whereRaw("id IN (SELECT id_assigned_to FROM properties WHERE id_property_owner = $user->id ) ")->get();
+        }
+        if ( $user->role == "M" || $user->role == "AA" )
+        {
+            $user = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company ")->get();
+        }
+        if ( $user->role == "WW" || $user->role = "SA" )
+        {
+            $user = self::get();
+        }
+
+        return $user;
+    }
+
     public function getPermissionArray()
     {
         $arr = array();

@@ -15,10 +15,12 @@
             <div class="input-group-prepend">
                 <span hideinputid="{{ $page->id }}" class="input-group-text" id="basic-addon1"><i style="color: green;" class="fas fa-check"></i></span>
             </div>
-            <input type="text" class="form-control " data-id="{{ $page->id }}" value="{{ $page->name }}">
+            <input type="text" class="form-control " data-id="{{ $page->id }}" value="{{ $page->menu_title }}">
         </div>
     </div>
     <div style="line-height: 38px; width: 50px; display: inline-flex; justify-content: space-around;">
+    @if ( $page->editable == "1" )
         <a href="Pages.item?id={{ $page->id }}"><i class="fas fa-pencil-alt"></i></a>
+    @endif
     </div>
 </div>

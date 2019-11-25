@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/mention.css') }}">
 		<link rel="stylesheet" href="{{ asset('/css/swipebox.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/fullcalendar.min.css') }}">
 		@if ( !$safari )
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		@endif
@@ -42,6 +43,7 @@
         <script src="{{ asset('/js/jquery.swipebox.min.js')}}"></script>
         <script src="{{ asset('/js/sweetalert.min.js')}}"></script>
         <script src="{{ asset('/js/mention.js')}}"></script>
+        <script src="{{ asset('/js/fullcalendar.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.js"></script>
 		@if ( !$safari )
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

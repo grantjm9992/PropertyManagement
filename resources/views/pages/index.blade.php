@@ -42,11 +42,8 @@
             success: function(data)
             {
                 if ( data == "OK" )
-                {                    
-                    $.notify( "Name updated successfully", {
-                        position: "bottom-left",
-                        className: "success"
-                    } );
+                {
+                    md.showNotification("top", "center", "Name updated correctly");
                 }
             }
         })
@@ -78,11 +75,8 @@
             success: function(data)
             {
                 if ( data == "OK" )
-                {                    
-                    $.notify( "Order updated successfully", {
-                        position: "bottom-left",
-                        className: "success"
-                    } );
+                {
+                    md.showNotification("top", "center", "Order updated correctly");
                 }
             }
         })

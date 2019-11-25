@@ -60,9 +60,9 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('Users') }}">
+            <a class="nav-link" href="{{ url('Contacts') }}">
               <i class="material-icons">people</i>
-              <p>Users</p>
+              <p>Contacts</p>
             </a>
           </li>
           @endif

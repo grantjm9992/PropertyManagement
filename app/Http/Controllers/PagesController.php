@@ -23,7 +23,7 @@ class PagesController extends BaseController
         $this->pageTitle = "Pages";
         $this->iconClass = "fas fa-sticky-note";
         $page_html = "";
-        $pages = \App\Pages::where('id', '>', 0)->orderBy('order')->get();
+        $pages = \App\Pages::where("id_company", $this->user->id_company)->orderBy('order')->get();
         foreach ( $pages as $page )
         {
             $page_html .= view('pages/page_div', array(
@@ -47,6 +47,7 @@ class PagesController extends BaseController
             $page->updateOrder( $i );
             $i++;
         }
+        return "OK";
     }
 
     public function itemAction()
@@ -56,11 +57,39 @@ class PagesController extends BaseController
         $this->iconClass = "fas fa-sticky-note";
         $this->botonera = view('pages/editbuttons');
         $id = $_REQUEST['id'];
+        if ( (int)$id === -1 ) return $this->editHomePage();
         $page = \App\Pages::where('id', $id)->first();
         $sections = $page->getSections();
         foreach ( $sections as $section )
         {
-            $sectionHTML .= view('sections/page_div', array(
+            $sectionHTML     .= view('sections/page_div', array(
+                "page" => $section
+            ));
+        }
+
+        $img = ( file_exists( $page->image ) ) ? 1 : 0;
+
+        $this->cont->body = view('pages/detail', array(
+            "page" => $page,
+            "sections" => $sectionHTML,
+            "image" => $img          
+        ));
+        return $this->RenderView();
+    }
+
+    protected function editHomePage()
+    {
+        $sectionHTML = "";
+        $this->pageTitle = "Edit page";
+        $this->iconClass = "fas fa-sticky-note";
+        $this->botonera = view('pages/editbuttons');
+        $id = $_REQUEST['id'];
+
+        $page = \App\Pages::where('id', $id)->where("id_company", $this->user->id_company)->first();
+        $sections = $page->getSections();
+        foreach ( $sections as $section )
+        {
+            $sectionHTML     .= view('sections/page_div', array(
                 "page" => $section
             ));
         }

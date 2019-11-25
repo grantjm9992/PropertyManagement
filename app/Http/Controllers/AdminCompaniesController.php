@@ -160,6 +160,18 @@ class AdminCompaniesController extends BaseController
         return "OK";
     }
 
+    public function contactInformationAction()
+    {
+        $this->pageTitle = "Update contact details";
+        $this->iconClass = "fas fa-address-book";
+        $this->botonera = view("comun/standardbtn", array( "url" => url("WebAdmin") ) );
+        $company = \App\Companies::where("id", $this->user->id_company)->first();
+        $this->cont->body = view("admin/companycontact", array(
+            "company" => $company
+        ));
+        return $this->RenderView();
+    }
+
     public function removeSkinAction()
     {
         $id = $_REQUEST['id'];

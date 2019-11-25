@@ -11,4 +11,11 @@ class UserLogic extends AdminOU
 
         return $user;
     }
+
+    public static function getUserId( $user = null )
+    {
+        $user = ( $user === null ) ? \App\User::where('id', $_SESSION['id'])->first() : $user;
+
+        return $user->id;
+    }
 }

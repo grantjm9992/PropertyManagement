@@ -34,9 +34,11 @@
     <link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdn.syncfusion.com/17.3.0.9/js/web/bootstrap-theme/ej.web.all.min.css">
     <link rel="stylesheet" href="css/dropzone.css">
+    <link rel="stylesheet" href="plugins/summernote/summernote.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.css">
     <link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ asset('/js/fullcalendar.min.css') }}">
     <link href="css/main.css" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -83,8 +85,10 @@
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
   <script src="https://cdn.syncfusion.com/17.3.0.9/js/web/ej.web.all.min.js"></script>
   <script src="js/dropzone.js"></script>
+  <script src="js/summernote.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.js"></script>
   <script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js')}}"></script>
+  <script src="{{ asset('/js/fullcalendar.js')}}"></script>
 
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>

@@ -17,7 +17,6 @@ class ContactsController extends BaseController
     public function __construct() {
         $this->secure = 1;
         parent::__construct();
-        $this->user = \UserLogic::getUser();
     }
     
     public function defaultAction() {
@@ -82,18 +81,37 @@ class ContactsController extends BaseController
 
     public function getListadoAction()
     {
-        $html = "";
-        $contacts = \App\Contacts::where('id_user', $this->user->id)->get();
-        foreach ( $contacts as $contact )
+        $this->data = \App\User::getContactsForUser( $this->user );
+        foreach ( $this->data as $row )
         {
-            $html .= view('contacts/card', array(
-                "contact" => $contact
-            ));
+            $row->actions = '<div class="w-100 text-right"><i class="fas fa-envelope mr-2" onclick="alert()"></i><i class="fas fa-address-book"></i>';
         }
-
-        return view('contacts/list', array(
-            "contacts" => $html
-        ));
+        $this->campos[] = array(
+            "title" => "Name",
+            "name" => "name",
+            "width" => 150
+        );
+        $this->campos[] = array(
+            "title" => "Surname",
+            "name" => "surname",
+            "width" => 200
+        );
+        $this->campos[] = array(
+            "title" => "Email",
+            "name" => "email",
+            "width" => 200
+        );
+        $this->campos[] = array(
+            "title" => "Phone",
+            "name" => "surname",
+            "width" => 100
+        );
+        $this->campos[] = array(
+            "title" => "Actions",
+            "name" => "actions",
+            "width" => 80
+        );
+        return $this->createTable();
     }
 
     public function addFromUserAction()

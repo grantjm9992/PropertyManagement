@@ -10,6 +10,7 @@
       <div class="modal-body">
           <form action="Reservations.add" id="taskForm">
             <div class="row">
+              <input type="text" name="id_type" value="{{ $id_type }}" hidden >
               <input type="text" name="id_property" value="{{ $id_property }}" hidden >
               <div class="form-group col-12">
                 <label for="">Name</label>

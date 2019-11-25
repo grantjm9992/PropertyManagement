@@ -68,6 +68,14 @@ class SectionsController extends BaseController
         return $this->RenderView();
     }
 
+    
+    public function getSectionAction()
+    {
+        $id = $_REQUEST["id"];
+        $section = \App\Sections::where("id", $id)->first();
+        return json_encode($section);
+    }
+
     public function updateAction()
     {
         $id = $_REQUEST['id'];

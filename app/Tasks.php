@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tasks extends Model
 {
-    protected $fillable = ["id_user", "id_created_by", "id_company", "id_property", "id_reservation", "id_type", "title", "description", "date_start", "date_end", "status"];
+    protected $fillable = ["id_user", "id_created_by", "completed", "id_company", "id_property", "id_reservation", "id_type", "title", "description", "date_start", "date_end", "status"];
 
     public static function getForUser( $id_user )
     {
@@ -40,6 +40,72 @@ class Tasks extends Model
         }
 
         return $tasks;
+    }
+
+    public static function getPropertyCalendar( $property )
+    {
+        $tasks = self::where("id_property", $property->id)->get();
+        $arr = array();
+        foreach ( $tasks as $row )
+        {
+            $start = new \DateTime( $row->date_start );
+            $end = new \DateTime( $row->date_end );
+            switch( (int)$row->status )
+            {
+                case 1:
+                    $colour = "#fb8c00";
+                    $textColour = "#fff";
+                break;
+                case 2:
+                case 3:
+                    $colour = "#55b559";
+                    $textColour = "#fff";
+                break;
+            }
+            $arr[] = array(
+                "id" => $row->id,
+                "title" => "$row->title",
+                "color" => $colour,
+                "textColor" => $textColour,
+                "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
+                "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
+            );
+        }
+        return $arr;
+
+    }
+
+    public static function getMyCalendar()
+    {
+        $tasks = self::where("id_user", \UserLogic::getUserId() )->get();
+        $arr = array();
+        foreach ( $tasks as $row )
+        {
+            $start = new \DateTime( $row->date_start );
+            $end = new \DateTime( $row->date_end );
+            switch( (int)$row->status )
+            {
+                case 1:
+                    $colour = "#fb8c00";
+                    $textColour = "#fff";
+                break;
+                case 2:
+                case 3:
+                    $colour = "#55b559";
+                    $textColour = "#fff";
+                break;
+            }
+            $arr[] = array(
+                "id" => $row->id,
+                "title" => "$row->title",
+                "color" => $colour,
+                "textColor" => $textColour,
+                "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
+                "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
+            );
+        }
+        return $arr;
+
     }
     
 

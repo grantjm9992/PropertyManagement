@@ -61,6 +61,21 @@ class WidgetsUser extends AdminOU
         ));        
     }
 
+    public static function getMyCalendar()
+    {
+        return view('tasks/calendarskeleton');
+    }
+
+    public static function getMyPropertyCalendar()
+    {
+        $user = \UserLogic::getUser();
+    }
+
+    public static function getMyPropertyRentalCalendar()
+    {
+        $user = \UserLogic::getUser();
+    }
+
     public static function Tasks()
     {
         $user = \UserLogic::getUser();

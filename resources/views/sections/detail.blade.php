@@ -67,10 +67,22 @@
         });
         $('#button').val('{{ $section->button }}')
         $('#description').summernote({
-            height: 250
+            height: 500
         });
-        var html = '{!! $section->description !!}';
-        $('#description').summernote('code', html);
+
+        $.ajax({
+            type: "POST",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: "Sections.getSection",
+            data:{
+                id: "{{$section->id}}"
+            },
+            success: function(data)
+            {
+                var resp = $.parseJSON(data);
+                $('#description').summernote('code', resp.description);
+            }
+        })
     });
     function deleteImage()
     {

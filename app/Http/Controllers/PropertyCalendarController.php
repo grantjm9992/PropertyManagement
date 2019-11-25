@@ -51,7 +51,21 @@ class PropertyCalendarController extends BaseController
 
         $rentals = \App\Rentals::getCalendar( $property->id );
         
-        return  $rentals;
+        return   $rentals;
+        
+    }
+
+    public function getForCalendarAction( $property = null )
+    {
+        if ( $property === null)
+        {
+            if ( !isset ( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to('AdminProperties')->send();
+            $property = \App\Properties::where('id', $_REQUEST['id'])->first();
+        }
+
+        $rentals = \App\Rentals::getForCalendar( $property->id );
+        
+        return   $rentals;
         
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sections extends Model
 {
     protected $table = "sections";
-    protected $fillable = ["title", "description", "id_page", "order", "button", "button_text", "button_link"];
+    protected $fillable = ["title", "subtitle", "description", "id_page", "order", "button", "button_text", "button_link"];
 
     public static function boot()
     {

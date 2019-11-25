@@ -3,9 +3,21 @@
 <input type="text" name="id" hidden value="{{ $task->id }}">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 form-group">
+            <div class="col-12 col-md-8 form-group">
                 <label for="">{{ $translator->get("title") }}</label>
                 <input type="text" name="title" value="{{ $task->title }}" class="form-control">
+            </div>
+            <div class="col-12 col-md-4 form-group">
+                <label for="">Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="1">Pending</option>
+                    <option value="3">Completed</option>
+                </select>
+                <script>
+                    $(document).ready( function() {
+                        $('#status').val("{{ $task->status }}");
+                    });
+                </script>
             </div>
             <div class="col-12 col-md-4 form-group">
                 <label for="">{{ $translator->get("type_task") }}</label>
@@ -14,6 +26,11 @@
                         <option value="{{ $type->id }}">{{ $type->description }}</option>
                     @endforeach
                 </select>
+                <script>
+                    $(document).ready( function() {
+                        $('#id_type').val("{{ $task->id_type }}");
+                    });
+                </script>
             </div>
             <div class="col-12 col-md-4 form-group">
                 <label for="">{{ $translator->get("start") }}</label>

@@ -61,7 +61,7 @@ class TasksController extends BaseController
             "title"=> "To",
             "name" => "date_end"
         );
-        $this->detailURL = "AdminProperties.detail?id=";
+        $this->detailURL = "Tasks.edit?id=";
         if ( count( $this->data ) > 0 ) return $this->createTable();
         return view("comun/nodata");
     }
@@ -116,6 +116,9 @@ class TasksController extends BaseController
         if ( !isset( $_REQUEST["id"] ) || $_REQUEST["id"] == "" ) return \Redirect::to("Admin")->send();
         $task = \App\Tasks::where("id", $_REQUEST["id"] )->first();
         if ( !is_object( $task ) ) return \Redirect::to("Admin")->send();
+        if ( ! \AppConfig::canView("TASK", $task) ) return \Redirect::to("Tasks")->send();
+        if ( ! \AppConfig::canEdit("TASK", $task ) ) return $this->cannotEdit();
+
 
         $creator = \App\User::where("id", $task->id_created_by )->first();
         $task->creator = ( is_object ( $creator ) ) ? $creator->name." ".$creator->surname : "N/A";
@@ -144,6 +147,31 @@ class TasksController extends BaseController
 
         return $this->RenderView();
 
+    }
+
+
+    public function cannotEdit()
+    {
+        $task = \App\Tasks::where("id", $_REQUEST["id"] )->first();
+        $creator = \App\User::where("id", $task->id_created_by )->first();
+        $task->creator = ( is_object ( $creator ) ) ? $creator->name." ".$creator->surname : "N/A";
+        
+        $creator = \App\User::where("id", $task->id_user )->first();
+        $task->assigned_to = ( is_object ( $creator ) ) ? strtoupper($creator->name." ".$creator->surname) : "N/A";
+
+        $types = \App\TaskType::get();
+        $files = \App\TasksFiles::where("id_task", $task->id)->get();
+
+        $tw = \App\TasksWatching::where("id_user", $this->user->id)->where("id_task", $task->id)->first();
+        $watching = ( is_object( $tw ) ) ? 1 : 0;
+
+        $this->cont->body = view("tasks/detail_cannotedit", array(
+            "task" => $task,
+            "types" => $types,
+            "files" => $files
+        ));
+
+        return $this->RenderView();
     }
 
     public function toggleWatchingAction()
@@ -246,4 +274,18 @@ class TasksController extends BaseController
         }
         return "OK";
     }
+
+
+    public function getPropertyCalendarAction()
+    {
+        $id = $_REQUEST["id"];
+        $property = \App\Properties::where("id", $id)->first();
+        return json_encode( \App\Tasks::getPropertyCalendar( $property ) );
+    }
+
+    public function getUserCalendarAction()
+    {
+        return json_encode( \App\Tasks::getMyCalendar() );        
+    }
+
 }

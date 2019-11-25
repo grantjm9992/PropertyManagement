@@ -78,6 +78,23 @@
                 $('#include_slider').val(0);
             }
         });
+        $('#description').summernote({
+            height: 500
+        });
+
+        $.ajax({
+            type: "POST",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: "Resorts.getResort",
+            data:{
+                id: "{{$resort->id}}"
+            },
+            success: function(data)
+            {
+                var resp = $.parseJSON(data);
+                $('#description').summernote('code', resp.description);
+            }
+        })
     })
 
     function deleteSection(id)

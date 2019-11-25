@@ -820,6 +820,17 @@ h3
     left: 0;
 }
 
+.native-left::after
+{
+	content: '';
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: #f57e20;
+    bottom: 20px;
+    left: 0;
+}
+
 .bodyMargin
 {
 	margin-top: 100px;
@@ -867,7 +878,8 @@ h3
 .contact-info
 {
 	margin: 15px 0;
-	color: lightgrey;
+	color: rgba(0,0,0,.8);
+	width: calc(100% - 38px);
 }
 
 .social
@@ -885,4 +897,12 @@ h3
 	border: 1px solid lightgrey;
 	color: lightgrey;
 	background-color: transparent;
+}
+
+.contact-icon
+{
+	width: 38px;
+	padding-top: 12px;
+    font-size: 24px;
+    padding-right: 15px;
 }
