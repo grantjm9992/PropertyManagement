@@ -1,6 +1,6 @@
 @inject('translator', 'App\Providers\TranslationProvider')
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark navbar-fixed">
-  <a class="navbar-brand" href="{{ url('') }}">Website Name</a>
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark navbar-fixed  {{ $headerClass }}">
+  <a class="navbar-brand" href="{{ url('') }}"><img src="{{ $logo }}" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

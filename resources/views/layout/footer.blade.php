@@ -4,18 +4,18 @@
         <div class="row">
             <div class="col-12 col-md-8 text-center text-md-left">
                 <img src="img/logo_colour.png" style="height: 62px;" alt="">
-                <p class="contact-info">
+                <p class="">
                 Get started today by receiving an online analysis of your properties potential across all the top performing rental platforms.
                 </p>
             </div>
             <div class="col-12 col-md-4 text-center text-md-left">
-                <div class="d-block contact-info">
+                <div class="d-block">
                     <i class="fas fa-envelope"></i>&nbsp;info@mycasaaway.com
                 </div>
-                <div class="d-block contact-info">
+                <div class="d-block">
                     <i class="fas fa-phone"></i>&nbsp;(ES) +34 603 678 540
                 </div>
-                <div class="d-block contact-info">
+                <div class="d-block">
                     <i class="fas fa-phone"></i>&nbsp;(UK) +44 603 450 450
                 </div>
             </div>

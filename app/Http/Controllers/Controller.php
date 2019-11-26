@@ -58,16 +58,16 @@ class Controller extends BaseController
 
     //For public pages
     protected $secure = 0;
-    protected $set_menu;
+    protected $set_menu = "<script src='js/set-menu.js'></script>";
 
     public function __construct() {
         parent::__construct();
         $this->cont = new \ArrayObject();
         $this->campos = array();
-        $this->title = "The Resorts";
+        $this->title = "My Casa Away";
         $this->keywords = "";
         $this->selectIds = "@#";
-        $this->description = "The Resorts";
+        $this->description = "My Casa Away";
         $this->pageTitle = "";
         $this->botonera = "";
         $this->iconClass = "";
@@ -117,12 +117,16 @@ class Controller extends BaseController
         $headers = ["layout/header", "layout/header2"];
         $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
         $header = ( is_object( $skin ) ) ? $headers[ $skin->id_header ] : $headers[0];
+        $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
         $this->cont->footer = view('layout/footer');
-        $this->cont->header = view($header, array( "pages" => $pages, "headerClass" => $this->headerClass ));
+        $this->cont->header = view($header, array( "pages" => $pages, "headerClass" => $this->headerClass, "logo" => $logo ));
     }
 
     protected function RenderView() {
         $this->setHeaderAndFooter();
+        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $resorts = ( is_object( $skin ) ) ? "css/resorts.css?v=$skin->version" : "css/resorts.css";
+        $style = ( is_object( $skin ) ) ? "css/style_.css?v=$skin->version" : "css/style_.css";
         
         $safari = false;
         $ua = $_SERVER["HTTP_USER_AGENT"];      // Get user-agent of browser
@@ -143,7 +147,10 @@ class Controller extends BaseController
             "botonera" => $this->botonera,
             "keywords" => $this->keywords,
             "description" => $this->description,
-            "safari" => $safari
+            "safari" => $safari,
+            "style" => $style,
+            "resorts" => $resorts,
+            "set_menu" => $this->set_menu
         ));
     }
 

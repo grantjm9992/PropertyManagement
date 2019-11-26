@@ -123,7 +123,35 @@ class AdminCompaniesController extends BaseController
     {
         $skin = \App\Skins::where('id', $_REQUEST['id'])->first();
         $skin->update( $_REQUEST );
-        return \Redirect::to('Admin')->send();
+        $skin->version = (int)$skin->version + 1;
+        $skin->save();
+
+        $this->createSkin( $skin );
+
+        return \Redirect::to('WebAdmin')->send();
+    }
+
+    protected function createSkin( $skin )
+    {
+        $style_file = \file_get_contents("css/style_template.css");
+        $style_file = str_replace("@headerFontColour", $skin->t1, $style_file);
+        $style_file = str_replace("@headerBGColour", $skin->c1, $style_file);
+        $style_file = str_replace("@footerFontColour", $skin->t2, $style_file);
+        $style_file = str_replace("@footerBGColour", $skin->c2, $style_file);
+        $style_file = str_replace("@accentFontColour", $skin->t3, $style_file);
+        $style_file = str_replace("@accentBGColour", $skin->c3, $style_file);
+        \file_put_contents("css/style_.css", $style_file);
+        
+
+        $style_file = \file_get_contents("css/resorts_template.css");
+        $style_file = str_replace("@headerFontColour", $skin->t1, $style_file);
+        $style_file = str_replace("@headerBGColour", $skin->c1, $style_file);
+        $style_file = str_replace("@footerFontColour", $skin->t2, $style_file);
+        $style_file = str_replace("@footerBGColour", $skin->c2, $style_file);
+        $style_file = str_replace("@accentFontColour", $skin->t3, $style_file);
+        $style_file = str_replace("@accentBGColour", $skin->c3, $style_file);
+
+        \file_put_contents("css/resorts.css", $style_file);
     }
 
     public function uploadLogoAction()
@@ -142,6 +170,7 @@ class AdminCompaniesController extends BaseController
             $ext = pathinfo($path, PATHINFO_EXTENSION);
 
             $skin = \App\Skins::where('id', $id)->first();
+            if ( file_exists($skin->logo ) ) \unlink( $skin->logo );
             $skin->logo = $targetDir."logo.$ext";
             $skin->save();
 

@@ -7,11 +7,11 @@
                 <input type="text" name="application_name" value="{{ $skin->application_name }}" class="form-control">
             </div>
             <div class="col-6 col-lg-4 form-group">
-                <label for="c1">Background colour 1</label>
+                <label for="c1">Header background colour</label>
                 <input scheme="1" id="c1" name="c1" value="{{ $skin->c1 }}" type="text" class="form-control">
             </div>
             <div class="col-6 col-lg-4 form-group">
-                <label for="t1">Text colour 1</label>
+                <label for="t1">Header text colour</label>
                 <input scheme="1" id="t1" name="t1" value="{{ $skin->t1 }}" type="text" class="form-control">
             </div>
             <div class="col-12 col-lg-4">
@@ -20,11 +20,11 @@
                 </div>
             </div>
             <div class="col-4 col-lg-4 form-group">
-                <label for="c2">Background colour 2</label>
+                <label for="c2">Footer background colour</label>
                 <input id="c2" name="c2" value="{{ $skin->c2 }}" type="text" class="form-control">
             </div>
             <div class="col-4 col-lg-4 form-group">
-                <label for="t2">Text colour 2</label>
+                <label for="t2">Footer text colour</label>
                 <input id="t2" name="t2" value="{{ $skin->t2 }}" type="text" class="form-control">
             </div>
             <div class="col-12 col-lg-4">
@@ -33,18 +33,18 @@
                 </div>
             </div>
             <div class="col-4 col-lg-4 form-group">
-                <label for="c3">Background colour 3</label>
+                <label for="c3">Primary accent colour</label>
                 <input id="c3" name="c3" value="{{ $skin->c3 }}" type="text" class="form-control">
             </div>
             <div class="col-4 col-lg-4 form-group">
-                <label for="t3">Text colour 3</label>
+                <label for="t3">Primary accent text colour</label>
                 <input id="t3" name="t3" value="{{ $skin->t3 }}" type="text" class="form-control">
             </div>
             <div class="col-12 col-lg-4">
                 <div id="result3" style="border-radius: 4px; padding: 10px;width: 96%; margin: 15px 2%; min-height: 38px; font-size: 16px; color: {{ $skin->t3 }}; background-color: {{ $skin->c3 }};">
                     Lorem Ipsum Oletete
                 </div>
-            </div>
+            </div><!--
             <div class="col-4 col-lg-4 form-group">
                 <label for="c4">Background colour 4</label>
                 <input id="c4" name="c4" value="{{ $skin->c4 }}" type="text" class="form-control">
@@ -57,7 +57,7 @@
                 <div id="result4" style="border-radius: 4px; padding: 10px;width: 96%; margin: 15px 2%; min-height: 38px; font-size: 16px; color: {{ $skin->t4 }}; background-color: {{ $skin->c4 }};">
                     Lorem Ipsum Oletete
                 </div>
-            </div>
+            </div>-->
             <div class="col-12 form-group">
                 <label for="">Header Style</label>
                 <select name="id_header" id="id_header" class="form-control">

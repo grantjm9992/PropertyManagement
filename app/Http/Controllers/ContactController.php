@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 class ContactController extends BaseController
 {
     public function __construct() {
-        $this->headerClass = "";
         parent::__construct();
     }
     

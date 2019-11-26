@@ -13,19 +13,19 @@ body
 
 .default-color
 {
-	background-color: #222222 !important;
-	color: #ffffff !important;
+	background-color: @headerBGColour !important;
+	color: @headerFontColour !important;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 
 .default-color .nav-link, .navbar-brand
 {
-	color: #ffffff !important;
+	color: @headerFontColour !important;
 }
 
 .nav-link, .navbar-brand
 {
-	color: #ffffff !important;
+	color: @headerFontColour !important;
 }
 
 .dropdown-menu.show
@@ -36,12 +36,12 @@ body
 
 .dropdown-item
 {
-	color: #ffffff;
+	color: @headerFontColour;
 }
 
 .dropdown-item:hover
 {
-	color: #f57e20;
+	color: @accentBGColour;
 	cursor: pointer;
 }
 
@@ -91,7 +91,7 @@ body
 
 .default-color .drop-section
 {
-	background-color: #222222 !important;
+	background-color: @headerBGColour !important;
 }
 
 /**
@@ -109,7 +109,7 @@ body
 	position: absolute;
 	right: 20px;
 	font-size: 30px;
-	color: #ffffff;
+	color: @headerFontColour;
 	top: 38px;
 	display: block;
 }
@@ -118,7 +118,7 @@ body
 	float: none;
 	position: absolute;
 	width: 100%;
-	background: #222222;
+	background: @headerBGColour;
 	left: 0;
 	top: 0;
 	height: 100vh;
@@ -155,7 +155,7 @@ body
 	display: inline-block;
 	text-transform: uppercase;
 	font-size: 14px;
-	color: #ffffff;
+	color: @headerFontColour;
 	padding: 15px;
 	margin-right: 10px;
 	position: relative;
@@ -220,15 +220,15 @@ body
 	.dropdown-menu.show
 	{
 		background: #fff;
-		border: 1px solid #f57e20 ;
+		border: 1px solid @accentBGColour ;
 	}	
 	.dropdown-item
 	{
-		color: #f57e20 ;
+		color: @accentBGColour ;
 	}
 	.dropdown-item:hover
 	{
-		background-color: #f57e20 ;
+		background-color: @accentBGColour ;
 		color: #fff;
 		cursor: pointer;
 	}
@@ -237,12 +237,12 @@ body
 footer
 {
 	padding: 50px;
-	background-color: #222222;
+	background-color: @footerBGColour;
 }
 
 footer *
 {
-	color: #ffffff;
+	color: @footerFontColour;
 }
 
 /**
@@ -349,7 +349,7 @@ footer *
 {
 	width: 50px;
     height: 3px;
-    background: #f57e20;
+    background: @accentBGColour;
     margin: 0 auto;
     margin-bottom: 20px;
 }
@@ -385,11 +385,11 @@ h2 > .btn
 
 .icon-span
 {
-    background: #f57e20;
+    background: @accentBGColour;
     padding: 10px;
     border-radius: 50%;
     transition: 0.5s;
-    border: 1px solid #f57e20;
+    border: 1px solid @accentBGColour;
     height: 70px;
     width: 70px;
     text-align: center;
@@ -410,7 +410,7 @@ h2 > .btn
 
 .icon-span:hover > i
 {
-	color: #f57e20;
+	color: @accentBGColour;
 }
 
 
@@ -433,7 +433,7 @@ h2 > .btn
 	right: 15px;
 	z-index: 10;
 	padding: 15px;
-	background-color: #f57e20;
+	background-color: @accentBGColour;
 	color:#fff;
 	border-radius: 5px;
 }
@@ -454,11 +454,11 @@ h2 > .btn
   }
   
   .label-danger {
-	background-color: #f57e20;
+	background-color: @accentBGColour;
   }
   
   #property-list h4.title-real-estates a {
-	color: #f57e20;
+	color: @accentBGColour;
   }
   
   #property-list h4.title-real-estates a:hover {
@@ -467,27 +467,27 @@ h2 > .btn
 	-ms-transition: all 1s ease;
 	-o-transition: all 1s ease;
 	transition: all 1s ease;
-	color: #f57e20;
+	color: @accentBGColour;
   }
   
   #property-list h4 span {
-	color: #f57e20;
+	color: @accentBGColour;
   }
 
   .alert-green-outline
   {
 	  padding: 8px;
 	  border-radius: 5px;
-	  border: 1px solid #f57e20;
+	  border: 1px solid @accentBGColour;
   }
 
   a.alert-green-outline
   {
-	  color: #f57e20;
+	  color: @accentBGColour;
   }
   a.alert-green-outline:hover
   {
 	  text-decoration: none;
 	  color: #fff !important;
-	  background: #f57e20 !important;
+	  background: @accentBGColour !important;
   }

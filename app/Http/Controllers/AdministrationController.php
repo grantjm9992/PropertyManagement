@@ -29,13 +29,16 @@ class AdministrationController extends BaseController
         $types = \App\TaskType::where("menu", "1")->get();
         $notifications = \App\Notifications::getUnseenForUser();
         $count = ( is_null( $notifications ) ) ? 0 : count( $notifications );
+        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
 
         $this->cont->footer = view('layout/footer_admin', array(
             "user" => $this->user
         ));
         $this->cont->sidebar = view("layout/admin_sidebar", array(
             "types" => $types,
-            "user" => $this->user
+            "user" => $this->user,
+            "logo" => $logo
         ));
         $back = ( isset( $_SERVER["HTTP_REFERER"] ) ) ? $_SERVER["HTTP_REFERER"] : url("/Admin");
         $back = $this->returnURL != "" ? $this->returnURL : $back;

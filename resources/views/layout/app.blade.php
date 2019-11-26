@@ -30,8 +30,8 @@
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		@endif
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.css">
-		<link rel="stylesheet" href="css/resorts.css"/>
-		<link rel="stylesheet" href="css/style_.css"/>
+		<link rel="stylesheet" href="{{ $resorts }}"/>
+		<link rel="stylesheet" href="{{ $style }}"/>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>

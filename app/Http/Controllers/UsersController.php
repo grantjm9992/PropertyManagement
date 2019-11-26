@@ -93,7 +93,7 @@ class UsersController extends BaseController
         $this->iconClass = "fa-user-plus";
         $this->botonera = view('users/newbotonera');
         $user = new \App\User();
-        $roles = \App\roles::get();
+        $roles = \App\Roles::get();
         $companies = \App\Companies::get();
         $this->cont->body = view('users/detail', array(
             "user" => $user,
@@ -107,6 +107,8 @@ class UsersController extends BaseController
     {
         $user = ( isset( $_REQUEST['id'] ) && $_REQUEST['id'] != "" ) ? \App\User::where('id', $_REQUEST['id'])->first() : \App\User::create();
         $user->update( $_REQUEST );
+        if ( isset( $_REQUEST["password"] ) && $_REQUEST["password"] != "" ) $user->password = md5($_REQUEST["password"]);
+        $user->save();
         return \Redirect::to('Users')->send();
     }
 

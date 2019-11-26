@@ -2,7 +2,7 @@
 <!--Navbar -->
 <header class="header-section pl-4 {{ $headerClass }}" id="navbar">
 	<a href="{{ url('/') }}" class="site-logo">
-		<img src="img/logo_colour.png" alt="">
+		<img src="{{ $logo }}" alt="">
   </a>
   <!--
   <div class="drop-drop">

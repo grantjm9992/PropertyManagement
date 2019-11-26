@@ -302,7 +302,7 @@ class AdminPropertiesController extends BaseController
         }
         if ( $this->user->role == "AA" )
         {
-            $where .= " AND id_area = ".$this->user->id_area." ";
+            $where .= " AND id_company = ".$this->user->id_company." ";
         }
         if ( $this->user->role == "M" )
         {
