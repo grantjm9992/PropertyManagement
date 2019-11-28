@@ -49,14 +49,23 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" href="" id="navbarDropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">message</i>
-                  <span class="notification">{{ $count_notifications }}</span>
+                  <span class="notification">{{ $count_messages }}</span>
                   <p class="d-lg-none d-md-block">
                     Messages
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuMessages">
-                  @foreach ( $notifications as $row )
-                  <span class="dropdown-item" href="{{ url('Notifications') }}">{!! $row->text !!}</span>
+                  @foreach ( $messages as $row )
+                    <a href="Messages?id_conversation={{ $row->id}}" class="dropdown-item">
+                    <div>
+                        <div class="w-100">
+                          {!! $row->message !!}
+                        </div>
+                        <div class="w-100 msg-sender">
+                          {{ $row->sender }}
+                        </div>
+                      </div>
+                      </a>
                   @endforeach
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ url('Messages') }}">View all messages</a>

@@ -29,6 +29,12 @@ class AdministrationController extends BaseController
         $types = \App\TaskType::where("menu", "1")->get();
         $notifications = \App\Notifications::getUnseenForUser();
         $count = ( is_null( $notifications ) ) ? 0 : count( $notifications );
+        $messages = \App\Conversations::getUnseenForUser();
+        foreach ( $messages as $message )
+        {
+            $message->getForCard();
+        }
+        $count_messages = ( is_null ( $messages ) ) ? 0 : count( $messages );
         $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
         $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
 
@@ -45,6 +51,8 @@ class AdministrationController extends BaseController
         $this->cont->header = view('layout/admin_header', array(
             "notifications" => $notifications,
             "count_notifications" => $count,
+            "messages" => $messages,
+            "count_messages" => $count_messages,
             "back" => $back,
             "user" => $this->user
         ));

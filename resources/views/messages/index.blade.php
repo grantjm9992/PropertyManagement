@@ -8,7 +8,19 @@
         </div>
     </div>
     <div style="max-height: 100vh; width: calc(100% - 300px); height: calc(100vh - 160px);display: flex; flex-direction: column-reverse; overflow-y: scroll;" id="conversation">
-    
+        <div class="container-fluid px-4">
+            <div class="row" id="message_holder">
+                {!! $conversation !!}
+            </div>
+            <div class="row pt-3">
+                <div class="col-12 col-lg-10 p-1">
+                    <textarea name="msg" id="msg" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+                <div class="col-12 col-lg-2 p-1">
+                    <div class="btn btn-primary" onclick="send()">Send</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -26,24 +38,29 @@
         })
     }
 
-    function send(id_conversation)
+    function send()
     {
-        $.ajax({
-            type: "POST",
-            url: "Messages.addFromConversation",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: {
-                id_conversation: id_conversation,
-                message: $("#msg").val()
-            },
-            success: function(data)
-            {
-                var resp = data ;
-                var html = $("#message_holder").html() + resp;
-                $('#message_holder').html(html);
-                updateConversations();
-            }
-        })
+        if ( document.getElementById("current_convo") )
+        {
+            var id_conversation = $('#current_convo').val();
+            $.ajax({
+                type: "POST",
+                url: "Messages.addFromConversation",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: {
+                    id_conversation: id_conversation,
+                    message: $("#msg").val()
+                },
+                success: function(data)
+                {
+                    var resp = data ;
+                    var html = $("#message_holder").html() + resp;
+                    $('#message_holder').html(html);
+                    $('#msg').val("");
+                    updateConversations();
+                }
+            });
+        }
     }
 
     function updateConversations()
@@ -70,7 +87,7 @@
 		    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             success: function(data)
             {
-                $("#conversation").html(data);
+                $("#message_holder").html(data);
             }
         })
     });
@@ -87,7 +104,7 @@
             },
             success: function(data)
             {
-                $('#conversation').html(data);
+                $('#message_holder').html(data);
             }
         })
     }

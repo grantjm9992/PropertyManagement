@@ -33,6 +33,7 @@ class LoginController extends Controller
         }
         $date = new \DateTime();
         $user->last_seen = $date->format("Y-m-d H:i:s");
+        $user->save();
         $_SESSION['id'] = $user->id;
         \Redirect::to('Admin')->send();
     }

@@ -20,10 +20,12 @@ class MessagesController extends BaseController
     }
     
     public function defaultAction() {
+        $convo = ( isset( $_REQUEST["id"] ) && $_REQUEST["id"] != "" ) ? $this->getConversationAction() : "";
         $this->pageTitle = "Messages";
         $this->iconClass = "fa-envelope";
         $this->cont->body = view('messages/index', array(
-            "conversations" => $this->conversationsAction()
+            "conversations" => $this->conversationsAction(),
+            "conversation" => $convo
         ));
         return $this->RenderView();
     }
@@ -149,8 +151,11 @@ class MessagesController extends BaseController
         $html = "";
         foreach ( $messages as $message )
         {
-            $message->is_read = 1;
-            $message->save();
+            if ( (int)$this->user->id !== (int)$message->id_sender )
+            {
+                $message->is_read = 1;
+                $message->save();
+            }
             $sender = \App\User::where("id", $message->id_sender)->first();
             $html .= view("messages/conversation_row", array(
                 "sender" => $sender,

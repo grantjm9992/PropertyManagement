@@ -40,4 +40,23 @@ class Conversations extends Model
         $this->is_read = $last_message->is_read;
         $this->id_sender = $last_message->id_sender;
     }
+
+
+    public static function getUnseenForUser()
+    {
+        $messages = array();
+        $id = \UserLogic::getUserId();
+        $convU = ConversationsUsers::where("id_user", $id)->get();
+        foreach ( $convU as $row )
+        {
+            $last_message = Messages::where("id_conversation", $row->id_conversation)->orderBy("date_sent", "DESC")->first();
+            if ( (int)$last_message->id_sender !== $id && (int)$last_message->is_read !== 1 )
+            {
+                $conversation = self::where("id", $row->id_conversation)->first();
+                $messages[] = $conversation;
+            }
+        }
+
+        return $messages;
+    }
 }

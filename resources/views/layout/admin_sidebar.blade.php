@@ -66,6 +66,12 @@
             </a>
           </li>
           @endif
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('Messages') }}">
+              <i class="material-icons">question_answer</i>
+              <p>Messages</p>
+            </a>
+          </li>
           @if( $user->role == "WA" || $user->role == "SA" )
           <li class="nav-item ">
             <a class="nav-link" href="{{ url('WebAdmin') }}">
