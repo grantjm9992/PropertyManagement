@@ -37,7 +37,8 @@ class MessagesController extends BaseController
             $conversation = \App\Conversations::where('id', $row->id_conversation)->first();
             $conversation->getForCard();
             $html .= view('messages/message_card', array(
-                "message" => $conversation
+                "message" => $conversation,
+                "user" => $this->user
             ));
         }
 
@@ -47,6 +48,32 @@ class MessagesController extends BaseController
     public function newModalAction()
     {
         return view("modal/addmessage");
+    }
+
+    public function addFromConversationAction()
+    {
+        $date = new \DateTime();
+        $id_conversation = $_REQUEST["id_conversation"];
+        $msg = $_REQUEST["message"];
+        $message = new \App\Messages();
+        $cu = \App\ConversationsUsers::where("id_conversation", $id_conversation)->get();
+        foreach ( $cu as $row )
+        {
+            $row->last_message = $date->format("Y-m-d H:i:s");
+            $row->save();
+        }
+        $message->message = $msg;
+        $message->id_sender = $this->user->id;
+        $message->id_conversation = $id_conversation;
+        $message->date_sent = $date->format("Y-m-d H:i:s");
+        $message->save();
+        $html = view("messages/conversation_row", array(
+            "sender" => $this->user,
+            "message" => $message,
+            "user" => $this->user
+        ));
+        die($html);
+        
     }
 
     public function addAction()
@@ -68,12 +95,15 @@ class MessagesController extends BaseController
             if ( is_object( $conversationWithUser ) ) $exists = true;
         }
 
+        $date = new \DateTime();
         if ( $exists )
         {
+            $id_conversation = $conversationWithUser->id_conversation;
             $message = new \App\Messages();
             $message->id_conversation = $conversationWithUser->id_conversation;
             $message->id_sender = $this->user->id;
             $message->message = $msg;
+            $message->date_sent = $date->format("Y-m-d H:i:s");
             $message->save();
         }
 
@@ -81,6 +111,7 @@ class MessagesController extends BaseController
         {
             $conversation = new \App\Conversations();
             $conversation->save();
+            $id_conversation = $conversation->id;
             $sender = new \App\ConversationsUsers();
             $sender->id_conversation = $conversation->id;
             $sender->id_user = $this->user->id;
@@ -92,12 +123,46 @@ class MessagesController extends BaseController
             $message = new \App\Messages();
             $message->id_conversation = $conversation->id;
             $message->id_sender = $this->user->id;
+            $message->date_sent = $date->format("Y-m-d H:i:s");
             $message->message = $msg;
             $message->save();
         }
 
+        $cu = \App\ConversationsUsers::where("id_conversation", $id_conversation)->get();
+        foreach ( $cu as $row )
+        {
+            $row->last_message = $date->format("Y-m-d H:i:s");
+            $row->save();
+        }
+
+        if ( isset( $_REQUEST["modal"] ) && $_REQUEST["modal"] == "1" ) die("OK");
         \Redirect::to("Messages")->send();
 
+    }
+
+
+    public function getConversationAction()
+    {
+        $id = $_REQUEST["id"];
+        $conversation = \App\Conversations::where("id", $id)->first();
+        $messages = \App\Messages::where("id_conversation", $id)->orderBy("date_sent", "ASC")->get();
+        $html = "";
+        foreach ( $messages as $message )
+        {
+            $message->is_read = 1;
+            $message->save();
+            $sender = \App\User::where("id", $message->id_sender)->first();
+            $html .= view("messages/conversation_row", array(
+                "sender" => $sender,
+                "message" => $message,
+                "user" => $this->user
+            ));
+        }
+
+        return view("messages/conversation", array(
+            "conversation" => $conversation,
+            "html" => $html
+        ));
     }
 
 }

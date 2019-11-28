@@ -31,6 +31,8 @@ class LoginController extends Controller
             $_SESSION['errors'] = "Username or Password incorrect@#";
             \Redirect::to('Login')->send();
         }
+        $date = new \DateTime();
+        $user->last_seen = $date->format("Y-m-d H:i:s");
         $_SESSION['id'] = $user->id;
         \Redirect::to('Admin')->send();
     }

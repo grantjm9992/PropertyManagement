@@ -16,6 +16,6 @@ class UserLogic extends AdminOU
     {
         $user = ( $user === null ) ? \App\User::where('id', $_SESSION['id'])->first() : $user;
 
-        return $user->id;
+        return (int)$user->id;
     }
 }

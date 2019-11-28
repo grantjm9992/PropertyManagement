@@ -23,7 +23,6 @@ class ContactsController extends BaseController
         $listado = $this->getListadoAction();
         $this->pageTitle = "Contacts";
         $this->iconClass = "fa-address-book";
-        $this->botonera = '<div class="btn btn-primary" onclick="addContact()"><i class="fas fa-plus"></i> Add Contact</div>';
         $this->cont->body = view('contacts/index', array("listado" => $listado ) );
         return $this->RenderView();
     }
@@ -73,10 +72,23 @@ class ContactsController extends BaseController
 
     public function messageAction()
     {
-        $contact = \App\Contacts::where('id', $_REQUEST['id'])->first();
+        if ( !isset( $_REQUEST["id"] ) || $_REQUEST["id"]  == "" ) die();
+        $contact = \App\User::where('id', $_REQUEST['id'])->first();
+        if ( !is_object( $contact ) ) die();
         return view('contacts/send_modal', array(
             "contact" => $contact
         ));
+    }
+
+    public function detailAction()
+    {
+        if ( !isset( $_REQUEST["id"] ) || $_REQUEST["id"]  == "" ) die();
+        $contact = \App\User::where("id", $_REQUEST["id"])->first();
+        if ( !is_object( $contact ) ) die();
+
+        die( view("contacts/detail", array(
+            "contact" => $contact
+        )));
     }
 
     public function getListadoAction()
@@ -84,7 +96,7 @@ class ContactsController extends BaseController
         $this->data = \App\User::getContactsForUser( $this->user );
         foreach ( $this->data as $row )
         {
-            $row->actions = '<div class="w-100 text-right"><i class="fas fa-envelope mr-2" onclick="alert()"></i><i class="fas fa-address-book"></i>';
+            $row->actions = '<div class="w-100 d-inline-flex justify-content-around"><i class="fas fa-envelope mr-2" onclick="sendMessage('.$row->id.')"></i><i  onclick="getContact('.$row->id.')" class="fas fa-address-book"></i>';
         }
         $this->campos[] = array(
             "title" => "Name",

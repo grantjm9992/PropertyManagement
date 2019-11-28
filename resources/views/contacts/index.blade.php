@@ -1,57 +1,22 @@
 {!! $listado !!}
 
 <script>
-    function addContact()
+
+    function getContact(id)
     {
-        $('#register').remove();
         $.ajax({
             type: "POST",
-            url: "Contacts.addModal",
+            url: "Contacts.detail",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {id: id},
             success: function(data)
             {
+                $('#contact').remove();
                 $('body').append(data);
             }
         })
     }
-
-    function submitContact()
-    {
-        var id = $('#id').val();
-        $.ajax({
-            type: "POST",
-            url: "Contacts.addContact",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: $('#addContact').serialize(),
-            success: function(data)
-            {
-                var s = jQuery.parseJSON(data);
-                $('#register').modal('hide');
-                if ( s.status === 1 )
-                {
-                    $.notify("Contact updated successfully", {
-                        clickToHide: true,
-                        autoHide: true,
-                        position: "bottom-left",
-                        className: "success"
-                    });
-                    $('[contact="'+id+'"]').remove();
-                }
-                else
-                {
-                    $.notify("Contact created successfully", {
-                        clickToHide: true,
-                        autoHide: true,
-                        position: "bottom-left",
-                        className: "success"
-                    });
-                }
-                $('#contacts').append(s.response);
-            }
-        })
-    }
-
-    function sendMesage(id)
+    function sendMessage(id)
     {
         $.ajax({
             type: "POST",
@@ -66,17 +31,20 @@
         })
     }
 
-    function editContact(id)
+    function submitMessage()
     {
         $.ajax({
             type: "POST",
-            url: "Contacts.editModal",
+            url: "Messages.add",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: {id: id},
+            data: $("#sendMessage").serialize(),
             success: function(data)
             {
-                $('#register').remove();
-                $('body').append(data);
+                if ( data == "OK" )
+                {
+                    $('#message').modal("hide");
+                    md.showNotification("top", "center", "Message sent successfully");
+                }
             }
         })
     }

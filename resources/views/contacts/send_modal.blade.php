@@ -8,9 +8,9 @@
         </button>
       </div>
       <div class="modal-body">
-          <form id="addContact">
+          <form id="sendMessage">
             <div class="row">
-                <input type="text" name="id" value="{{ $contact->id }}" hidden>
+                <input type="text" name="id_user" value="{{ $contact->id }}" hidden>
                 <div class="form-group col-12">
                     <input type="text" readonly value="{{  $contact->name }} {{ $contact->surname }}" class="form-control">
                 </div>
@@ -20,12 +20,12 @@
                 <div class="form-group col-12">
                   <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
                 </div>
-                <button type="submit" id="submit" hidden></button>
             </div>
+            <input name="modal" value="1" hidden type="text"/>
           </form>          
       </div>
       <div class="modal-footer">
-        <div onclick="submitContact()" class="btn btn-primary">Submit</div>
+        <div onclick="submitMessage()" class="btn btn-primary">Submit</div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

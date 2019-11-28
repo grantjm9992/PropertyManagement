@@ -646,3 +646,25 @@ input:checked + .slider:before {
 	  color: #fff !important;
 	  background: #f57e20 !important;
   }
+
+  .msg
+  {
+    padding: 15px 15px 2px 15px;
+    border-radius: 10px 10px 10px 0;
+    background: rgba(0,0,0,.1);
+    margin-top: 15px;
+  }
+
+  .msg-mine
+  {
+    padding: 15px 15px 2px 15px;
+    border-radius: 10px 10px 0 10px;
+    background: rgba(5,50,200,.1);
+    margin-top: 15px;
+  }
+
+  .msg-sender
+  {
+    color: rgba(5,50,200,.7);
+    font-size: 11px;
+  }

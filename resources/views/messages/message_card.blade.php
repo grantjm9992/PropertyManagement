@@ -1,8 +1,8 @@
-@if ( (int)$message->is_read === 0 )
-<div class="message unread">
+@if ( (int)$message->is_read === 0 && (int)$message->id_sender !== (int)$user->id )
+<div class="message unread" rel="{{ $message->id }}">
     <div class="unread-bubble"></div>
 @else
-<div class="message">
+<div class="message" rel="{{ $message->id }}">
 @endif
     <div class="message-image">
         <img src="{{ $message->image }}" alt="" class="avatar">
