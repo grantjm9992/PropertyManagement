@@ -32,17 +32,18 @@
               </li>
             @endisset
               <li class="nav-item">
-                <div onclick="addTask()" title="Add task" style="margin-left: 15px;
-    border-radius: 3px; cursor: pointer;
-    color: #3C4858;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-transform: capitalize;
-    font-size: 13px;
-    padding: 10px 15px;">
+                <div onclick="addTask()" title="Add task" class="spechIcon">
                   <i class="material-icons">assignment_ind</i>
                   <p class="d-lg-none d-md-block">
                     Add task
+                  </p>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div onclick="addMessage()" title="New message" class="spechIcon">
+                  <i class="material-icons">question_answer</i>
+                  <p class="d-lg-none d-md-block">
+                    New message
                   </p>
                 </div>
               </li>

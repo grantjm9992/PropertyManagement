@@ -1,4 +1,4 @@
-<div class="container-fluid" style="padding: 0;display: inline-flex; height: calc(100vh - 160px); box-shadow: 0 0 10px rgba(0,0,0,.4);">
+<div class="container-fluid enclose" style="">
     <div class="message-holder">
         <div class="w-100 p-4" style="cursor: pointer;" onclick="newConversation()">
             <i class="fas fa-plus"></i> New conversation
@@ -7,7 +7,7 @@
             {!! $conversations !!}
         </div>
     </div>
-    <div style="max-height: 100vh; width: calc(100% - 300px); height: calc(100vh - 160px);display: flex; flex-direction: column-reverse; overflow-y: scroll;" id="conversation">
+    <div style="" id="conversation">
         <div class="container-fluid px-4">
             <div class="row" id="message_holder">
                 {!! $conversation !!}
@@ -88,6 +88,8 @@
             success: function(data)
             {
                 $("#message_holder").html(data);
+                var objDiv = document.getElementById("message_holder");
+                objDiv.scrollTop = objDiv.scrollHeight;
             }
         })
     });

@@ -90,6 +90,7 @@ class AdminCompaniesController extends BaseController
             $company = \App\Companies::create($_REQUEST);
             $company->date_created = $date->format('Y-m-d H:i:s');
             $company->save();
+            \AppConfig::companyCreate( $company );
         }
 
         return \Redirect::to('AdminCompanies')->send();

@@ -53,7 +53,6 @@
           {
             $('#modal').modal("hide");
             md.showNotification("top", "center", "Message sent successfully");
-            updateConversations();
           }
         });
       }

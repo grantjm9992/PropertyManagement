@@ -52,6 +52,11 @@ class MessagesController extends BaseController
         return view("modal/addmessage");
     }
 
+    public function genericAddModalAction()
+    {
+        return view("modal/add_message");        
+    }
+
     public function addFromConversationAction()
     {
         $date = new \DateTime();
@@ -92,7 +97,7 @@ class MessagesController extends BaseController
         $exists = false;
         if ( count( $ids ) > 0 )
         {
-            $id_string = implode("", $ids);
+            $id_string = implode(",", $ids);
             $conversationWithUser = \App\ConversationsUsers::whereRaw("id_conversation in ($id_string) AND id_user = $id_user " )->first();
             if ( is_object( $conversationWithUser ) ) $exists = true;
         }
@@ -138,6 +143,7 @@ class MessagesController extends BaseController
         }
 
         if ( isset( $_REQUEST["modal"] ) && $_REQUEST["modal"] == "1" ) die("OK");
+        
         \Redirect::to("Messages")->send();
 
     }

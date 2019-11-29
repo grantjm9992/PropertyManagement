@@ -327,7 +327,6 @@ input:checked + .slider:before {
 
 .message-widget .message
 {
-  border-top: 2px solid rgba(0,0,0,.1);
   border-bottom: 2px solid rgba(0,0,0,.1);
   padding: 10px 0;
   display: inline-flex;
@@ -385,6 +384,56 @@ input:checked + .slider:before {
 {max-height: 100vh; overflow-x: hidden; overflow-y: auto; width: 300px;     box-shadow: 5px 2px 4px 0px rgba(0,0,0,.1);
   height: calc(100vh - 160px);
   padding: 5px 0;
+}
+
+#conversation
+{
+  max-height: 100vh;
+    width: calc(100% - 300px);
+    height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+}
+
+.enclose
+{
+  padding: 0;display: inline-flex;height: calc(100vh - 160px);box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+@media screen and (max-width: 992px)
+{
+  .enclose
+  {
+    height: auto;
+    display: block;
+  }
+  .message-holder
+  {
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    box-shadow: 5px 2px 4px 0px rgba(0,0,0,.1);
+    padding:0;
+    max-height: 200px;
+  }
+
+  #conversation
+  {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: hidden;
+    height: auto;
+    max-height: auto;
+  }
+
+  #message_holder
+  {
+    overflow-y: scroll;
+    max-height: 400px;
+  }
 }
 
 
@@ -667,4 +716,32 @@ input:checked + .slider:before {
   {
     color: rgba(5,50,200,.7);
     font-size: 11px;
+  }
+
+  .spechIcon
+  {
+    margin-left: 0;
+    border-radius: 3px; cursor: pointer;
+    color: #3C4858;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: capitalize;
+    font-size: 13px;
+    padding: 10px 15px;
+  }
+  @media screen and (max-width: 992px)
+  {
+    .spechIcon
+    {
+      margin-left: 15px;
+    }
+    .container-fluid
+    {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .main-panel>.content
+    {
+      padding: 30px 0;
+    }
   }
