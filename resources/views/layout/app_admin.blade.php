@@ -95,6 +95,8 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
   <script src="js/mention.js"></script>
+  <script src="js/main.js"></script>
+<!--  <script src="js/tour.js"></script> -->
   <script>
   
   function addTask()
@@ -372,7 +374,7 @@
   
   <div class="wrapper ">
     {!! $sidebar !!}
-    <div class="main-panel">
+    <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       {!! $navbar !!}
       <!-- End Navbar -->

@@ -32,7 +32,7 @@
               </li>
             @endisset
               <li class="nav-item">
-                <div onclick="addTask()" title="Add task" class="spechIcon">
+                <div onclick="addTask()" id="new_task" title="Add task" class="spechIcon">
                   <i class="material-icons">assignment_ind</i>
                   <p class="d-lg-none d-md-block">
                     Add task
@@ -40,7 +40,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <div onclick="addMessage()" title="New message" class="spechIcon">
+                <div onclick="addMessage()" id="new_message" title="New message" class="spechIcon">
                   <i class="material-icons">question_answer</i>
                   <p class="d-lg-none d-md-block">
                     New message

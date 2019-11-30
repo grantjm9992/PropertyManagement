@@ -145,7 +145,7 @@ class ReservationsController extends BaseController
     {
         $id_property = $_REQUEST["id_property"];
         $id_type = ( isset( $_REQUEST["id_type"] ) ) ? $_REQUEST["id_type"] : "";
-        return view("modal/addRental", array(
+        return view("modal/addrental", array(
             "id_property" => $id_property,
             "id_type" => $id_type,
             "unavailable_dates" => $this->getUnavailableDatesAction()

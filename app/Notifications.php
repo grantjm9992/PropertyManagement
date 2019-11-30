@@ -21,4 +21,26 @@ class Notifications extends Model
         }
         return $notifications;        
     }
+
+
+
+    
+    public static function boot() {
+        parent::boot();
+
+        // Once created send email notification
+        self::created(function($model){
+            $user = User::where("id", $model->id_user)->first();
+            if ( is_object( $user ) ) 
+            {
+                // If user exists and has email. Send
+                if ( $user->email != "" )
+                {
+                    Mail::to( $user->email )->send( new \App\Mail\NewNotification( $model) );       
+                }
+            }
+        });
+
+    }
+
 }

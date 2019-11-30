@@ -188,9 +188,6 @@ function addMessage()
 		type: "POST",
 		headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 		url: "Messages.genericAddModal",
-		data: {
-			locale: locale
-		},
 		success: function(data)
 		{
 			$('#modal').remove();

@@ -22,4 +22,35 @@ class Messages extends Model
         }
         return $messages;
     }
+
+    
+
+    
+    public static function boot() {
+        parent::boot();
+
+        // Once created, send email notifying all other users in the conversation
+        self::created(function($model){
+            // Get all users
+            $uC = ConversationsUsers::where("id", $model->id_conversation)->get();
+            foreach ( $uC as $row )
+            {
+                //  Don't notify the sender
+                if ( (int)$row->id_user !== (int)$model->id_sender )
+                {
+                    $user = User::where("id", $row->id_user)->first();
+                    if ( is_object( $user ) ) 
+                    {
+                        if ( $user->email != "" )
+                        {
+                            // If exists and has email. Send
+                            Mail::to( $user->email )->send( new \App\Mail\NewNotification( $model) );       
+                        }
+                    }
+                }
+            }
+
+        });
+
+    }
 }

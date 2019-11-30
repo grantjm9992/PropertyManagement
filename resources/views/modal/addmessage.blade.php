@@ -12,7 +12,7 @@
             <div class="row">
               <div class="col-12 form-group">
                 <label for="user">To</label>
-                <input type="text" id="user" required class="form-control">
+                <input type="text" id="user" required class="form-control" autocomplete="off">
                 <input type="text" hidden name="id_user" id="id_user" required>
               </div>
               <div class="form-group col-12">
