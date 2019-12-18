@@ -1,0 +1,860 @@
+[
+    { 
+        "name": "CONTACT DETAILS",
+        "subsections": [
+            {
+                "name" : "Name",
+                "radio" : 0
+            },
+            {
+                "name" : "Surname",
+                "radio" : 0
+            },
+            {
+                "name" : "Telephone number",
+                "radio" : 0
+            },
+            {
+                "name" : "Spanish Telephone Number",
+                "radio" : 0
+            },
+            {
+                "name" : "Email Address",
+                "radio" : 0
+            },
+            {
+                "name" : "Home Address",
+                "radio" : 0
+            },
+            {
+                "name" : "Date of Birth",
+                "radio" : 0
+            }
+        ]
+    
+    },
+    { 
+        "name": "RENTAL PROPERTY ADDRESS",
+        "subsections": [
+            {
+                "name" : "Street Address",
+                "radio" : 0
+            },
+            {
+                "name" : "Apt Suite (Optional)",
+                "radio" : 0
+            },
+            {
+                "name" : "State",
+                "radio" : 0
+            },
+            {
+                "name" : "Post Code / ZIP Code",
+                "radio" : 0
+            }
+        ]
+    
+    },
+    { 
+        "name": "ADDITIONAL INFORMATION REQUIRED",
+        "subsections": [
+            {
+                "name" : "Property Manager Name",
+                "radio" : 0
+            },
+            {
+                "name" : "Property manger telephone Number",
+                "radio" : 0
+            },
+            {
+                "name" : "Tourist Licence Number",
+                "radio" : 0
+            },
+            {
+                "name" : "Aware of the local Laws and regulations",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "BANK DETAILS",
+        "subsections": [
+            {
+                "name" : "Bank Name",
+                "radio" : 0
+            },
+            {
+                "name" : "IBAN",
+                "radio" : 0
+            },
+            {
+                "name" : "SWIFT",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "PROPERTY COSTS",
+        "subsections": [
+            {
+                "name" : "Rental Charge/Night (euro)",
+                "radio" : 0
+            },
+            {
+                "name" : "Security Amount (euro)",
+                "radio" : 0
+            },
+            {
+                "name" : "Cleaning Charge (euro)",
+                "radio" : 0
+            },
+            {
+                "name" : "A/C - Heating (euro)",
+                "radio" : 0
+            },
+            {
+                "name" : "Check In Times",
+                "radio" : 0
+            },
+            {
+                "name" : "Check Out Times",
+                "radio" : 0
+            },
+            {
+                "name" : "Charge per extra guest",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "OFFER DISCOUNTS TO YOUR GUESTS",
+        "subsections": [
+            {
+                "name" : "Offer a Weekly or Monthly Booking Discount",
+                "radio" : 1
+            },
+            {
+                "name" : "Special offer 20% off to first 3 guests to help get three reviews for a star rating -  *can add after listed*",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "HEADLINE INFORMATION",
+        "subsections": [
+            {
+                "name" : "Have you rented out the property before",
+                "radio" : 1
+            },
+            {
+                "name" : "Renting entire space",
+                "radio" : 1
+            },
+            {
+                "name" : "How often do you want to have guests",
+                "radio" : 1
+            },
+            {
+                "name" : "How much notice do you need before a guest arrives",
+                "radio" : 1
+            },
+            {
+                "name" : "When can guests check in",
+                "radio" : 1
+            },
+            {
+                "name" : "How far in advance can guests book",
+                "radio" : 1
+            },
+            {
+                "name" : "How long can the guest stay (Min & Max)",
+                "radio" : 1
+            },
+            {
+                "name" : "What dates would you like to block out",
+                "radio" : 1
+            },
+            {
+                "name" : "Smart Pricing to automatically keep your prices competitive",
+                "radio" : 1
+            },
+            {
+                "name" : "Price per night if demand is low (optional)",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "HOUSE RULES",
+        "subsections": [
+            {
+                "name" : "Children 2-12",
+                "radio" : 1
+            },
+            {
+                "name" : "Children Under 2",
+                "radio" : 1
+            },
+            {
+                "name" : "Pets Allowed",
+                "radio" : 1
+            },
+            {
+                "name" : "Events parties allowed",
+                "radio" : 1
+            },
+            {
+                "name" : "Smoking allowed",
+                "radio" : 1
+            },
+            {
+                "name" : "Additional Rules? Eg Quiet hours or No shoes in the house?",
+                "radio" : 1
+            },
+            {
+                "name" : "Quiet hours",
+                "radio" : 1
+            },
+            {
+                "name" : "Shoes",
+                "radio" : 1
+            },
+            {
+                "name" : "Are you able to add bed to common spaces",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "PROPERTY TYPE",
+        "subsections": [
+            {
+                "name" : "Apartment",
+                "radio" : 1
+            },
+            {
+                "name" : "Villa",
+                "radio" : 1
+            },
+            {
+                "name" : "Condomium",
+                "radio" : 1
+            },
+            {
+                "name" : "Casa",
+                "radio" : 1
+            },
+            {
+                "name" : "loft",
+                "radio" : 1
+            },
+            {
+                "name" : "Service Flat",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "PROPERTY INFORMATION",
+        "subsections": [
+            {
+                "name" : "How Many Bedrooms",
+                "radio" : 0
+            },
+            {
+                "name" : "How many Guests can it accommodate",
+                "radio" : 0
+            },
+            {
+                "name" : "How Many bathrooms (Give description if ensuite etc)",
+                "radio" : 0
+            },
+            {
+                "name" : "Separate Toilet",
+                "radio" : 1
+            },
+            {
+                "name" : "Style of Kitchen / Kitchenette",
+                "radio" : 0
+            },
+            {
+                "name" : "Terrace ",
+                "radio" : 1
+            },
+            {
+                "name" : "Patio Area / Balcony",
+                "radio" : 1
+            },
+            {
+                "name" : "Solarium",
+                "radio" : 1
+            },
+            {
+                "name" : "Garden / Backyard (Brief description and approx size)",
+                "radio" : 1
+            },
+            {
+                "name" : "Any stairs (inside/outside)",
+                "radio" : 1
+            },
+            {
+                "name" : "Private Entrance (Separate street or building entrance)",
+                "radio" : 1
+            },
+            {
+                "name" : "Private living room",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "GUESTS MUST KNOW",
+        "subsections": [
+            {
+                "name" : "Noise potential",
+                "radio" : 1
+            },
+            {
+                "name" : "Access to the whole building",
+                "radio" : 1
+            },
+            {
+                "name" : "Is this set up as a dedicated guest space",
+                "radio" : 1
+            },
+            {
+                "name" : "Sofa Beds available",
+                "radio" : 1
+            },
+            {
+                "name" : "Parking on Property",
+                "radio" : 1
+            },
+            {
+                "name" : "Some spaces are shared",
+                "radio" : 1
+            },
+            {
+                "name" : "Surveillance or recording devices on the property",
+                "radio" : 1
+            },
+            {
+                "name" : "Weapons on the Property ",
+                "radio" : 1
+            },
+            {
+                "name" : "Dangerous animals on property",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "PROPERTY CONTENTS",
+        "subsections": [
+            {
+                "name" : "Washing Machine ",
+                "radio" : 1
+            },
+            {
+                "name" : "Dishwasher",
+                "radio" : 1
+            },
+            {
+                "name" : "iron Iroing board",
+                "radio" : 1
+            },
+            {
+                "name" : "Indoor Fire Place",
+                "radio" : 1
+            },
+            {
+                "name" : "Dryer",
+                "radio" : 1
+            },
+            {
+                "name" : "Lock on the bedroom door",
+                "radio" : 1
+            },
+            {
+                "name" : "Hot Water",
+                "radio" : 1
+            },
+            {
+                "name" : "Bedsheets",
+                "radio" : 1
+            },
+            {
+                "name" : "Soap",
+                "radio" : 1
+            },
+            {
+                "name" : "Toilet paper",
+                "radio" : 1
+            },
+            {
+                "name" : "Shampoo",
+                "radio" : 1
+            },
+            {
+                "name" : "wifi",
+                "radio" : 1
+            },
+            {
+                "name" : "Closet draws",
+                "radio" : 1
+            },
+            {
+                "name" : "TV",
+                "radio" : 1
+            },
+            {
+                "name" : "Cable TV",
+                "radio" : 1
+            },
+            {
+                "name" : "Microwave",
+                "radio" : 1
+            },
+            {
+                "name" : "Coffee maker",
+                "radio" : 1
+            },
+            {
+                "name" : "Refrigerator",
+                "radio" : 1
+            },
+            {
+                "name" : "Dishwasher",
+                "radio" : 1
+            },
+            {
+                "name" : "Dishes and silverware",
+                "radio" : 1
+            },
+            {
+                "name" : "Cooking basics Pots and pans, oil, salt and pepper",
+                "radio" : 1
+            },
+            {
+                "name" : "Oven",
+                "radio" : 1
+            },
+            {
+                "name" : "Stove",
+                "radio" : 1
+            },
+            {
+                "name" : "Free parking on premises",
+                "radio" : 1
+            },
+            {
+                "name" : "Free on-street parking",
+                "radio" : 1
+            },
+            {
+                "name" : "Paid parking off premises",
+                "radio" : 1
+            },
+            {
+                "name" : "Paid parking on premises",
+                "radio" : 1
+            },
+            {
+                "name" : "EV charger",
+                "radio" : 1
+            },
+            {
+                "name" : "BBQ Grill ",
+                "radio" : 1
+            },
+            {
+                "name" : "Breakfast Provided",
+                "radio" : 1
+            },
+            {
+                "name" : "Beach essentialsBeach towels, umbrella, beach blanket, snorkelling gear",
+                "radio" : 1
+            },
+            {
+                "name" : "Laptop Friendly workspace",
+                "radio" : 1
+            },
+            {
+                "name" : "Heat",
+                "radio" : 1
+            },
+            {
+                "name" : "Airconditoning",
+                "radio" : 1
+            },
+            {
+                "name" : "Breakfast tea coffee",
+                "radio" : 1
+            },
+            {
+                "name" : "Desk workspace",
+                "radio" : 1
+            },
+            {
+                "name" : "Fireplace",
+                "radio" : 1
+            },
+            {
+                "name" : "hangers",
+                "radio" : 1
+            },
+            {
+                "name" : "Hair Dryer",
+                "radio" : 1
+            },
+            {
+                "name" : "Private entrance",
+                "radio" : 1
+            },
+            {
+                "name" : "Smoke detector (WHERE IS LOCATED?)",
+                "radio" : 1
+            },
+            {
+                "name" : "Carbon Monoxide / Detector (WHERE IS LOCATED?)",
+                "radio" : 1
+            },
+            {
+                "name" : "Gas shut off Valve (WHERE IS LOCATED?)",
+                "radio" : 1
+            },
+            {
+                "name" : "1st aid kit (WHERE IS LOCATED?)",
+                "radio" : 1
+            },
+            {
+                "name" : "Fire Extingusher (WHERE IS LOCATED?)",
+                "radio" : 1
+            },
+            {
+                "name" : "Lock on Bedroom Door",
+                "radio" : 1
+            },
+            {
+                "name" : "Mosquito Nets",
+                "radio" : 1
+            },
+            {
+                "name" : "Playstation / Xbox computer console",
+                "radio" : 1
+            },
+            {
+                "name" : "Board Games",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "LOGISTICS",
+        "subsections": [
+            {
+                "name" : "Luggage drop-off allowedFor guests' convenience when they are arriving early or departing late",
+                "radio" : 1
+            },
+            {
+                "name" : "Long term stays allowedAllow stays of 28 days or more",
+                "radio" : 1
+            },
+            {
+                "name" : "Cleaning before checkout",
+                "radio" : 1
+            }
+        ]
+    },
+    { 
+        "name": "ACCESSIBILITY",
+        "subsections": [
+            {
+                "name" : "Wide hallwaysThe hallways on the ground floor are at least 36 inches (91cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "No stairs or steps to enterThere are no kerbs, steps, or stairs to get to the entrance, and the way through the entrance is flat If it's a multi-storey building, both the front door and unit entrance have no kerbs, steps, or stairs",
+                "radio" : 1
+            },
+            {
+                "name" : "LiftThe home or building has a lift that’s at least 52 inches (132cm) deep and a doorway at least 32 inches (81cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "Wide entrance for guestsThe entrance or doorway guests will use to enter is at least 32 inches (81cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "Step-free path to entranceThe exterior path – such as a driveway or pavement – to the guest entrance is at least 32 inches (81 centimetres) wide and flat, with little or no slope",
+                "radio" : 1
+            },
+            {
+                "name" : "Disabled parking spotThere’s a parking spot at least 8 feet (25m) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "No stairs or steps to enterThere are no stairs or steps to get into the room – it's on the ground floor or accessible by elevator – and there’s a flat path through the entryway",
+                "radio" : 1
+            },
+            {
+                "name" : "Extra space around bedThere’s at least 32 inches (81cm) of space between the bed and the closest wall or piece of furniture",
+                "radio" : 1
+            },
+            {
+                "name" : "Wide entranceThe entrance or doorway to the bedroom is at least 32 inches (81cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "Accessible-height bedThe top of the mattress is between 19-23 inches (48-58cm) from the floor",
+                "radio" : 1
+            },
+            {
+                "name" : "Electric profiling bedThere is an electric adjustable bed that can be positioned at various angles and heights using a remote control",
+                "radio" : 1
+            },
+            {
+                "name" : "No stairs or steps to enterThere are no stairs or steps to get into the bathroom, and there’s a flat path through the doorway",
+                "radio" : 1
+            },
+            {
+                "name" : "Fixed grab bars for showerThe shower has at least one grab bar that’s bolted or otherwise firmly attached to the shower wall",
+                "radio" : 1
+            },
+            {
+                "name" : "Fixed grab bars for toiletToilet grab bars are firmly secured to the wall next to the toilet They can be positioned at various heights Can't be a towel rack or door handle",
+                "radio" : 1
+            },
+            {
+                "name" : "Accessible-height toiletThe top of the toilet seat is between 17-19 inches (43-48cm) from the floor",
+                "radio" : 1
+            },
+            {
+                "name" : "Step-free showerThere is no threshold or step between the shower and the bathroom floor",
+                "radio" : 1
+            },
+            {
+                "name" : "Shower chair There's a chair or bench mounted to the wall of the shower Can also be a waterproof wheelchair specifically designed for people with limited mobility ",
+                "radio" : 1
+            },
+            {
+                "name" : "Handheld shower head",
+                "radio" : 1
+            },
+            {
+                "name" : "Wide doorway to guest bathroomThe entrance or doorway to the guest bathroom is at least 32 inches (81cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "Bath with bath chairThe bath has a mounted or freestanding chair designed specifically for people with limited mobility Can't be furniture not intended for bathing purposes",
+                "radio" : 1
+            },
+            {
+                "name" : "Wide clearance to shower and toiletFrom the bathroom entrance, the toilet and shower each have at least 32 inches (81cm) of clearance for access",
+                "radio" : 1
+            },
+            {
+                "name" : "No stairs or steps to enterThere are no stairs or steps to get into the common area, and there’s a flat path through the doorway",
+                "radio" : 1
+            },
+            {
+                "name" : "Wide entranceThe entrance to the common area is at least 32 inches (81cm) wide",
+                "radio" : 1
+            },
+            {
+                "name" : "Mobile hoistThe home has a mobile device that can lift someone in and out of a wheelchair",
+                "radio" : 1
+            },
+            {
+                "name" : "Pool with hoist The home has a pool with a device that can lift someone in and out of it",
+                "radio" : 1
+            },
+            {
+                "name" : "Ceiling hoist The home has a device fixed to the ceiling that can lift someone in and out of a wheelchair",
+                "radio" : 1
+            }
+        ]
+    },
+    { 
+        "name": "SAFETY / EMERGENCY TELEPHONE NUMBERS",
+        "subsections": [
+            {
+                "name" : "Medical Service ",
+                "radio" : 0
+            },
+            {
+                "name" : "Fire ",
+                "radio" : 0
+            },
+            {
+                "name" : "Local Police",
+                "radio" : 0
+            },
+            {
+                "name" : "EMERGENCY ",
+                "radio" : 0
+            },
+            {
+                "name" : "loft",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "FAMILY",
+        "subsections": [
+            {
+                "name" : "Baby Bath",
+                "radio" : 1
+            },
+            {
+                "name" : "Baby monitor",
+                "radio" : 1
+            },
+            {
+                "name" : "Bath",
+                "radio" : 1
+            },
+            {
+                "name" : "Changing table ",
+                "radio" : 1
+            },
+            {
+                "name" : "Children’s books and toys",
+                "radio" : 1
+            },
+            {
+                "name" : "Children’s tableware",
+                "radio" : 1
+            },
+            {
+                "name" : "Cot",
+                "radio" : 1
+            },
+            {
+                "name" : "Fireplace guards",
+                "radio" : 1
+            },
+            {
+                "name" : "High chair",
+                "radio" : 1
+            },
+            {
+                "name" : "Plug socket covers",
+                "radio" : 1
+            },
+            {
+                "name" : "Travel cot",
+                "radio" : 1
+            },
+            {
+                "name" : "Room-darkening shades",
+                "radio" : 1
+            },
+            {
+                "name" : "Stair gates",
+                "radio" : 1
+            },
+            {
+                "name" : "Table corner guards",
+                "radio" : 1
+            },
+            {
+                "name" : "Window guards",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "LOCATION",
+        "subsections": [
+            {
+                "name" : "Beachfront",
+                "radio" : 1
+            },
+            {
+                "name" : "Lake access",
+                "radio" : 1
+            },
+            {
+                "name" : "Ski-in/Ski-out",
+                "radio" : 1
+            },
+            {
+                "name" : "Waterfront",
+                "radio" : 1
+            }
+        ]    
+    },
+    { 
+        "name": "WHAT OTHER SPACES CAN BE USED",
+        "subsections": [
+            {
+                "name" : "Hot Tub",
+                "radio" : 1
+            },
+            {
+                "name" : "Gym",
+                "radio" : 1
+            },
+            {
+                "name" : "Others",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "NEARBY AMENITIES (Name + distance)",
+        "subsections": [
+            {
+                "name" : "Airport",
+                "radio" : 0
+            },
+            {
+                "name" : "Ferry port",
+                "radio" : 0
+            },
+            {
+                "name" : "Train station",
+                "radio" : 0
+            },
+            {
+                "name" : "Nearest beach",
+                "radio" : 0
+            },
+            {
+                "name" : "Nearest shopping",
+                "radio" : 0
+            }
+        ]    
+    },
+    { 
+        "name": "DESCRIBE YOUR PLACE",
+        "subsections": [
+            {
+                "name" : "Your space",
+                "radio" : 0,
+                "textarea" : 1,
+                "placeholder" : "Details to help guest expectations"
+            },
+            {
+                "name" : "Your availability",
+                "radio" : 0,
+                "textarea" : 1,
+                "placeholder" : "Let guests know who will be available"
+            },
+            {
+                "name" : "Your neighbourhood",
+                "radio" : 0,
+                "textarea" : 1,
+                "placeholder" : "What makes it special"
+            },
+            {
+                "name" : "Getting around",
+                "radio" : 0,
+                "textarea" : 1,
+                "placeholder" : "Transport information"
+            }
+        ]    
+    }
+]

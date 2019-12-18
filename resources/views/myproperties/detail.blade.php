@@ -2,6 +2,9 @@
     <div class="row">
         <div class="col-12">
             <div class="buttons">
+                <a href="PropertyInformation?id_property={{ $property->id }}" class="btn btn-primary">
+                    <i class="fas fa-clipboard"></i>  Update property information
+                </a>
                 <div onclick="newRental()" class="btn btn-success">
                     <i class="fas fa-calendar-plus"></i>  New rental request
                     <div class="ripple-container"></div>

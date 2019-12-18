@@ -34,7 +34,9 @@ class UsersController extends BaseController
 
     public function listadoAction()
     {
-        $this->data = \App\User::get();
+        $where = " 1 ";
+        if ( (int)$this->user->id_company !== -1 ) $where .= " AND id_company = ".$this->user->id_company;
+        $this->data = \App\User::whereRaw( $where )->get();
         foreach ( $this->data as $row )
         {
             $row->fullname = $row->name." ".$row->surname;

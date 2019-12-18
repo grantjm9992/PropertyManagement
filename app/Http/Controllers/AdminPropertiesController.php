@@ -133,6 +133,7 @@ class AdminPropertiesController extends BaseController
         {
             $property = \App\Properties::create( $_REQUEST );
             $property->id_created_by = $this->user->id;
+            $property->id_company = $this->user->id_company;
             $property->save();
         }
 
@@ -295,15 +296,9 @@ class AdminPropertiesController extends BaseController
     {
 
         $where = " 1 ";
+        
+        $where .= " AND id_company = ".$this->user->id_company." ";
 
-        if ( $this->user->role == "FA" )
-        {
-            $where .= " AND id_company = ".$this->user->id_company." ";
-        }
-        if ( $this->user->role == "AA" )
-        {
-            $where .= " AND id_company = ".$this->user->id_company." ";
-        }
         if ( $this->user->role == "M" )
         {
             $where .= " AND id_assigned_to = ".$this->user->id." ";

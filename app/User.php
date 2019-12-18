@@ -41,7 +41,7 @@ class User extends Model
         {
             $user = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company ")->get();
         }
-        if ( $user->role == "WW" || $user->role = "SA" )
+        if ( $user->role == "WA" || $user->role = "SA" )
         {
             $user = self::get();
         }
