@@ -114,12 +114,11 @@ class Controller extends BaseController
                             ->orderBy('order', 'ASC')
                             ->get();
         
-        $headers = ["layout/header", "layout/header2"];
+        $company = \App\Companies::where("id", \AppConfig::id_company)->first();
         $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
-        $header = ( is_object( $skin ) ) ? $headers[ $skin->id_header ] : $headers[0];
         $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
-        $this->cont->footer = view('layout/footer');
-        $this->cont->header = view($header, array( "pages" => $pages, "headerClass" => $this->headerClass, "logo" => $logo ));
+        $this->cont->footer = view('layout/footer', array("logo" => $logo));
+        $this->cont->header = view("layout/header", array( "company" => $company, "logo" => $logo ));
     }
 
     protected function RenderView() {
@@ -153,24 +152,6 @@ class Controller extends BaseController
             "set_menu" => $this->set_menu
         ));
     }
-
-    protected function getErrors() {
-        $errors = "";
-        if ( isset($_SESSION['errors']) && $_SESSION['errors'] != "" )
-        {
-            $errors = "<ul>";
-            $error_array = explode('@#', $_SESSION['errors'], -1);
-            foreach ( $error_array as $error )
-            {
-                $errors .= "<li>".$error."</li>";
-            }
-            $errors .= "</ul>";
-        }
-        $_SESSION['errors'] = "";
-        return $errors;
-    }
-
-    
 
     protected function createTable() {
 

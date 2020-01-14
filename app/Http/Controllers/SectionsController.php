@@ -28,24 +28,43 @@ class SectionsController extends BaseController
         if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return "OK";
         $section = \App\Sections::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $section ) ) return "OK";
-        $trads = \App\TradsSections::where('id_section', $section->id)->get();
+        /*$trads = \App\TradsSections::where('id_section', $section->id)->get();
         foreach ( $trads as $trad )
         {
             $trad->delete();
-        }
+        }*/
         $section->delete();
+        return "OK";
+    }
+
+    public function deletePresetAction()
+    {
+        $id = $_REQUEST["id"];
+        $id_page = $_REQUEST["id_page"];
+        $pre = \App\PresetSectionsPages::where("id_page", $id_page)->where("id_preset_section", $id)->first();
+        $pre->delete();
         return "OK";
     }
 
     public function updateOrderAction()
     {
+        $id_page = $_REQUEST["id"];
         $ids = $_REQUEST['ids'];
         $id_array = explode('@#', $ids, -1);
         $i = 1;
         foreach ( $id_array as $id )
         {
-            $section = \App\Sections::where('id', $id)->first();
-            $section->updateOrder( $i );
+            if ( strpos( $id , "preset_" ) > -1 )
+            {
+                $id_preset_section = substr($id, strpos($id, "_") + 1 );
+                $section = \App\PresetSectionsPages::where("id_page", $id_page)->where("id_preset_section", $id_preset_section)->first();
+                $section->updateOrder( $i );
+            }
+            else
+            {
+                $section = \App\Sections::where('id', $id)->first();
+                $section->updateOrder( $i );
+            }
             $i++;
         }
     }
@@ -95,6 +114,8 @@ class SectionsController extends BaseController
     public function newAction()
     {
         $section = \App\Sections::create($_REQUEST);
+        $section->id_company = \AppConfig::id_company;
+        $section->save();
         return view('sections/page_div', array(
             "page" => $section
         ));
@@ -140,6 +161,16 @@ class SectionsController extends BaseController
         }
 
         return "OK";
+    }
+
+    public function newPresetModalAction()
+    {
+        $id_page = $_REQUEST["id_page"];
+        $presets = \App\PresetSections::whereRaw("id NOT IN (SELECT id_preset_section FROM preset_sections_pages WHERE id_page = $id_page )")->get();
+        return view("modal/presets", array(
+            "presets" => $presets,
+            "id_page" => $id_page
+        ));
     }
 
 }

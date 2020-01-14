@@ -765,3 +765,16 @@ input:checked + .slider:before {
     background: rgba(0,0,0,.7);
     z-index: 10009;
   }
+
+  .progressbar-text
+  {
+    max-width: 350px;
+    text-align: center;
+  }
+  @media screen and ( max-width: 1000px )
+  {
+    .progressbar-text
+    {
+      font-size: 1.5rem !important;
+    }
+  }

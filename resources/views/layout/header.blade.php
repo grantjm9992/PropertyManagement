@@ -1,72 +1,128 @@
-@inject('translator', 'App\Providers\TranslationProvider')
-<!--Navbar -->
-<header class="header-section pl-4 {{ $headerClass }}" id="navbar">
-	<a href="{{ url('/') }}" class="site-logo">
-		<img src="{{ $logo }}" alt="">
-  </a>
-  <!--
-  <div class="drop-drop">
-    <div class="drop-tag" toggle="languages">
-      <i class="fas fa-language"></i>
-    </div>
-    <div class="drop-section" toggleAtt="languages">
-      <div>English</div>
-      <div>Spanish</div>
-    </div>
-  </div>
-  -->
-	<div class="nav-switch">
-		<i class="fa fa-bars"></i>
-	</div>
-	<nav class="main-menu">
-		<ul>
-      <li>
-        <a href="{{ url('/') }}">Home</a>
-      </li>
-      @foreach ( $pages as $page )
-      <li>
-        <a href="{{ $page->url }}">{{ $page->menu_title }}</a>
-      </li>
-      @endforeach
-      <!--
-			<li>
-        <a href="Resort">{{ $translator->get('lbl_resort') }}</a>
-      </li>
-			<li>
-        <a href="Properties">{{ $translator->get('lbl_properties') }}</a>
-      </li>
-			<li>
-        <a href="Location">{{ $translator->get('lbl_location') }}</a>
-      </li>
-      <li>
-        <a href="{{ url('HelpToBuy') }}">Help to buy</a>
-      </li>
-      <li>
-        <a href="{{ url('Gallery') }}">Gallery</a>
-      </li>
-			<li>
-        <a href="Contact">{{ $translator->get('lbl_contact') }}</a>
-      </li>
-      -->
-		</ul>
-	</nav>
-</header>
-<!--
--->
-<!--/.Navbar -->
-@if ( $headerClass == "" )
-<script>
-$(document).ready( function() {  
-	var navbar = document.getElementById("navbar");
-	var sticky = navbar.offsetTop;
-	function myFunction() {
-	  if (window.pageYOffset >= 90) {
-		navbar.classList.add("default-color")
-	  } else {
-		navbar.classList.remove("default-color");
-	  }
-	}
-	window.onscroll = function() {myFunction()};
-})
-@endif
-</script>
+
+     <!-- Main Header-->
+     <header class="main-header header-style-four">
+        <!--Header Top-->
+        <div class="header-top">
+            <div class="auto-container">
+                <div class="inner-container clearfix">
+                    <div class="top-left">
+                        <ul class="contact-list clearfix">
+                            <li><i class="la la-envelope-o"></i><a href="#">{{ $company->email }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="top-right">
+                        <ul class="social-icon-one clearfix">
+                            <li><a href="#"><i class="la la-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="la la-twitter"></i></a></li>
+                            <li><a href="#"><i class="la la-google-plus"></i></a></li>
+                            <li><a href="#"><i class="la la-dribbble"></i></a></li>
+                            <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Top -->
+
+        <!-- Header Lower -->
+        <div class="header-lower">
+            <div class="main-box">
+                <div class="auto-container">
+                    <div class="inner-container clearfix">
+                        <div class="logo-box">
+                            <div class="logo"><a href="{{ url('') }}"><img style="width: 155px; max-height: 60px;" src="{{ $logo }}" alt="" title=""></a></div>
+                        </div>
+
+                        <div class="nav-outer clearfix">
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-md navbar-dark">
+                                <div class="navbar-header">
+                                    <!-- Toggle Button -->      
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="icon flaticon-menu"></span>
+                                    </button>
+                                </div>
+                                
+                                <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li class="">
+											<a href="Home">Home</a>
+                                        </li>
+                                        <li class="dropdown"><a href="#">Services</a>
+                                            <ul>
+                                                <li><a href="PropertyManagement">Property Management</a></li>
+                                                <li><a href="PropertyRentals">Property Rentals</a></li>
+                                                <li><a href="PropertyMaintenance">Property Maintenance</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="">
+											<a href="Properties">Properties</a>
+                                        </li>
+                                        <li class="">
+											<a href="Resort">The resort</a>
+                                        </li>
+                                        <li class="">
+											<a href="About">About us</a>
+                                        </li>
+                                        <li class="">
+											<a href="Contact">Contact us</a>
+                                        </li>
+                                    </ul>              
+                                </div>
+                            </nav><!-- Main Menu End-->
+                                
+                            <!-- Main Menu End-->
+                            <div class="outer-box">
+                               <div class="btn-box">
+                                   <a href="#" class="theme-btn btn-style-five">Submit Property</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header Lower-->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+            <div class="auto-container clearfix">
+                <!--Logo-->
+                <div class="logo pull-left">
+                    <a href="{{ url('/') }}" title=""><img src="{{ $logo }}" style="width: 150px; max-height: 60px;" alt="" title=""></a>
+                </div>
+                <!--Right Col-->
+                <div class="pull-right">
+                    <!-- Main Menu -->
+                    <nav class="main-menu">
+                        <div class="navbar-collapse show collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li class="">
+									<a href="Home">Home</a>
+                                </li>
+                                <li class="dropdown"><a href="#">Services</a>
+                                    <ul>
+                                        <li><a href="PropertyManagement">Property Management</a></li>
+                                        <li><a href="PropertyRentlas">Property Rentals</a></li>
+                                        <li><a href="PropertyMaintenance">Property Maintenance</a></li>
+                                    </ul>
+                                </li>
+                                <li class="">
+									<a href="Properties">Properties</a>
+                                </li>
+								<li class="">
+									<a href="Resort">The resort</a>
+								</li>
+                                <li>
+									<a href="About">About</a>
+								</li>
+                                <li>
+									<a href="Contact">Contact us</a>
+								</li>
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div><!-- End Sticky Menu -->
+    </header>

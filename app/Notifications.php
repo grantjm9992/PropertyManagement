@@ -36,7 +36,7 @@ class Notifications extends Model
                 // If user exists and has email. Send
                 if ( $user->email != "" )
                 {
-                    Mail::to( $user->email )->send( new \App\Mail\NewNotification( $model) );       
+                  //  \Mail::to( $user->email )->send( new \App\Mail\NewNotification( $model) );       
                 }
             }
         });

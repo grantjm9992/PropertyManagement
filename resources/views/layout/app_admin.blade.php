@@ -69,7 +69,10 @@
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
   <script src="assets/js/plugins/jquery-jvectormap.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
   <script src="https://propertysupervision.com/js/jquery.datetimepicker.full.min.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="assets/js/plugins/nouislider.min.js"></script>
@@ -94,6 +97,7 @@
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
+  <script src="js/progressbar.min.js"></script>
   <script src="js/mention.js"></script>
   <script src="js/main.js"></script>
 <!--  <script src="js/tour.js"></script> -->

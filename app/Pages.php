@@ -18,6 +18,21 @@ class Pages extends Model
 
     public function getSections()
     {
-        return Sections::where('id_page', $this->id)->orderBy('order', 'ASC')->get();
+        $customSections = Sections::where('id_page', $this->id)->orderBy('order', 'ASC')->get();
+        $presetSections = PresetSectionsPages::where("id_page", $this->id )->orderBy("order", "ASC")->get();
+        $arr = array();
+        foreach ( $customSections as $row )
+        {
+            $arr[] = $row;
+        }
+        foreach ( $presetSections as $row )
+        {
+            $arr[] = $row;
+        }
+        usort($arr, function ($item1, $item2) {
+            return $item1->order <=> $item2->order;
+        });
+
+        return $arr;
     }
 }

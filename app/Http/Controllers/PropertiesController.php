@@ -22,10 +22,11 @@ class PropertiesController extends BaseController
         
         $listings = $this->getListingsAction();
         $resorts = \App\Resorts::get();
+        $search = \App\Classes\PresetSectionProvider::propertySearch();
 
         $this->cont->body = view("properties/index", array(
-            "listings" => $listings,
-            "resorts" => $resorts
+            "search" => $search,
+            "properties" => $listings
         ));
 
         return $this->RenderView();
@@ -37,10 +38,7 @@ class PropertiesController extends BaseController
         $properties = \App\Properties::whereRaw( $this->makeWhere() )->get();
         foreach( $properties as $row )
         {
-            if ( \strlen( $row->description ) > 123 ) $row->description = substr($row->description, 0, 120)."..";
-
-
-            $html .= view("properties/listingcard", array(
+            $html .= view("properties/propertycard", array(
                 "property" => $row
             ));
         }
@@ -51,12 +49,13 @@ class PropertiesController extends BaseController
 
     protected function makeWhere()
     {
-        $where = " 1 ";
+        $where = " id_company = ".\AppConfig::id_company;
 
         if ( isset( $_REQUEST["beds"] ) && $_REQUEST["beds"] != "" ) $where .= " AND bed >= ".$_REQUEST["beds"]." ";
         if ( isset( $_REQUEST["sleeps"] ) && $_REQUEST["sleeps"] != "" ) $where .= " AND sleeps >= ".$_REQUEST["sleeps"]." ";
         if ( isset( $_REQUEST["bedrooms"] ) && $_REQUEST["bedrooms"] != "" ) $where .= " AND bedrooms >= ".$_REQUEST["bedrooms"]." ";
         if ( isset( $_REQUEST["id_resort"] ) && $_REQUEST["id_resort"] != "" ) $where .= " AND id_resort = ".$_REQUEST["id_resort"]." ";
+        if ( isset( $_REQUEST["id_property_type"] ) && $_REQUEST["id_property_type"] != "" ) $where .= " AND id_property_type = ".$_REQUEST["id_property_type"]." ";
         if ( isset( $_REQUEST["location"] ) && $_REQUEST["location"] != "" ) $where .= " AND location = '".$_REQUEST["location"]."' ";
 
         return $where;
@@ -65,8 +64,8 @@ class PropertiesController extends BaseController
     public function detailAction()
     {
         if ( !isset( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to("Properties")->send();
-        //$id = base64_decode( $_REQUEST['id'] );
-        $id = $_REQUEST["id"];
+        $id = base64_decode( $_REQUEST['id'] );
+
         $property = \App\Properties::where('id', $id)->first();
 
         if ( !is_object( $property ) ) return \Redirect::to("Properties")->send();
@@ -81,11 +80,13 @@ class PropertiesController extends BaseController
 
         $resort = \App\Resorts::where("id", $property->id_resort)->first();
 
-        $this->cont->body = view("properties/detail", array(
+        $this->cont->body = view("properties/newdetail", array(
             "property" => $property,
             "images" => $images,
             "features" => $feats,
-            "resort" => $resort
+            "resort" => $resort,
+            "types" => \App\PropertyTypes::get(),
+            "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", \AppConfig::id_company)->take(3)->get()
         ));
 
         return $this->RenderView();

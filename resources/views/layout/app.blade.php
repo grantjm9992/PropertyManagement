@@ -1,64 +1,68 @@
-@inject('translator', 'App\Providers\TranslationProvider')
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ $description }}">
+<head>
+<meta charset="utf-8">
+<title>Ourland - Real Estate HTML Template | Home Page 01</title>
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+<link href="plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+<link href="plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<!--Color Themes-->
+<link id="theme-color-file" href="css/color-themes/default-theme.css" rel="stylesheet">
 
-        <title>{{ $title }}</title>
-		<meta name="keywords" content="{{ $keywords }}" />
-		<meta name="author" content="" />
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
 
-		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<link rel="shortcut icon" href="img/mapicon.ico">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<body>
 
-		<!-- Stylesheets -->
-		<link rel="stylesheet" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="css/animate.css"/>
-		<link rel="stylesheet" href="css/owl.carousel.css"/>
-		<link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-		<link rel="stylesheet" href="{{ asset('/css/slick.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/mention.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/swipebox.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/fullcalendar.min.css') }}">
-		@if ( !$safari )
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-		@endif
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.css">
-		<link rel="stylesheet" href="{{ $resorts }}"/>
-		<link rel="stylesheet" href="{{ $style }}"/>
-        <meta charset="utf-8">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    </head>
-    <body style="">
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-        <script src="{{ asset('/js/slick.min.js')}}"></script>
-        <script src="{{ asset('/js/jquery.swipebox.min.js')}}"></script>
-        <script src="{{ asset('/js/sweetalert.min.js')}}"></script>
-        <script src="{{ asset('/js/mention.js')}}"></script>
-        <script src="{{ asset('/js/fullcalendar.js')}}"></script>
-		<script src="https://cdn.jsdelivr.net/npm/timepicker@1.11.15/jquery.timepicker.min.js"></script>
-		@if ( !$safari )
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		@endif
-		<script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js')}}"></script>
-        {!! $header !!}
-        <div class="{{ $bodyClass }}">
-            {!! $content !!}
-		</div>
-		{!! $footer !!}
-		<script src="js/main.js?v2.3"></script>
-		<script>
-		$(document).ready( function() {
-			AOS.init();
-		})
-		</script>
-    </body>
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+    {!! $header !!}
+    <!--End Main Header -->
+    
+    {!! $content !!}
+
+    {!! $footer !!}
+
+	<script src="js/jquery.js"></script> 
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--Revolution Slider-->
+	<script src="plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script src="plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+	<script src="js/main-slider-script.js"></script>
+	<!--End Revolution Slider-->
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.fancybox.js"></script>
+	<script src="js/owl.js"></script>
+	<script src="js/wow.js"></script>
+	<script src="js/isotope.js"></script>
+	<script src="js/appear.js"></script>
+	<script src="js/mixitup.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeEODj4mnpmSCoPcBVOIPzzHXRZLHHd3Q"></script>
+    <script src="js/map-script.js"></script>
+    <script src="js/script.js"></script>
+	<!-- Color Setting -->
+	<script src="js/color-settings.js"></script>
+</body>
 </html>

@@ -2,6 +2,11 @@
     <div class="row">
         <div class="col-12">
             <div class="buttons">
+                @if ( file_exists("data/properties/$property->id/property_information.json") )
+                <a href="PropertyInformation.download?id_property={{ $property->id }}" target="_blank" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Download property information
+                </a>
+                @endif
                 <a href="PropertyInformation?id_property={{ $property->id }}" class="btn btn-primary">
                     <i class="fas fa-clipboard"></i>  Update property information
                 </a>

@@ -26,12 +26,40 @@ class HomeController extends BaseController
     }
     
     public function defaultAction() {
+
+        // GET MOBILE APP IF PARAMETER EXISTS ( NO  HEADER OR FOOTER )
         if ( isset( $_REQUEST["p"] ) && $_REQUEST["p"] != "" ) return $this->isEncoded();
         
-        $this->cont->body = view('home/index', 
-            array(
-        ));
+        // If company is MyCasa Away and project is set to 1 in the config. Get our corp. website, not the listings.
+        if ( (int)\AppConfig::id_company === -1 && \AppConfig::is_project === 1 ) return $this->myCasaAway();
+        
+        $page = \App\Pages::where("url", "Home")->where("id_company", \AppConfig::id_company )->first();
+        $sections = $page->getSections();
+
+        $sectionHTML = "";
+        foreach ( $sections as $row )
+        {
+            if ( !is_null( $row->id_preset_section ) )
+            {
+                $section = \App\PresetSections::where( "id", $row->id_preset_section )->first();
+                $function = "$section->function";
+                $sectionHTML .= \App\Classes\PresetSectionProvider::$function();
+            }
+            else
+            {
+                $sectionHTML .= $row->description;
+            }
+        }
+        
+        $this->cont->body = view("home/index",
+            ["sections" => $sectionHTML]
+        );
         return $this->RenderView();
+    }
+
+    protected function myCasaAway()
+    {
+        return view("mycasaaway/splash");
     }
 
     protected function isEncoded()

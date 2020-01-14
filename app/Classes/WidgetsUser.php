@@ -61,6 +61,15 @@ class WidgetsUser extends AdminOU
         ));        
     }
 
+    public static function propertyInformation()
+    {
+        $user = \UserLogic::getUser();
+        $property = \App\Properties::where("id_property_owner", $user->id)->orderBy("information_complete", "ASC")->first();
+        return view("adminproperties/informationprogress", array(
+            "property" => $property
+        ));
+    }
+
     public static function getMyCalendar()
     {
         return view('tasks/calendarskeleton');

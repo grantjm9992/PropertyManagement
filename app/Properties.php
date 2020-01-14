@@ -24,6 +24,31 @@ class Properties extends Model
                             "id_info_section"];
 
 
+    
+        public static function boot() {
+            parent::boot();
+    
+            self::retrieved(function($model){
+                $image = \App\PropertiesImages::where("id_property", $model->id)->first();
+                $model->image = ( \is_object( $image ) ) ? $image->path : "";
+                $resort = \App\Resorts::where("id", $model->id_resort )->first();
+                $model->resort = ( \is_object( $resort ) ) ? $resort->name : ""; 
+                $type = \App\PropertyTypes::where("id", $model->id_property_type )->first();
+                $model->type = ( \is_object( $type ) ) ? $type->title : ""; 
+            });
+    
+            self::updating(function($model){
+                unset($model->image);
+                unset($model->resort);
+                unset($model->type);
+            });
+            self::creating(function($model){
+                unset($model->image);
+                unset($model->resort);
+                unset($model->type);
+            });
+    
+        }
     public function isEmpty()
     {
         $response = true;

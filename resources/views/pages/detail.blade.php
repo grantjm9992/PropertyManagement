@@ -92,6 +92,9 @@
             <div class="btn btn-outline-primary" onclick="addSection()">
                 <i class="fas fa-plus"></i> Add section
             </div>
+            <div class="btn btn-primary" onclick="addPresetSection()">
+                <i class="fas fa-plus"></i> Add preset section
+            </div>
         </div>
     </h4>
     <div id="items" style="margin: 20px auto;" class="col-10">
@@ -126,6 +129,23 @@
         });
     })
 
+    function addPresetSection()
+    {
+        $("#presetModal").remove();
+        $.ajax({
+            type: "POST",
+            url: "Sections.newPresetModal",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id_page: "{{ $page->id }}"
+            },
+            success: function(data)
+            {
+                $('body').append(data);
+            }
+        })
+    }
+
     function deleteSection(id)
     {
         var options = Array();
@@ -136,6 +156,43 @@
         options.thenFunction = confirmedToDelete;
         options.thenParameters = id;
         sweetAlert( options );
+    }
+
+    function deletePresetSection(id)
+    {
+        var options = Array();
+        options.title = "Warning";
+        options.text = "Are you sure you want to delete this section?";
+        options.icon = "warning";
+        options.type = "confirm";
+        options.thenFunction = confirmedToDeletePreset;
+        options.thenParameters = id;
+        sweetAlert( options );
+    }
+
+    function confirmedToDeletePreset(id)
+    {
+        $.ajax({
+            type: "POST",
+            url: "Sections.deletePreset",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id: id,
+                id_page: "{{ $page->id }}"
+            },
+            success: function(data)
+            {
+                if ( data == "OK" )
+                {
+                    $('[data-id="preset_'+id+'"]').hide(500);
+                    $('[data-id="preset_'+id+'"]').remove();
+                    $.notify( "Section deleted", {
+                        position: "bottom-left",
+                        className: "success"
+                    });
+                }
+            }
+        })
     }
 
     function confirmedToDelete(id)
@@ -248,6 +305,8 @@
             success: function(data)
             {
                 $('#items').append(data);
+                $("#presetModal").modal("hide");
+                $("#presetModal").remove();
             }
         })
     }

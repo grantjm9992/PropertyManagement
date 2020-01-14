@@ -1,48 +1,56 @@
-@inject('translator', 'App\Providers\TranslationProvider')
-<footer>
-	<div class="container">
-        <div class="row">
-            <div class="col-12 col-md-8 text-center text-md-left">
-                <img src="img/logo_colour.png" style="height: 62px;" alt="">
-                <p class="">
-                Get started today by receiving an online analysis of your properties potential across all the top performing rental platforms.
-                </p>
-            </div>
-            <div class="col-12 col-md-4 text-center text-md-left">
-                <div class="d-block">
-                    <i class="fas fa-envelope"></i>&nbsp;info@mycasaaway.com
-                </div>
-                <div class="d-block">
-                    <i class="fas fa-phone"></i>&nbsp;(ES) +34 603 678 540
-                </div>
-                <div class="d-block">
-                    <i class="fas fa-phone"></i>&nbsp;(UK) +44 603 450 450
-                </div>
-            </div>
-            <div class="col-12 mt-5">
+
+     <!-- Main Footer -->
+     <footer class="main-footer style-three">
+        <div class="auto-container">
+            <div class="upper-box">
                 <div class="row">
-                    <div class="col-3 text-center">
-                        <a href="#" class="social">
-                            <i class="fab fa-facebook"></i>
-                        </a>
+                    <!-- Upper column -->
+                    <div class="upper-column col-lg-3 col-md-12 col-sm-12">
+                        <div class="footer-logo">
+                            <figure class="image"><a href="{{ url('') }}"><img style="width: 150px; max-height: 60px;" src="{{ $logo }}" alt=""></a></figure>
+                        </div>
                     </div>
-                    <div class="col-3 text-center">
-                        <a href="#" class="social">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+
+                    <!-- Upper column -->
+                    <div class="upper-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="subscribe-form">
+                            <form method="post" action="blog.html">
+                                <div class="form-group">
+                                    <input type="email" name="email" value="" placeholder="Enter Your Email" required="">
+                                    <button type="submit" class="theme-btn btn-style-four"><i class="icon la la-paper-plane"></i></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-3 text-center">
-                        <a href="#" class="social">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                    <div class="col-3 text-center">
-                        <a href="#" class="social">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+
+                    <!-- Upper column -->
+                    <div class="upper-column col-lg-3 col-md-12 col-sm-12">
+                        <div class="social-links">
+                            <ul class="social-icon-two">
+                                <li><a href="#"><i class="la la-facebook"></i></a></li>
+                                <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
+                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
+                                <li><a href="#"><i class="la la-pinterest-p"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+        
+        <!--Footer Bottom-->
+        <div class="footer-bottom">
+            <div class="auto-container">
+                <!--Scroll to top-->
+                <div class="scroll-to-top scroll-to-target" data-target="html"><span class="la la-angle-double-up"></span></div>
+
+                <div class="inner-container clearfix">                                             
+                    <div class="copyright-text">
+                        <p>© Copyright 2019</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Main Footer -->

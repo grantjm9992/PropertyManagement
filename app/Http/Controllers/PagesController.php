@@ -52,6 +52,7 @@ class PagesController extends BaseController
 
     public function itemAction()
     {
+        $id_page = $_REQUEST["id"];
         $sectionHTML = "";
         $this->pageTitle = "Edit page";
         $this->iconClass = "fas fa-sticky-note";
@@ -62,9 +63,20 @@ class PagesController extends BaseController
         $sections = $page->getSections();
         foreach ( $sections as $section )
         {
-            $sectionHTML     .= view('sections/page_div', array(
-                "page" => $section
-            ));
+            if ( is_null( $section->id_preset_section ) )
+            {
+                $sectionHTML .= view('sections/page_div', array(
+                    "page" => $section
+                ));
+            }
+            else
+            {
+                $preset = \App\PresetSections::where("id", $section->id_preset_section )->first();
+                $sectionHTML .= view("sections/preset_div", array(
+                    "id_page" => $id_page,
+                    "page" => $preset
+                ));
+            }
         }
 
         $img = ( file_exists( $page->image ) ) ? 1 : 0;
@@ -89,9 +101,19 @@ class PagesController extends BaseController
         $sections = $page->getSections();
         foreach ( $sections as $section )
         {
-            $sectionHTML     .= view('sections/page_div', array(
-                "page" => $section
-            ));
+            if ( is_null( $section->id_preset_section ) )
+            {
+                $sectionHTML .= view('sections/page_div', array(
+                    "page" => $section
+                ));
+            }
+            else
+            {
+                $preset = \App\PresetSections::where("id", $section->id_preset_section )->first();
+                $sectionHTML .= view("sections/preset_div", array(
+                    "page" => $preset
+                ));
+            }
         }
 
         $img = ( file_exists( $page->image ) ) ? 1 : 0;
@@ -161,6 +183,21 @@ class PagesController extends BaseController
         }
 
         return "OK";
+    }
+
+    public function addPresetSectionAction()
+    {
+        $id_preset = $_REQUEST["id_preset_section"];
+        $id_page = $_REQUEST["id_page"];
+        $page = \App\Pages::where("id", $id_page)->first();
+        $presetPage = \App\PresetSectionsPages::create($_REQUEST);
+        $presetPage->order = count( $page->getSections() );
+        $presetPage->save();
+        $preset = \App\PresetSections::where("id", $id_preset)->first();
+        return view("sections/preset_div", array(
+            "id_page" => $id_page,
+            "page" => $preset
+        ));
     }
 
 }

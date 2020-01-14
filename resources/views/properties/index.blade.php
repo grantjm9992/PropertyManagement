@@ -1,75 +1,46 @@
-<section class="mt-4 p-4">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-lg-10 offset-lg-1">
-            <div class="container-fluid pt-4">
-                <form action="" id="filter">
-                <div class="row">
-                    <div class="col-12 col-lg-4 form-group">
-                        <label for="">Sleeps</label>
-                        <select name="sleeps" id="sleeps" class="form-control">
-                            <option value="">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-lg-4 form-group">
-                        <label for="">Bedrooms</label>
-                        <select name="bedrooms" id="bedrooms" class="form-control">
-                            <option value="">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-lg-4 form-group">
-                        <label for="">Beds</label>
-                        <select name="beds" id="beds" class="form-control">
-                            <option value="">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-lg-4 form-group">
-                        <label for="">Resort</label>
-                        <select name="id_resort" id="id_resort" class="form-control">
-                            <option value="">Any</option>
-                            @foreach ( $resorts as $resort )
-                                <option value="{{ $resort->id }}">{{ $resort->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </div>
-            </form>
-            <div class="container-fluid pt-5">
-                <div class="row" id="property-list">
-                    {!! $listings !!}
-                </div>
+
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(images/background/16.jpg);">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <h1>Properties</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li>Properties</li>
+                </ul>
             </div>
         </div>
-    </div>
-</div>
-</section>
+    </section>
+    <!--End Page Title-->
+    {!! $search !!}
+    
+    <!-- Property Filter Section -->
+    <section class="property-filter-section">
+        <div class="auto-container">
+            <!--MixitUp Galery-->
+            <div class="mixitup-gallery">
+                <div class="upper-box clearfix">
+                    <div class="sec-title">
+                        <span class="title">FIND YOUR HOUSE IN YOUR CITY</span>
+                        <h2>PROPERTY TYPES</h2>
+                    </div>
 
-<script>
-    $(document).ready( function() {
-        $('#filter select').on( "change", function(data) {
-            $.ajax({
-                type: "POST",
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                url: "Properties.getListings",
-                data: $('#filter').serialize(),
-                success: function( data ) 
-                {
-                    $("#property-list").html(data);
-                }
-            })
-        });
-    })
-</script>
+                    <!--Filter-->
+                    <div class="filters">
+                        <ul class="filter-tabs filter-btns clearfix">
+                        </ul>                                    
+                    </div>
+                </div>
+
+                <div class="filter-list row" id="properties">
+                    {!! $properties !!}
+                </div>
+
+                <!-- Load More 
+                <div id="loadMore" class="load-more-btn text-center">
+                    <div onclick="loadMore()" class="theme-btn btn-style-two">Load More</div>
+                </div>-->
+            </div>
+        </div>
+    </section>
+    <!--End Property Filter Section -->

@@ -1,4 +1,9 @@
 
+@if ( file_exists("data/properties/$property->id/property_information.json") )
+<a href="PropertyInformation.download?id_property={{ $property->id }}" target="_blank" class="btn btn-secondary">
+    <i class="fas fa-download"></i> Download property information
+</a>
+@endif
 <div class="btn btn-info" onclick="addPropertyTask()">
     <i class="fas fa-calendar"></i> Add task for property
 </div>

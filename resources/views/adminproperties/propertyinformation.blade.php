@@ -9,6 +9,7 @@
             <div style="height: 100%; position: absolute; background-color: mediumspringgreen;left: 0; top: 0;" id="progress"></div>        
         </div>
         <form id="info">
+            <input type="text" hidden name="information_complete" value="{{ $property->information_complete }}" />
             <input type="text" hidden name="property_id" value="{{ $property->id }}">
             {!! $html !!}
         </form>
@@ -46,6 +47,7 @@
 
     function updateProgress()
     {
+        $('#information_complete').val(100*i/sections.length);
         var progress = 100*i/sections.length+"%";
 
         $("#progress").css("width", progress );
