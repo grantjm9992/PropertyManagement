@@ -12,7 +12,7 @@
     <title>My Casa Away</title>
   </head>
   <body data-spy="scroll" data-target=".navbar">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top w-100">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="img/mycasaaway/logo.png">
@@ -69,7 +69,7 @@
                     <img src="img/mycasaaway/icons.png" alt="" class="w-100 mt-3">
                 </div>
                 <div class="col-12 col-lg-5">
-                    <img src="img/mycasaaway/phone-dash.png" style="max-width: 482px;" alt="">
+                    <img src="img/mycasaaway/phone-dash.png" style="" class="phone-dash" alt="">
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
         <div style="width: 50px; margin: 0 auto; height: 5px; background: #fff;"></div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-lg-2">
+                <div class="col-12 col-lg-2 order-1 order-lg-1">
                     <div class="maximise-icon">
                         <img src="img/mycasaaway/icon-property.png" alt="">
                         <div class="w-100 text-center">
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-8 text-center">
+                <div class="col-12 col-lg-8 text-center order-3 order-lg-2">
                     <img src="img/mycasaaway/Middle-Dashboard-example.png" style="width: 80%; margin-top: 25px;" alt="">
                     <h4 class="mt-3 text-center w-100 text-light">
                         Want to know more?
@@ -158,7 +158,7 @@
                         Contact us
                     </a>
                 </div>
-                <div class="col-12 col-lg-2">
+                <div class="col-12 col-lg-2 order-2 order-lg-3">
                     <div class="maximise-icon">
                         <img src="img/mycasaaway/Icon-Message.png" alt="">
                         <div class="w-100 text-center">
@@ -653,7 +653,7 @@
                 Send us a Message
             </a>
             <div class="container">
-                <div class="d-inline-flex w-100 justify-content-between mt-5 pt-5">
+                <div class="d-block d-md-inline-flex w-100 justify-content-between mt-5 pt-5">
                     <div class="contact-card">
                         <div class="icon">
                             <i class="fas fa-phone"></i>
@@ -689,7 +689,7 @@
     </section>
     <section class="pt-5" style="background-image: url(img/mycasaaway/footer.png); background-size: cover; background-repeat: no-repeat; background-position: top; position: relative;">
         <img src="img/mycasaaway/foot-image.png" class="footer-image" alt="">
-        <div style="padding: 40px; background-image: url(img/mycasaaway/Bottom-subscribe-box.png); background-size: cover; background-repeat: no-repeat; width: 600px; height: 300px; max-width: 80vw !important; max-height: 40vw !important;" class="mx-auto d-block">
+        <div style="padding: 40px; background-image: url(img/mycasaaway/Bottom-subscribe-box.png);background-size: cover; background-repeat: no-repeat;" class="mx-auto d-block special-contact">
             <h4 class="w-100 text-center text-light">
                 Quickly Request More Information
             </h4>
@@ -697,10 +697,16 @@
                 Add your email address below and we will send you more information
             </div>
             <div class="d-block mt-5 pt-5">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" style="border-radius: 25px 0 0 25px; padding-left: 20px;" placeholder="Email address" id="subscribe_email" aria-label="Email address" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text btn btn-mycasa-round" style="cursor: pointer; box-shadow: none;" id="basic-addon2" onclick="submitEmail()">Subscribe</span>
+                <input type="text" id="subscribe_email" placeholder="Email address" class="form-control mb-4  d-block d-md-none">
+                <div style="cursor:pointer;" onclick="submitEmail()" class="btn btn-mycasa-round d-block d-md-none">
+                    Subscribe
+                </div>
+                <div class="w-100 d-none d-md-block">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" style="border-radius: 25px 0 0 25px; padding-left: 20px;" placeholder="Email address" id="subscribe_email" aria-label="Email address" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text btn btn-mycasa-round" style="cursor: pointer; box-shadow: none;" id="basic-addon2" onclick="submitEmail()">Subscribe</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -726,7 +732,7 @@
                     <div class="footer-links">
                     </div>
                 </div>
-                <div class="w-100 d-inline-flex justify-content-between">
+                <div class="w-100 d-block d-md-inline-flex justify-content-between">
                     <div class="" style="line-height: 50px;">
                         ©2019 MyCasaAway All Rights Reserved. Made by ProgressHackers                   
                     </div>
