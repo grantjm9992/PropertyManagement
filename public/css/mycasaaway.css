@@ -1,3 +1,8 @@
+
+
+textarea {
+    resize: none;
+}
 .navbar-brand > img
 {
     max-width: 250px;
@@ -8,8 +13,26 @@
     text-transform: uppercase;
     position: relative;
 }
-.nav-item.active > .nav-link{
+.nav-link.active {
     color: #fb8c00 !important;
+}
+
+.max400
+{
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info
+{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.info span
+{
+    font-weight: 500;
 }
 
 .splash
@@ -34,6 +57,73 @@
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.2rem;
+}
+
+footer
+{
+    padding: 80px 0 40px 0;
+}
+
+.footer-links a
+{
+    text-decoration: none;
+    color: #212529;
+    font-size: 15px;
+    padding: 0 17px;
+    border-left: 1px solid #212529;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.footer-links > a:first-of-type
+{
+    border-left: none;
+    padding-left: 0;
+}
+
+.feature
+{
+    width: 94%;
+    margin: 10px 3%;
+    padding: 10px;
+}
+
+section.property-owner
+{
+    background-color: #ecfffb;
+}
+
+.social-footer  a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.social-footer div
+{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    padding-bottom: 6px;
+    font-size: 20px;
+    display: inline-block;
+    background-color: #efefef;
+}
+
+.feature > .title
+{
+    font-style: italic;
+    font-size: 20px;
+    text-align: center;
+    color: #212529
+}
+
+.feature > img
+{
+    width:  90%;
+    margin: 20px 5%;
 }
 
 h1.light 
@@ -152,7 +242,34 @@ h1.light
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 25px;
+    box-shadow: 0 0 10px #fb8c00;
     transition: .2s all linear;
+}
+
+.contact-card
+{
+    display: inline-flex;
+}
+
+.contact-card *
+{
+    font-size: 17px;
+    text-align: left;
+}
+
+.contact-card > .icon
+{
+    width: 50px;
+    display: flex;
+    font-size: 50px;
+    color: #007daf;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.contact-card > .icon > i
+{
+    font-size: 45px;
 }
 
 .btn-mycasa-round:hover
@@ -197,6 +314,16 @@ h1.light
     text-shadow: 0px 3px 3px rgba(0,0,0,.68);
 }
 
+.tools-section h5
+{
+    font-size: 26px;
+}
+
+.text-small
+{
+    font-size: 20px;
+}
+
 .tool-image-holder
 {
     height: 100px;
@@ -214,57 +341,88 @@ h1.light
 
 .snapshot
 {
-    width: 120%;
-    margin-left: -10%;
+}
+
+.footer-image
+{
+    width: 25%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    max-width: 80vw;
 }
 
 .snapshot-icon
 {
-    width: 80px;
+    width: 100px;
     margin: auto;
 }
 
 .shapshot-text
 {
-    width: 100%;
     text-align: center;
+    font-size: 18px;
+    margin: 10px auto;
+    color: #007daf;
+    font-weight: 500;
 }
 
-.owl-item.active:nth-of-type(1)
+.owl-nav.disabled
 {
-    z-index: 11;
+    display: none;
 }
 
-.owl-item.active:nth-of-type(2)
+.mobile-side-shot
 {
-    z-index: 12;
+    margin-top: -250px; max-width: 80%;
 }
 
-.owl-item.active.center
-{
-    z-index: 13;
+.testimonial .user
+{   
+    margin: 20px 12px 0 0;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
 }
 
-.owl-item.active:nth-of-type(4)
+.testimonial .location
 {
-    z-index: 12;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 20px 0 0 0;
+    display: inline-block;
 }
 
-.owl-item.active:nth-of-type(5)
+.testimonial
 {
-    z-index: 11;
+    width: 400px;
+    display: inline-flex;
+    margin: 15px;
+    justify-content: space-between;
+    margin-left: calc(50% - 200px) !important;
+}
+
+.testimonial img
+{
+    width: 24px !important;
+    margin-right: 20px;
 }
 
 .snapshot-image
 {
-    width: 100%;
+    text-align: center;
 }
 
 .snapshot-image > img
 {
-    width: 100%;
+    height: 800px;
 }
 
+.mycasanav
+{
+    font-size: 30px;
+    color: #fb8c00;
+}
 
 /****
 MEDIA QUERIES
@@ -272,7 +430,7 @@ MEDIA QUERIES
 
 @media screen and ( min-width: 992px)
 {
-    .nav-item.active > .nav-link:before {
+    .nav-link.active:before {
         content: '';
         width: 2px;
         height: 50px;
@@ -284,8 +442,45 @@ MEDIA QUERIES
     }
 }
 
+@media screen and ( max-width: 1500px)
+{
+    .footer-image
+    {
+        display: none;
+    }
+}
+
 @media screen and ( max-width: 992px)
 {
+    .mobile-side-shot
+    {
+        display: none;
+    }
+
+    .snapshot-icon
+    {
+        width: 70px;
+        margin: auto;
+    }
+    .tools-section h2
+    {
+        font-size: 30px;
+    }
+
+    .tools-section h5
+    {
+        font-size: 20px;
+    }
+
+    .text-small
+    {
+        font-size: 15px;
+    }
+
+    .snapshot-image > img
+    {
+        height: 400px;
+    }
     .tool-box
     {
         display: block;
