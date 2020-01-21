@@ -21,13 +21,22 @@ $(document).ready ( function() {
         buttons: "custom",
         buttonPrev: '<i class="fas fa-arrow-left mycasanav"></i>',
         buttonNext: '<i class="fas fa-arrow-right mycasanav"></i>',
-        scrollwheel: false
+        scrollwheel: false,
+        loop: true
     });
 
-    $('#testimonials').owlCarousel({
+   var owl = $('#testimonials').owlCarousel({
         items: 1,
-        nav: false
+        nav: false,
+        loop: true,
+        autoplay: true
     });
+    $('.next').click(function() {
+        owl.trigger('next.owl.carousel');
+    })
+    $('.prev').click(function() {
+        owl.trigger('prev.owl.carousel');
+    })
 });
 
 $(function() {

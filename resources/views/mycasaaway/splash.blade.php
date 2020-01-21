@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="My Casa Away offer an end to end solution for property managers and owners to maximise profit from their rental business. Try our Innovative Marketing service for property rentals. It takes one click to request a demo. ">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('https://use.fontawesome.com/releases/v5.3.1/css/all.css')}}" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/jquery.flipster.min.css">
     <link rel="stylesheet" href="css/mycasaaway.css">
-    <title>My Casa Away</title>
+    <title>My Casa Away Property Rental Service | More Bookings, Made Easy</title>
   </head>
   <body data-spy="scroll" data-target=".navbar">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top w-100">
@@ -74,9 +75,9 @@
             </div>
         </div>
     </div>
-    <section class="who-for mb-5">
+    <section class="who-for mb-4">
         <div class="container">
-            <div class="row">
+            <div class="row mt-0 mt-lg-5">
                 <div class="col-12 col-lg-4">
                     <div class="special-card">
                         <img src="img/mycasaaway/family.png" alt="">
@@ -201,7 +202,7 @@
                                 Responsive Website
                             </div>
                             <div class="tool-desc">
-                                My Casa Away includes a Mobile Friendly and customisable website for your property rental business                            
+                            We provide a Mobile Friendly and customisable website for your property rental business.                       
                             </div>
                         </div>
                     </div>
@@ -261,7 +262,7 @@
                                 Mobile App Communication Tool
                             </div>
                             <div class="tool-desc">
-                            Our inbuilt messaging system makes it easy for property owners, property managers and guests to communicate.
+                            Our inbuilt messaging system makes it easy for property owners, property managers and guests to communicate. 
                             </div>
                         </div>
                     </div>
@@ -276,7 +277,7 @@
                             Improve Guest Experiences
                             </div>
                             <div class="tool-desc">
-                            The Guest mobile app makes it easy to arrange arrivals, find the destination, access owner information, local attractions and tourist information.      
+                            The Guest mobile app makes it easy to arrange arrivals, find the destination, access owner information, local attractions and tourist information.     
                             </div>
                         </div>
                     </div>
@@ -291,7 +292,7 @@
                             One Unified Calendar
                             </div>
                             <div class="tool-desc">
-                            With My Casa Away you get 1 portal that connects your property with multiple advertising channels. 
+                            With My Casa Away allows you to syncronise all your calendars across multiple booking sites. 
                             </div>
                         </div>
                     </div>
@@ -306,7 +307,7 @@
                             One to One Support in your Language
                             </div>
                             <div class="tool-desc">
-                            We provide a fully managed service for property owners & property managers. Your account manager will be there every step of the way. 
+                            We provide a fully managed service for property owners & property managers. Your account manager will be there every step of the way.
                             </div>
                         </div>
                     </div>
@@ -575,25 +576,25 @@
                             Email: <span>info@mycasaaway.com</span>
                         </div>
                         <div class="d-block info">
-                            Phone: <span></span>
+                            <!-- Phone: <span></span> -->
                         </div>
                         <div class="d-block mt-3">Have any questions? Do not hesitate to get in touch</div>
                         <img src="img/mycasaaway/logo.png" alt="" class="mt-3" style="height: 80px;">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <form action="">
+                    <form action="Home.sendMyCasaAway">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" required placeholder="Your name">
+                            <input type="text" class="form-control" name="name" required placeholder="Your name *">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="email" required placeholder="Your email address">
+                            <input type="text" class="form-control" name="email" required placeholder="Your email address *">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="phone" required placeholder="Telephone">
+                            <input type="text" class="form-control" name="phone" placeholder="Telephone">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your message" name="message" id="" cols="30" rows="8"></textarea>
+                            <textarea class="form-control" placeholder="Your message *" name="message" id="" cols="30" rows="8" required></textarea>
                         </div>
                         <button type="submit" style="border-radius: 25px;" class="px-5 py-2 w-100 btn btn-mycasa mt-3">
                             SEND MESSAGE
@@ -653,14 +654,14 @@
                 Send us a Message
             </a>
             <div class="container">
-                <div class="d-block d-md-inline-flex w-100 justify-content-between mt-5 pt-5">
+                <div class="d-block d-md-inline-flex w-100 justify-content-around mt-5 pt-5"><!--
                     <div class="contact-card">
                         <div class="icon">
                             <i class="fas fa-phone"></i>
                         </div>
                         <div>
                         <div class="d-block">
-                            <b>
+                           <b>
                                 Phone
                             </b>
                         </div>
@@ -668,7 +669,7 @@
                         07765309633
                         </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="contact-card">
                         <div class="icon">
                             <i class="far fa-envelope"></i>
