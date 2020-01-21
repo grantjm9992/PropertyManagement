@@ -13,18 +13,18 @@ class EnquiryMyCasaAway extends Mailable
 
     public $name;
     public $email;
-    public $subject;
+    public $phone;
     public $msg;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $subject, $msg)
+    public function __construct($name, $email, $phone, $msg)
     {
         $this->email = $email;
         $this->name = $name;
-        $this->subject = $subject;
+        $this->phone = $phone;
         $this->msg = $msg;
     }
 
@@ -40,7 +40,7 @@ class EnquiryMyCasaAway extends Mailable
                     ->view('mail/enquirymycasaaway', array(
                         "name" => $this->name,
                         "email" => $this->email,
-                        "subject" => $this->subject,
+                        "phone" => $this->phone,
                         "message" => $this->msg
                     )
         );

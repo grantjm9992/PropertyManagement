@@ -160,10 +160,10 @@ class HomeController extends BaseController
     {
         $name =  ( isset( $_REQUEST["name"] ) ) ? $_REQUEST["name"] : "" ;
         $email = ( isset($_REQUEST["email"]) )? $_REQUEST["email"] : "";
-        $subject = ( isset( $_REQUEST["phone"])) ? $_REQUEST["phone"] : "";
-        $msg = isset( $_REQUEST["message"] ) ? utf8_encode($_REQUEST["message"]) : "";
+        $phone = ( isset( $_REQUEST["phone"])) ? $_REQUEST["phone"] : "";
+        $msg = ( isset( $_REQUEST["message"] ) ) ? utf8_encode($_REQUEST["message"]) : "";
 
-        \Mail::to("info@mycasaaway.com")->send(new \App\Mail\EnquiryMyCasaAway( $name, $email, $subject, $msg ) );
+        \Mail::to("info@mycasaaway.com")->send(new \App\Mail\EnquiryMyCasaAway( $name, $email, $phone, $msg ) );
         
         \Redirect::to("/")->send();
     }

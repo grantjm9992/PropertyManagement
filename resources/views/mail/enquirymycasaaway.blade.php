@@ -6,7 +6,6 @@
 			</h1>
 		</div>
 		<div style="background:#fff; color: black; padding: 30px;">
-        @if ( $msg != "" )
 			<ul style="list-style: none; font-size: 16px;">
 				<li>
 					Name: {{ $name }}
@@ -15,19 +14,11 @@
 					Email: {{ $email }}
 				</li>
 				<li>
-					Subject: {{ $subject }}
+					Phone: {{ $phone }}
 				</li>
 				<li>
 					Message: {!! $msg !!}
 				</li>
 			</ul>
-        @else
-        <div style="width: 100%; font-size: 18px;">
-            Enquiry through email card
-		</div>
-        <div style="width: 100%; font-size: 16px;">
-            Email {{ $email }}
-        </div>
-        @endif
 	</div>
 </div>
