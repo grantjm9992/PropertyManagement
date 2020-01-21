@@ -439,7 +439,8 @@ h1.light
 {
     width: 600px; height: 300px; max-width: 80vw !important; max-height: 40vw !important;
 }
-
+.tool-text
+{width: calc(100% - 120px);}
 .md-show
 {display: none;}
 
@@ -475,6 +476,24 @@ MEDIA QUERIES
 
 @media screen and ( max-width: 992px)
 {
+    .owl-carousel .owl-item
+    {
+        display: none;
+    }
+    .owl-carousel .owl-item.active
+    {
+        display: block;;
+    }
+    .testimonial
+    {
+        width: 300px;
+        display: inline-flex;
+        margin: 15px;
+        justify-content: space-between;
+        margin-left: unset !important;
+    }
+    .tool-text
+    {width: 100%;}
     .maximise-icon
     {
         width: 90%;

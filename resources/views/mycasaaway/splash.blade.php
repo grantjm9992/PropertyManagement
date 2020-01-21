@@ -194,7 +194,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="tool-box">
                         <div class="tool-image-holder">
-                        <img src="img/mycasaaway/icon-responsive-website.png" alt="">
+                        <img src="img/mycasaaway/Icon-responsive-website.png" alt="">
                         </div>
                         <div class="tool-text">
                             <div class="tool-title">
@@ -254,7 +254,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="tool-box">
                         <div class="tool-image-holder">
-                        <img src="img/mycasaaway/icon-messaging.png" alt="">
+                        <img src="img/mycasaaway/Icon-Messaging.png" alt="">
                         </div>
                         <div class="tool-text">
                             <div class="tool-title">
@@ -284,7 +284,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="tool-box">
                         <div class="tool-image-holder">
-                            <img src="img/mycasaaway/icon-calendar.png" alt="">
+                            <img src="img/mycasaaway/Icon-calendar.png" alt="">
                         </div>
                         <div class="tool-text">
                             <div class="tool-title">
