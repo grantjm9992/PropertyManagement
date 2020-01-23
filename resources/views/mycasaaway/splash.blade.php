@@ -324,10 +324,10 @@
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
-                <div class="text-light d-block w-100 text-center">
+                <div class="text-light d-none d-md-block w-100 text-center">
                     WANNA WATCH SOME EXTRA
                 </div>
-                <h2 class="text-light w-100 text-center">
+                <h2 class="d-none d-md-block text-light w-100 text-center">
                     DELIVER THE BEST PROPERTY RENTAL SERVICE
                 </h2>
             </div>
