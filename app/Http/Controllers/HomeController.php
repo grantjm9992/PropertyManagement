@@ -163,7 +163,7 @@ class HomeController extends BaseController
         $phone = ( isset( $_REQUEST["phone"])) ? $_REQUEST["phone"] : "";
         $msg = ( isset( $_REQUEST["message"] ) ) ? utf8_encode($_REQUEST["message"]) : "";
 
-        \Mail::to("info@mycasaaway.com")->send(new \App\Mail\EnquiryMyCasaAway( $name, $email, $phone, $msg ) );
+        \Mail::to("info@mycasaaway.com")->send( new \App\Mail\newEnquiry( ) );
         
         \Redirect::to("/")->send();
     }
