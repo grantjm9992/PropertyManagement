@@ -61,11 +61,11 @@
                     <div class="font-light">
                         My Casa Away offer an end to end solution for property managers and owners to maximise profit from their rental business. Try our Innovative Marketing service for property rentals. It takes one click to request a demo.
                     </div>
-                    <a href="" class="btn btn-outline-mycasa mt-3">
+                    <a href="#demo" class="btn btn-outline-mycasa mt-3">
                         request a demo
                     </a>
-                    <a href="" class="btn btn-mycasa mt-3">
-                        request a demo
+                    <a href="#features" class="btn btn-mycasa mt-3">
+                        learn more
                     </a>
                     <img src="img/mycasaaway/icons.png" alt="" class="w-100 mt-3">
                 </div>
@@ -155,7 +155,7 @@
                     <h6 class="mt-2 w-100 text-center text-light">
                         Send us a Message
                     </h6>
-                    <a href="#contact" class="px-5 py-2 btn btn-mycasa-round mt-3">
+                    <a href="#demo" class="px-5 py-2 btn btn-mycasa-round mt-3">
                         Contact us
                     </a>
                 </div>
@@ -314,27 +314,25 @@
                 </div>
             </div>
         </div>
-    </section><!--
-    <section id="video" style="position: relative; background-image: url('img/mycasaaway/video-thumb.png'); background-size: cover; background-repeat: no-repeat; background-position: center; height: 600px;">
-        <div style="width: 100%; height: 100%; background-color: rgba(0,0,0,.4); position: absolute; top: 0; left: 0; display: flex;" id="video-overlay">
-            <div>
-                <div class="d-block mx-auto">
-                    <div class="play-button" onclick="playVideo()">
+    </section>
+    <section class="video-section" style="background-image: url('img/mycasaaway/overlay.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+        <div class="overlay"></div>
+        <div class="holder">
+            <div class="container" style="max-width: 800px;">
+                <div class="d-block w-100 text-center">
+                    <div class="mx-auto play-button mb-3" onclick="playVideo()">
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
-                <div class="d-block mx-auto my-2">
+                <div class="text-light d-block w-100 text-center">
                     WANNA WATCH SOME EXTRA
                 </div>
-                <div class="d-block mx-auto">
-                    <h3>
-                        DELIVER THE BEST PORPERTY RENTAL SERVICE
-                    </h3>
-                </div>
+                <h2 class="text-light w-100 text-center">
+                    DELIVER THE BEST PROPERTY RENTAL SERVICE
+                </h2>
             </div>
         </div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-mw2Cbmcb_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>-->
+    </section>
     <section class="tools-section" id="snapshot">
         <h2 style="color: #007daf; max-width: 1000px" class="mt-5 mx-auto text-center">
             CREATE AWESOME EXPERIENCES FOR GUESTS & PROPERTY OWNERS
@@ -349,6 +347,9 @@
                 </div>
                 <div class="shapshot-text">
                     ADVERTISING TOOLS
+                    <div class="d-block w-100 text-center px-3" style="font-size: 15px;max-width: 100vw;">
+                    Connect your property with booking sites
+                    </div>
                 </div>
                 <div class="snapshot-image">
                     <img src="img/mycasaaway/phone-property-listing-screenshot.png" alt="">
@@ -362,6 +363,9 @@
                 </div>
                 <div class="shapshot-text">
                     GUESTS PROPERTY APP
+                    <div class="d-block w-100 text-center px-3" style="font-size: 15px;max-width: 100vw;">
+                    Provide guests with a unique app about the property
+                    </div>
                 </div>
                 <div class="snapshot-image">
                     <img src="img/mycasaaway/guest-app.png" alt="">
@@ -375,6 +379,9 @@
                 </div>
                 <div class="shapshot-text">
                     MANAGEMENT TOOLS
+                    <div class="d-block w-100 text-center px-3" style="font-size: 15px;max-width: 100vw;">
+                        One tool for managing and renting property
+                    </div>
                 </div>
                 <div class="snapshot-image">
                     <img src="img/mycasaaway/Property-Managers-App.png" alt="">
@@ -387,7 +394,10 @@
                     <img src="img/mycasaaway/icon-property-app.png" alt="">
                 </div>
                 <div class="shapshot-text">
-                    OWNERS PROPERTY APP
+                    OWNERS PROPERTY APP 
+                    <div class="d-block w-100 text-center px-3" style="font-size: 15px;max-width: 100vw;">
+                    Manage your property from an app in your phone
+                    </div>
                 </div>
                 <div class="snapshot-image">
                     <img src="img/mycasaaway/Owners-App.png" alt="">
@@ -401,6 +411,9 @@
                 </div>
                 <div class="shapshot-text">
                     RENTAL ANALYTICS
+                    <div class="d-block w-100 text-center px-3" style="font-size: 15px;max-width: 100vw;">
+                    View things like Bookings and Finances at a glance
+                    </div>
                 </div>
                 <div class="snapshot-image">
                     <img src="img/mycasaaway/Rental-Analytics.png" alt="">
@@ -423,7 +436,7 @@
                     We can provide a fully managed service for property owners & property managers. Hassle Free, More Bookings every year, Happy guests & Happy clients. What more could you want?
                 </div>
                 <div class="w-100 my-5 text-center">
-                    <img src="img/mycasaaway/Support-image.png" style="height: 250px;" alt="">
+                    <img src="img/mycasaaway/Support-Image.png" style="height: 250px;" alt="">
                 </div>
             </div>
     </section>
@@ -519,7 +532,7 @@
                 </div>
             </div>
             <div class="container">
-                <div style="width: 400px; max-width: 90vw; margin-left: calc(50% - 200px) !important; padding-left: 20px; margin-top: 30px;">
+                <div class="nav-holder">
                     <div    id="prev" class="prev"
                             style="    border-radius: 50%;
                             height: 50px;
@@ -565,7 +578,7 @@
             <div class="small-text w-100 text-center">
                 <i>Onboarding with us is a breeze</i>
             </div>
-            <div class="row mt-5 pt-4">
+            <div class="row mt-0 mt-lg-5 pt-4">
                 <div class="col-12 col-lg-6">
                     <div class="w-100">
                         <img src="img/mycasaaway/Mobile-side-shot.png" style="" class="mobile-side-shot" alt="">

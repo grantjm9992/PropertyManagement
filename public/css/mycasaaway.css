@@ -354,6 +354,7 @@ h1.light
 
 .snapshot-icon
 {
+    display: none;
     width: 100px;
     margin: auto;
 }
@@ -361,10 +362,68 @@ h1.light
 .shapshot-text
 {
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
     margin: 10px auto;
     color: #007daf;
     font-weight: 500;
+}
+
+.shapshot-text > div
+{
+    font-size: 18px !important;
+}
+
+.play-button
+{
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 70px;
+    color: #fff;
+    background-color: #007daf;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.video-section
+{
+    position: relative;
+    margin-top: 50px;
+    width: 100vw;
+    height: 56.25vw;
+}
+
+.video-section .holder
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.video-section video
+{
+    width: 100vw;
+}
+
+.video-section h2
+{
+    font-size: 50px;
+}
+
+.video-section .overlay
+{
+    background: rgba(0,0,0,.3);
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
 }
 
 .owl-nav.disabled
@@ -443,6 +502,14 @@ h1.light
 {width: calc(100% - 120px);}
 .md-show
 {display: none;}
+.nav-holder
+{
+    width: 400px; max-width: 90vw; margin-left: calc(50% - 200px) !important; padding-left: 20px; margin-top: 30px;
+}
+
+.nav-holder > div{
+    cursor: pointer;
+}
 
 /****
 MEDIA QUERIES
@@ -476,13 +543,33 @@ MEDIA QUERIES
 
 @media screen and ( max-width: 992px)
 {
-    .owl-carousel .owl-item
+    
+    .video-section h2
+    {
+        font-size: 30px;
+    }
+
+    .shapshot-text
+    {
+        font-size: 18px;
+    }
+
+    .shapshot-text > div
+    {
+        font-size: 15px;
+    }
+    .nav-holder
+    {
+        margin-left: 40px !important;
+        width: auto;
+    }
+
+    .flipster--flat .flipster__item
     {
         display: none;
-    }
-    .owl-carousel .owl-item.active
-    {
-        display: block;;
+    } 
+    .flipster__item--current {
+        display: inline-block !important;
     }
     .testimonial
     {

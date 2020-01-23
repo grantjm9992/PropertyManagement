@@ -1,5 +1,5 @@
 $(function() {
-    $(".nav-link").on('click', function(e) {
+    /*$(".nav-link").on('click', function(e) {
         $('.nav-item').removeClass("active");
         $(this).closest(".nav-item").addClass("active");
         if ( e.preventDefault ) e.preventDefault();
@@ -11,7 +11,22 @@ $(function() {
                 scrollTop: position.top
             }, 1000);
         }
-    });
+    });*/
+    $("a").on("click", function(e) {
+        var hash = "#";
+        if ( $(this).attr("href").includes( hash ) )
+        {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            if ( $(href).length > 0 )
+            {
+                var position = $(href).offset();
+                $("html, body").animate({
+                    scrollTop: position.top
+                }, 1000);
+            }
+        }
+    })
 });
 
 $(document).ready ( function() {
@@ -53,3 +68,18 @@ $(function() {
         }
     })
 });
+
+
+function playVideo()
+{
+    var video = document.createElement("video");
+    $(video).attr("src", "img/mycasaaway/intro.mp4");
+    $(video).attr("autoplay", true);
+    $(video).prop("id", "intro_video");
+    video.onended = function() {
+        $(".video-section *").show();
+        $("#intro_video").remove();
+    }
+    $(".video-section *").hide();
+    $(".video-section").append(video);
+}
