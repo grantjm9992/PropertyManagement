@@ -18,7 +18,7 @@ class NewNotification extends Mailable
      *
      * @return void
      */
-    public function __construct( $notification )
+    public function  __construct( $notification )
     {
         $this->notification = $notification;
     }
