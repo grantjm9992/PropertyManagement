@@ -274,8 +274,8 @@ class AppConfig
         $response = false;
         $user = \UserLogic::getUser();
         if ( $user->role == "SA" ) $response = true;
-        if ( $task->id_created_by === $user->id ) $response = true;
-        if ( $task->id_user === $user->id ) $response = true;
+        if ( (int)$task->id_created_by === (int)$user->id ) $response = true;
+        if ( (int)$task->id_user === (int)$user->id ) $response = true;
 
         return $response;
     }
