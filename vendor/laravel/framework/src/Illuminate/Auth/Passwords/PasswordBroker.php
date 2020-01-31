@@ -23,7 +23,7 @@ class PasswordBroker implements PasswordBrokerContract
      *
      * @var \Illuminate\Contracts\Auth\UserProvider
      */
-    s;
+    protected $users;
 
     /**
      * The custom password validator callback.

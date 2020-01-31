@@ -15,7 +15,7 @@ trait GuardHelpers
      *
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
-    ;
+    protected $user;
 
     /**
      * The user provider implementation.
