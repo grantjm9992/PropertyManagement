@@ -16,13 +16,10 @@
 class Swift_Mime_MimePart extends Swift_Mime_SimpleMimeEntity
 {
     /** The format parameter last specified by the user */
-    Format;
 
     /** The charset last specified by the user */
-    Charset;
 
     /** The delsp parameter last specified by the user */
-    DelSp;
 
     /** The nesting level of this MimePart */
     private $nestingLevel = self::LEVEL_ALTERNATIVE;
