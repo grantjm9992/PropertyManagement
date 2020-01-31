@@ -80,7 +80,6 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     /** The key used for accessing the cache */
     private $cacheKey;
 
-    ContentType;
 
     /**
      * Create a new SimpleMimeEntity with $headers, $encoder and $cache.
