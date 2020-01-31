@@ -61,7 +61,6 @@ class Controller extends BaseController
     protected $set_menu = "<script src='js/set-menu.js'></script>";
 
     public function __construct() {
-        parent::__construct();
         $this->cont = new \ArrayObject();
         $this->campos = array();
         $this->title = "My Casa Away";
@@ -154,7 +153,6 @@ class Controller extends BaseController
     }
 
     protected function createTable() {
-
         return view('comun/tabla', array(
             "selectIds" => $this->selectIds,
             'gridId' => $this->gridId,
@@ -166,6 +164,11 @@ class Controller extends BaseController
             "detailURL" => $this->detailURL,
             'pageSize' => $this->pageSize
         ));
+    }
+
+    public function prettifyData( $data )
+    {
+        return $data;
     }
     
     public function createGrid() {
