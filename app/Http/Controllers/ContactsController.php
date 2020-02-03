@@ -23,7 +23,11 @@ class ContactsController extends BaseController
         $listado = $this->getListadoAction();
         $this->pageTitle = "Contacts";
         $this->iconClass = "fa-address-book";
-        $this->cont->body = view('contacts/index', array("listado" => $listado ) );
+        $this->cont->body = view('contacts/index', array(
+            "listado" => $listado,
+            "user" => $this->user
+            ) 
+        );
         return $this->RenderView();
     }
 
@@ -115,7 +119,7 @@ class ContactsController extends BaseController
         );
         $this->campos[] = array(
             "title" => "Phone",
-            "name" => "surname",
+            "name" => "phone",
             "width" => 100
         );
         $this->campos[] = array(
@@ -123,7 +127,8 @@ class ContactsController extends BaseController
             "name" => "actions",
             "width" => 80
         );
-        return $this->createTable();
+        if ( count( $this->data ) > 0 ) return $this->createTable();
+        return view("comun/nodata");
     }
 
     public function addFromUserAction()

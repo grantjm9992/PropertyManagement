@@ -33,20 +33,33 @@ class User extends Model
 
     public static function getContactsForUser($user)
     {
+        $where = self::makeWhere();
         if ( $user->role == "PO" )
         {
-            $users = self::whereRaw("id IN (SELECT id_assigned_to FROM properties WHERE id_property_owner = $user->id ) ")->get();
+            $users = self::whereRaw("id IN (SELECT id_assigned_to FROM properties WHERE id_property_owner = $user->id ) $where ")->get();
         }
         if ( $user->role == "M" || $user->role == "AA" )
         {
-            $user = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company ")->get();
+            $users = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company $where ")->get();
         }
         if ( $user->role == "WA" || $user->role = "SA" )
         {
-            $user = self::get();
+            $users = self::whereRaw("  $where ")->get();
         }
 
-        return $user;
+        return $users;
+    }
+
+    static function makeWhere()
+    {
+        $where = " 1 ";
+
+        if ( isset( $_REQUEST["name"] ) && $_REQUEST["name"] != "" ) $where .= " AND ( name LIKE '%".$_REQUEST["name"]."%' OR surname LIKE '%".$_REQUEST["name"]."%' OR CONCAT(name, ' ', surname) LIKE '%".$_REQUEST["name"]."%' ) ";
+        if ( isset( $_REQUEST["email"] ) && $_REQUEST["email"] != "" ) $where .= " AND email LIKE '%".$_REQUEST["email"]."%' ";
+        if ( isset( $_REQUEST["phone"] ) && $_REQUEST["phone"] != "" ) $where .= " AND phone LIKE '%".$_REQUEST["phone"]."%' ";
+        if ( isset( $_REQUEST["role"] ) && $_REQUEST["role"] != "" ) $where .= " AND role = '".$_REQUEST["role"]."' ";
+
+        return $where;
     }
 
     public function getPermissionArray()
