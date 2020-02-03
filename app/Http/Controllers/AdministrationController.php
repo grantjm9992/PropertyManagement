@@ -18,7 +18,9 @@ class AdministrationController extends BaseController
 {
 
     public $returnURL;
+    public $date;
     public function __construct() {
+        $this->date = new \DateTime();
         if ( !isset( $_SESSION["id"] ) ) die( \Redirect::to("Login")->send() );
         $this->user = \App\User::where('id', $_SESSION["id"])->first();
         parent::__construct();
