@@ -28,7 +28,25 @@
                     @endforeach
                 </select> 
             </div>
-            <div class="col-12 col-lg-6 form-group">
+            <div class="form-group col-12 col-lg-4">
+                <label for="notify_email">Is rental property</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @if ( (int)$property->is_rental === 1 )
+                        <script>
+                            $(document).ready( function() {
+                                $('#notify_email').click();
+                            })
+                        </script>
+                        @endif
+                        <input class="form-check-input" type="checkbox" value="1" name="is_rental" id="notify_email">
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 form-group">
                 <label for="">Property type</label>
                 <select name="id_property_type" id="id_property_type" class="form-control">
                     @foreach ( $propertytypes as $type )
@@ -36,7 +54,7 @@
                     @endforeach
                 </select> 
             </div>
-            <div class="col-12 col-lg-6 form-group">
+            <div class="col-12 col-lg-4 form-group">
                 <label for="">Information section</label>
                 <select name="id_info_section" id="id_info_section" class="form-control">
                     @foreach ( $sections as $section )

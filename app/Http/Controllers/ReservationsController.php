@@ -163,4 +163,20 @@ class ReservationsController extends BaseController
         $string = "?p=".base64_encode( $string );
         return "$base/$string";
     }
+
+    public function deleteAction()
+    {
+        $id = $_REQUEST["id_reservation"];
+        $reservation = \App\Rentals::where("id", $id)->first();
+        $tasks = \App\Tasks::where("id_reservation", $id)->get();
+        foreach ( $tasks as $task )
+        {
+            $task = \App\Tasks::where("id", $task->id)->first();
+            $task->delete();
+        }
+
+        $reservation->delete();
+
+        die( "OK" );
+    }
 }

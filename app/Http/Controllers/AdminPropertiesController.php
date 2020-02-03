@@ -41,14 +41,32 @@ class AdminPropertiesController extends BaseController
     public function listadoAction()
     {
         $this->data = \App\Properties::whereRaw( $this->makeWhere() )->get();
+        foreach ( $this->data as $row )
+        {
+            $row->btn = "<a class='btn btn-primary' href='PropertyCalendar?id=$row->id'>View property calendar</a>";
+        }
         $this->campos[] = array(
             "title"=> "Name",
             "name" => "title"
+        );
+        $this->campos[] = array(
+            "title" => "Actions",
+            "name" => "btn",
+            "width" => 80
         );
         $this->detailURL = "AdminProperties.detail?id=";
         return $this->createTable();
     }
 
+    public function prettifyData( $data )
+    {
+        foreach ( $data as $row )
+        {
+            $row->actions = "<a href='PropertyCalendar?id=$row->id' class='btn btn-primary>View property calendar</a>";
+        }
+
+        return $data;
+    }
 
     public function newAction()
     {
@@ -307,6 +325,10 @@ class AdminPropertiesController extends BaseController
         {
             $where .= " AND id_property_owner = ".$this->user->id." ";
         }
+
+        if ( isset( $_REQUEST["title"] ) && $_REQUEST["title"] != "" ) $where .= " AND title LIKE '%".$_REQUEST["title"]."%' ";
+        if ( isset( $_REQUEST["id_company"] ) && $_REQUEST["id_company"] != "" ) $where .= " AND id_company = ".$_REQUEST["id_company"];
+        if ( isset( $_REQUEST["id_resort"] ) && $_REQUEST["id_resort"] != "" ) $where .= " AND id_resort = ".$_REQUEST["id_resort"];
 
         return $where;
     }

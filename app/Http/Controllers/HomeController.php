@@ -161,17 +161,9 @@ class HomeController extends BaseController
         $name =  ( isset( $_REQUEST["name"] ) ) ? $_REQUEST["name"] : "" ;
         $email = ( isset($_REQUEST["email"]) )? $_REQUEST["email"] : "";
         $phone = ( isset( $_REQUEST["phone"])) ? $_REQUEST["phone"] : "";
-        $msg = ( isset( $_REQUEST["message"] ) ) ? $_REQUEST["message"] : "";
+        $msg = ( isset( $_REQUEST["message"] ) ) ? utf8_encode($_REQUEST["message"]) : "";
 
-        $data = array(
-            
-        );
-
-        Mail::send('mail/new-enquiry', $data, function ($m)  {
-            $m->from('info@mycasaaway.com', 'MyCasaAway');
-
-            $m->to("info@mycasaaway.com")->subject('New enquiry');
-        });
+        \Mail::to("info@mycasaaway.com")->send( new \App\Mail\newEnquiry( $name, $email, $phone, $msg ) );
         
         \Redirect::to("/")->send();
     }

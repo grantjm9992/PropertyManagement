@@ -124,4 +124,33 @@ function submitForm()
 {
     $('#form').submit();
 }
+
+function deleteElement()
+{
+    var options = Array();
+    options.title = "Warning";
+    options.text = "Are you sure you want to delete this reservation?";
+    options.type = "confirm";
+    options.thenFunction = confirmedDelete;
+    options.icon = "warning";
+
+    sweetAlert( options );
+}
+
+function confirmedDelete()
+{
+    $.ajax({
+        type: "POST",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: "Reservations.delete",
+        data:
+        {
+            id_reservation: "{{ $data->id }}"
+        },
+        success: function( data ) 
+        {
+            if ( data == "OK" ) window.location = "PropertyCalendar?id={{ $data->id_property }}";
+        }
+    })
+}
 </script>
