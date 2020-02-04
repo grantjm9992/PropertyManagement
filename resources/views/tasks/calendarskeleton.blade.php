@@ -9,7 +9,7 @@
         </div>
     </div>
 </div>
-
+<input id="type" hidden />
 <script>
     $(document).ready( function() {
         $('#usertaskcalendar').fullCalendar({
@@ -23,6 +23,7 @@
             {
                 url: 'Tasks.getUserCalendar',
                 type: 'POST',
+                data : function () { return { id_type : $("#type").val() }; },
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
             }
             ],

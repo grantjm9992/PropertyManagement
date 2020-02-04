@@ -44,7 +44,7 @@ class Tasks extends Model
 
     public static function getPropertyCalendar( $property )
     {
-        $tasks = self::where("id_property", $property->id)->get();
+        $tasks = self::join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_property", $property->id)->get();
         $arr = array();
         foreach ( $tasks as $row )
         {
@@ -65,8 +65,8 @@ class Tasks extends Model
             $arr[] = array(
                 "id" => $row->id,
                 "title" => "$row->title",
-                "color" => $colour,
-                "textColor" => $textColour,
+                "color" => $row->colour,
+                "textColor" => $row->text_colour,
                 "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
                 "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
             );
@@ -77,7 +77,7 @@ class Tasks extends Model
 
     public static function getMyCalendar()
     {
-        $tasks = self::where("id_user", \UserLogic::getUserId() )->get();
+        $tasks = self::join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_user", \UserLogic::getUserId() )->whereRaw(self::makeWhere() )->get();
         $arr = array();
         foreach ( $tasks as $row )
         {
@@ -98,8 +98,8 @@ class Tasks extends Model
             $arr[] = array(
                 "id" => $row->id,
                 "title" => "$row->title",
-                "color" => $colour,
-                "textColor" => $textColour,
+                "color" => $row->colour,
+                "textColor" => $row->text_colour,
                 "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
                 "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
             );

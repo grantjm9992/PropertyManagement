@@ -81,4 +81,12 @@ class TaskCategoriesController extends BaseController
 
         return \Redirect::to("TaskCategories")->send();
     }
+
+    public function deleteAction()
+    {
+        $id =  $_REQUEST["id"];
+        $category = \App\TaskType::where("id", $id)->first();
+        $category->delete();
+        return "OK";
+    }
 }

@@ -20,8 +20,6 @@ class PropertyCalendarController extends BaseController
     }
     
     public function defaultAction() {
-        $this->pageTitle = "Rentals";
-        $this->iconClass = "fa-suitcase-rolling";
         
         if ( !isset ( $_REQUEST['id'] ) || $_REQUEST['id'] == "" ) return \Redirect::to('AdminProperties')->send();
 
