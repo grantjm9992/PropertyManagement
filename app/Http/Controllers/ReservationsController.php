@@ -57,7 +57,7 @@ class ReservationsController extends BaseController
 
         $this->cont->body = view('admin/calendar/index', array(
             "property" => $property,
-            "calendar" => view('comun/schedule', array( "property" => $property, "rentals" => $this->getCalendarAction() ) ),
+            "calendar" => view('comun/calendar', array( "property" => $property, "rentals" => $this->getCalendarAction() ) ),
             
         ));
         
