@@ -5107,7 +5107,7 @@ tbody.collapse.show {
   color: #ffffff;
   text-align: center;
   background-color: #2196f3;
-  transition: width 0.6s ease;
+  transition: width 2.5s ease;
 }
 
 .progress-bar-striped {
@@ -18819,3 +18819,9 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.percentage-holder {
+  margin-bottom: 20px;
+  font-size: 30px;
+}

@@ -83,6 +83,33 @@
         </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-12 mb-4">
+            <h4>
+                <i class="fas fa-tasks"></i> To do list
+                <div class="buttons">
+                    <div onclick="newSubtask()" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New item
+                    </div>
+                </div>
+            </h4>
+        </div>
+        <div class="col-12">
+            <div class="percentage-holder">
+                <span percentage-for="items">0</span>%
+            </div>
+            <div class="mb-4 progress">
+                <div subtasks="items" class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div id="items" class="row no-gutters">
+                {!! $subtasks !!}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
@@ -133,47 +160,252 @@
         sweetAlert( options );
     }
 
-function confirmedDelete( id )
-{
-    $.ajax({
-        type: "POST",
-        url: "Tasks.deleteFile",
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        data: 
-        {
-            id: id
-        },
-        success: function(data)
-        {
-            if ( data == "OK" )
+    function confirmedDelete( id )
+    {
+        $.ajax({
+            type: "POST",
+            url: "Tasks.deleteFile",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: 
             {
-                $('[file="'+id+'"]').remove();
+                id: id
+            },
+            success: function(data)
+            {
+                if ( data == "OK" )
+                {
+                    $('[file="'+id+'"]').remove();
+                }
             }
-        }
-    })
-}
+        })
+    }
 
-function toggleWatch( )
-{
-    $.ajax({
-        type: "POST",
-        url: "Tasks.toggleWatching",
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        data: 
-        {
-            id: "{{$task->id}}"
-        },
-        success: function(data)
-        {
-            if ( data == 1 )
+    function toggleWatch( )
+    {
+        $.ajax({
+            type: "POST",
+            url: "Tasks.toggleWatching",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: 
             {
-                $('#watch').html('<i class="fas fa-eye-slash"></i> Stop watching task')
-            }
-            else
+                id: "{{$task->id}}"
+            },
+            success: function(data)
             {
-                $('#watch').html('<i class="fas fa-eye"></i> Watch task')
+                if ( data == 1 )
+                {
+                    $('#watch').html('<i class="fas fa-eye-slash"></i> Stop watching task')
+                }
+                else
+                {
+                    $('#watch').html('<i class="fas fa-eye"></i> Watch task')
+                }
             }
-        }
+        })
+    }
+    $(document).ready( function() {
+        $('#items').sortable({
+            update: function() {
+                updateOrder();
+            }
+        });
+        animateTaskStatusBar("items");
     })
-}
+
+    function updateOrder()
+    {        
+        var elements = $('.cc-sortable');
+        var ids = "";
+        for ( var i = 0; i < elements.length; i++ ) {
+            ids += $(elements[i]).attr('data-id')+"@#";
+        }
+        $.ajax({
+            type: "POST",
+            url: "Tasks.updateSubtaskOrder",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                ids: ids,
+                id: "{{ $task->id }}"
+            },
+            success: function(data)
+            {
+                if ( data == "OK" )
+                {
+                }
+            }
+        })
+    }
+
+    function updateStatus(id_subtask)
+    {
+        $.ajax({
+            type: "POST",
+            url: "Tasks.changeSubtaskStatus",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id: id_subtask
+            },
+            success: function(data)
+            {
+                var response = $.parseJSON(data);
+                if ( response.success === 1 )
+                {
+                    $('[data-id="'+id_subtask+'"]').attr("completed", response.completed);
+                    animateTaskStatusBar("items");
+                }
+            }
+        })
+    }
+
+    function animateTaskStatusBar(id)
+    {
+        var hash = "#"+id;
+        var number = parseInt($('[percentage-for="'+id+'"]').text());
+        var subtasks = $(hash).find(".cc-sortable");
+        var ii = 0;
+        var jj = 0;
+        $.each(subtasks, function(i) {
+            if ( $(this).attr("completed") == "1" ) jj++;
+            ii++;
+        });
+
+        percent = Math.round(100*(jj/ii));
+        var int = 2500/percent;
+        if ( number < percent )
+        {
+            setInterval(() => {
+                if ( number <= percent )
+                {
+                    $('[percentage-for="'+id+'"]').html(number);
+                    number++;
+                }
+            }, int);
+        }
+        else
+        {
+            setInterval(() => {
+                if ( number >= percent )
+                {
+                    $('[percentage-for="'+id+'"]').html(number);
+                    number--;
+                }
+            }, int);
+            
+        }
+        percentText = percent+"%";
+
+        $('[subtasks="'+id+'"]').css({
+            width: percentText
+        });
+    }
+    
+
+    $(document).ready( function() {
+
+        $('body').delegate('[divid]', 'click', function() {
+            $(this).hide();
+            var val = $(this).attr('divid');
+            $('[inputid='+val+']').show();
+            $('[data-id='+val+']').focus();
+        });
+        $('body').delegate('[hideinputid]', 'click', function() {
+            showDiv(this);
+        });
+
+        $('body').delegate('input[data-id]', 'keydown', function(e) {
+            if ( event.which == 13 ) {
+                var id = $(this).attr('data-id');
+                var input = $('[hideinputid="'+id+'"]');
+                showDiv(input[0]);
+            }
+        });
+        function showDiv($this)
+        {
+            var val = $($this).attr('hideinputid');
+            $('[inputid='+val+']').hide();
+            $('[divid='+val+']').show();
+            var inputs = $('input[data-id="'+val+'"]');
+            var name = $(inputs[0]).val();
+            $('[divid='+val+']').html(name);
+            $.ajax({
+                type: "POST",
+                url: "Tasks.updateSubtask",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: {
+                    id: val,
+                    name: name
+                },
+                success: function(data)
+                {
+                    if ( data == "OK" )
+                    {                    
+                        $.notify( "Name updated successfully", {
+                            position: "bottom-left",
+                            className: "success"
+                        } );
+                    }
+                }
+            })
+        }
+        $('#archive').on("click", function() {
+            $.ajax({
+                type: "POST",
+                url: "Tasks.archive",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: 
+                {
+                    id: "{{$task->id}}",
+                    archive: 1
+                },
+                success: function(data)
+                {
+                    var message = $.parseJSON(data);
+                    $.notify( message.message, {
+                        position: "bottom-left",
+                        className: "success"
+                    } );
+                    $('#archive').hide();
+                    $('#unarchive').show();
+                }
+            })
+        });
+        $('#unarchive').on("click", function() {
+            $.ajax({
+                type: "POST",
+                url: "Tasks.archive",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: 
+                {
+                    id: "{{$task->id}}",
+                    archive: 0
+                },
+                success: function(data)
+                {
+                    var message = $.parseJSON(data);
+                    $.notify( message.message, {
+                        position: "bottom-left",
+                        className: "success"
+                    } );
+                    $('#archive').show();
+                    $('#unarchive').hide();
+                }
+            })
+        });
+    })
+
+    function newSubtask()
+    {
+        $.ajax({
+            type: "POST",
+            url: "Tasks.newSubtask",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id_task: "{{ $task->id }}"
+            },
+            success: function(data)
+            {
+                $('#items').append(data);
+            }
+        })
+    }
 </script>

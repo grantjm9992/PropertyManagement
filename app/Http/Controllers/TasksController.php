@@ -104,6 +104,9 @@ class TasksController extends BaseController
         if ( isset( $_REQUEST["from"] ) && $_REQUEST["from"] != "" ) $where .= " AND DATE( date_start ) >= DATE( '".$_REQUEST["from"]."' ) ";
         if ( isset( $_REQUEST["to"] ) && $_REQUEST["to"] != "" ) $where .= " AND DATE( date_start ) <= DATE( '".$_REQUEST["to"]."' ) ";
 
+        $where .= (isset( $_REQUEST["archived"] ) && $_REQUEST["archived"] != "" ) ? "" : " AND ( archived = 0 OR archived IS NULL ) ";
+
+        
 
         return $where ;
     }
@@ -118,6 +121,8 @@ class TasksController extends BaseController
         if ( !is_object( $task ) ) return \Redirect::to("Admin")->send();
         if ( ! \AppConfig::canView("TASK", $task) ) return \Redirect::to("Tasks")->send();
         if ( ! \AppConfig::canEdit("TASK", $task ) ) return $this->cannotEdit();
+
+        $subtasks = $this->getSubTasksAction( $task->id );
 
 
         $creator = \App\User::where("id", $task->id_created_by )->first();
@@ -142,11 +147,94 @@ class TasksController extends BaseController
         $this->cont->body = view("tasks/detail", array(
             "task" => $task,
             "types" => $types,
-            "files" => $files
+            "files" => $files,
+            "subtasks" => $subtasks
         ));
 
         return $this->RenderView();
 
+    }
+
+    public function updateSubtaskAction()
+    {
+        $id = $_REQUEST["id"];
+        $title = $_REQUEST["name"];
+        $subTask = \App\Subtasks::where("id", $id)->first();
+        $subTask->title = $title;
+        $subTask->save();
+
+        return "OK";
+    }
+
+    public function changeSubtaskStatusAction()
+    {
+        $date = new \DateTime();
+        $id = $_REQUEST["id"];
+        $subtask = \App\Subtasks::where("id", $id)->first();
+        if ( (int)$subtask->completed === 1 )
+        {
+            $subtask->date_completed = NULL;
+            $subtask->completed = 0;
+            $subtask->completed_by = NULL;
+            $subtask->save();
+        }
+        else
+        {
+            $subtask->completed = 1;
+            $subtask->date_completed = $date->format("Y-m-d H:i:s");
+            $subtask->completed_by = $this->user->id;
+            $subtask->save();
+        }
+
+        return json_encode(
+            array(
+                "success" => 1,
+                "completed" => $subtask->completed
+            )
+        );
+    }
+
+    public function updateSubtaskOrderAction()
+    {
+        $id_page = $_REQUEST["id"];
+        $ids = $_REQUEST['ids'];
+        $id_array = explode('@#', $ids, -1);
+        $i = 1;
+        foreach ( $id_array as $id )
+        {
+            $section = \App\Subtasks::where('id', $id)->first();
+            $section->updateOrder( $i );
+            $i++;
+        }
+        return "OK";
+    }
+
+    public function newSubtaskAction()
+    {
+        $subTask = \App\Subtasks::create();
+        $subTask->id_task = $_REQUEST["id_task"];
+        $subTask->save();
+        $subTask->updateOrder();
+        return view("tasks/subtask", array(
+            "subtask" => $subTask
+        ));
+    }
+
+    public function getSubtasksAction( $id = null )
+    {
+        if ( is_null( $id ) ) $id = $_REQUEST["id"];
+        $subtasks = \App\Subtasks::where("id_task", $id)->orderBy("order", "ASC")->get();
+        $html = "";
+
+
+        foreach ( $subtasks as $st )
+        {
+            $html .= view("tasks/subtask", array(
+                "subtask" => $st
+            ));
+        }
+
+        return $html;
     }
 
 
@@ -236,11 +324,29 @@ class TasksController extends BaseController
 
     public function updateAction()
     {
+        $date = new \DateTime();
         $task = \App\Tasks::where( "id", $_REQUEST["id"] )->first();
+        if ( (int)$task->status !== 3 && (int)$_REQUEST["status"] === 3 ) $task->completed = $date->format("Y-m-d H:i:s");
+        $task->save();
         $task->update( $_REQUEST );
+        
         \NotificationLogic::editTask( $task );
 
         return \Redirect::to("Tasks");
+    }
+
+    public function archiveAction()
+    {
+        $task = \App\Tasks::where( "id", $_REQUEST["id"] )->first();
+        $task->archived = (int)$_REQUEST["archive"];
+        $task->save();
+        $message = ( $task->archive === 1 ) ? "Task archived successfully" : "Task restored successfully";
+        return json_encode(
+            array(
+                "success" => 1,
+                "message" => $message
+            )
+        );
     }
 
     public function addModalAction()

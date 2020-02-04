@@ -88,7 +88,7 @@ class WidgetsUser extends AdminOU
     public static function Tasks()
     {
         $user = \UserLogic::getUser();
-        $tasks = \App\Tasks::where('id_user', $user->id)->where("status", 1)->orderBy("date_start", "ASC")->take(20)->get();
+        $tasks = \App\Tasks::where('id_user', $user->id)->where("status", 1)->where("archived", 0)->orderBy("date_start", "ASC")->take(20)->get();
         $types = array();
         $typeIds = array();
         foreach ( $tasks as $task )

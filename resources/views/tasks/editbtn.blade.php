@@ -7,6 +7,23 @@
     @endif
 </div>
 @endif
+@if ( (int)$task->archived === 1 )
+<div class="btn btn-warning" id="archive" style="display: none;">
+    <i class="fas fa-archive"></i> Archive
+</div>
+<div class="btn btn-warning" id="unarchive">
+    <i class="fas fa-archive"></i> Restore
+</div>
+@else
+<div class="btn btn-warning" id="archive">
+    <i class="fas fa-archive"></i> Archive
+</div>
+<div class="btn btn-warning" id="unarchive" style="display: none;">
+    <i class="fas fa-archive"></i> Restore
+</div>
+@endif
+
+
 <div onclick="deleteElement()" class="btn btn-danger">
     <i class="fas fa-minus-circle"></i> Delete
 </div><div onclick="submitForm()" class="btn btn-primary">

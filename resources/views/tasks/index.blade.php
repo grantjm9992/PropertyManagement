@@ -50,6 +50,13 @@
             <label for="">To</label>
             <input type="text" name="to" id="to" class="form-control">
         </div>
+        <div class="col-12 col-lg-4 form-group">
+            <label for="">Include archived tasks</label>
+            <select name="archived" id="archived" class="form-control">
+                <option value="">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col-12" id="tasks">
@@ -85,7 +92,8 @@
                     id_type: $("#id_type").val(),
                     to: $('#to').val(),
                     from: $('#from').val(),
-                    status: $('#status').val()
+                    status: $('#status').val(),
+                    archived: $("#archived").val()
                 },
                 success: function (data)
                 {
@@ -104,7 +112,8 @@
                     id_type: $("#id_type").val(),
                     to: $('#to').val(),
                     from: $('#from').val(),
-                    status: $('#status').val()
+                    status: $('#status').val(),
+                    archived: $("#archived").val()
                 },
                 success: function (data)
                 {
