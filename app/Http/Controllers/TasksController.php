@@ -155,6 +155,17 @@ class TasksController extends BaseController
 
     }
 
+    public function deleteSubtaskAction()
+    {
+        $id = $_REQUEST["id"];
+        $subTask = \App\Subtasks::where("id", $id)->first();
+        $subTask->delete();
+        return json_encode(
+            array(
+                "success" => 1
+            )
+        );
+    }
     public function updateSubtaskAction()
     {
         $id = $_REQUEST["id"];

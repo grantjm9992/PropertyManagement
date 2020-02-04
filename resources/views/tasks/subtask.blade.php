@@ -18,6 +18,12 @@
             <input type="text" class="form-control " data-id="{{ $subtask->id }}" value="{{ $subtask->title }}">
         </div>
     </div>
+    <div style="width: 20px; text-align: center;    width: 38px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 38px;cursor: pointer;">
+        <i class="fas fa-trash text-danger" onclick="deleteSubtask({{ $subtask->id }})"></i>    
+    </div>
     <div style="line-height: 38px; width: 70px; display: inline-flex; justify-content: space-around;">
         <input type="text" value="1" hidden="" >
         <label class="switch" style="display: block;">

@@ -299,6 +299,39 @@
         });
     }
     
+    function deleteSubtask(id_subtask)
+    {
+        var options = Array();
+        options.type = "confirm";
+        options.title = "Warning";
+        options.text = "Are you sure you want to delete this subtask?";
+        options.thenFunction = confirmedDeleteSubtask;
+        options.thenParameters = id_subtask;
+        sweetAlert( options );
+
+    }
+
+    function confirmedDeleteSubtask(id_subtask)
+    {
+        
+        $.ajax({
+            type: "POST",
+            url: "Tasks.deleteSubtask",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id: id_subtask
+            },
+            success: function(data)
+            {
+                var response = $.parseJSON(data);
+                if ( response.success === 1 )
+                {
+                    $('[data-id="'+id_subtask+'"]').remove();
+                    animateTaskStatusBar("items");
+                }
+            }
+        })
+    }
 
     $(document).ready( function() {
 
