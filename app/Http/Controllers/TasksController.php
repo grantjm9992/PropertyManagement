@@ -405,6 +405,11 @@ class TasksController extends BaseController
         return json_encode( \App\Tasks::getPropertyOwnerCalendar() );
     }
 
+    public function getTeamCalendarAction()
+    {
+        return json_encode( \App\Tasks::getTeamCalendar() );
+    }
+
     public function getUserCalendarAction()
     {
         return json_encode( \App\Tasks::getMyCalendar() );        

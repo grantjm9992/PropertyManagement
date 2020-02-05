@@ -10,7 +10,7 @@ class WidgetsUser extends AdminOU
     {
         if ( isset( $_SESSION['id'] ) && $_SESSION['id'] != "" ) $user = \UserLogic::getUser();
 
-        $html = "";
+        $html = "";/*
         $personal = \App\WidgetsUser::where('id_user', $user->id )->orderBy('order', 'ASC')->get();
         if ( count( $personal ) > 0 )
         { 
@@ -31,6 +31,14 @@ class WidgetsUser extends AdminOU
 
                 $html .= self::$execute();
             }
+        }*/
+        $widgets = \App\WidgetsRoles::where('code_role', $user->role)->orderBy('order', 'ASC')->get();
+        foreach ( $widgets as $widgetrole )
+        {
+            $widget = \App\Widgets::where('id', $widgetrole->id_widget)->first();
+            $execute = $widget->function;
+
+            $html .= self::$execute();
         }
 
         return $html;
@@ -40,6 +48,12 @@ class WidgetsUser extends AdminOU
     {
         $messages = \App\Messages::getUnreadForUser();
         
+    }
+
+    public static function teamTaskCalendar()
+    {
+        $user = \UserLogic::getUser();
+        return view('widgets/team-calendar', array("user" => $user));
     }
 
     public static function Notifications()

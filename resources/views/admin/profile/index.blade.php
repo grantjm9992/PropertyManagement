@@ -39,7 +39,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div><!--
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 
 <script>

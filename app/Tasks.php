@@ -74,6 +74,40 @@ class Tasks extends Model
         return $arr;
     }
 
+    public static function  getTeamCalendar()
+    {
+        $user = \UserLogic::getUser();
+        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour', 'users.name', 'users.surname')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->join('users', 'tasks.id_user', 'users.id')->whereRaw("id_user IN (SELECT id FROM users WHERE id_company = ".$user->id_company." ) ")->get();
+        
+        $arr = array();
+        foreach ( $tasks as $row )
+        {
+            $start = new \DateTime( $row->date_start );
+            $end = new \DateTime( $row->date_end );
+            switch( (int)$row->status )
+            {
+                case 1:
+                    $colour = "#fb8c00";
+                    $textColour = "#fff";
+                break;
+                case 2:
+                case 3:
+                    $colour = "#55b559";
+                    $textColour = "#fff";
+                break;
+            }
+            $arr[] = array(
+                "id" => $row->id,
+                "title" => "$row->name $row->surname: $row->title",
+                "color" => $row->colour,
+                "textColor" => $row->text_colour,
+                "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
+                "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
+            );
+        }
+        return $arr;
+    }
+
     public static function getPropertyCalendar( $property )
     {
         $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_property", $property->id)->get();
