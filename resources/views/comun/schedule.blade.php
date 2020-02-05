@@ -58,6 +58,7 @@
             }
             ],
             eventClick: function(calEvent, jsEvent, view) {
+                console.log(calEvent);
                 window.location.href = "Tasks.edit?id="+calEvent.id;
             }
         });

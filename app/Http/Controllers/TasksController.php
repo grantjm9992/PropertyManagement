@@ -28,7 +28,7 @@ class TasksController extends BaseController
 
         $this->pageTitle = "Tasks";
         $this->iconClass = "fa-calendar";
-        $this->botonera = view("tasks/btns");
+        if ( $this->user->role != "PO" ) $this->botonera = view("tasks/btns");
         $this->cont->body = view('tasks/index', array(
             "tasks" => $listado,
             "user" => $this->user,
@@ -90,7 +90,7 @@ class TasksController extends BaseController
             }
             if ( $this->user->role == "PO" )
             {
-                $where .= " AND id_user = ".$this->user->id." ";
+                $where .= " AND ( id_user = ".$this->user->id." OR id_property IN (SELECT id FROM properties WHERE id_property_owner = ".$this->user->id." )  ) ";
             }
         }
         if ( !isset( $_REQUEST["from"] ) ) $where .= " AND ( DATE( date_start )  >= DATE( NOW() ) OR date_start IS NULL ) ";
@@ -398,6 +398,11 @@ class TasksController extends BaseController
         $id = $_REQUEST["id"];
         $property = \App\Properties::where("id", $id)->first();
         return json_encode( \App\Tasks::getPropertyCalendar( $property ) );
+    }
+
+    public function getPropertyOwnerCalendarAction()
+    {
+        return json_encode( \App\Tasks::getPropertyOwnerCalendar() );
     }
 
     public function getUserCalendarAction()

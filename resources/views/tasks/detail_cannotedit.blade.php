@@ -33,11 +33,11 @@
             </div>
             <div class="col-12 col-md-4 form-group">
                 <label for="">{{ $translator->get("start") }}</label>
-                <input type="text" name="" id="date_start" class="form-control" readonly>
+                <input type="text" name="" id="date_start" class="form-control" value="{{ $task->date_start }}" readonly>
             </div>
             <div class="col-12 col-md-4 form-group">
                 <label for="">{{ $translator->get("end") }}</label>
-                <input type="text" name="" id="date_end" class="form-control" readonly>
+                <input type="text" name="" id="date_end" class="form-control" value="{{ $task->date_end }}" readonly>
             </div>
             <div class="col-12 form-group">
                 <label for="">{{ $translator->get("description") }}</label>
@@ -73,15 +73,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    $(document).ready( function() {
-        $("#date_start").datetimepicker({
-            value: "{{ $task->date_start }}"
-        });
-        $("#date_end").datetimepicker({
-            value: "{{ $task->date_end }}"
-        });
-    })
-</script>

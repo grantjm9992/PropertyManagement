@@ -42,9 +42,41 @@ class Tasks extends Model
         return $tasks;
     }
 
+    public static function getPropertyOwnerCalendar()
+    {
+        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->join('properties', 'properties.id', '=', 'tasks.id_property')->where("id_property_owner", $_REQUEST["id"] )->get();
+        $arr = array();
+        foreach ( $tasks as $row )
+        {
+            $start = new \DateTime( $row->date_start );
+            $end = new \DateTime( $row->date_end );
+            switch( (int)$row->status )
+            {
+                case 1:
+                    $colour = "#fb8c00";
+                    $textColour = "#fff";
+                break;
+                case 2:
+                case 3:
+                    $colour = "#55b559";
+                    $textColour = "#fff";
+                break;
+            }
+            $arr[] = array(
+                "id" => $row->id,
+                "title" => "$row->title",
+                "color" => $row->colour,
+                "textColor" => $row->text_colour,
+                "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
+                "end" => $end->format("Y-m-d")."T".$end->format("H:i:s")
+            );
+        }
+        return $arr;
+    }
+
     public static function getPropertyCalendar( $property )
     {
-        $tasks = self::join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_property", $property->id)->get();
+        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_property", $property->id)->get();
         $arr = array();
         foreach ( $tasks as $row )
         {
@@ -77,7 +109,7 @@ class Tasks extends Model
 
     public static function getMyCalendar()
     {
-        $tasks = self::join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_user", \UserLogic::getUserId() )->whereRaw(self::makeWhere() )->get();
+        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_user", \UserLogic::getUserId() )->whereRaw(self::makeWhere() )->get();
         $arr = array();
         foreach ( $tasks as $row )
         {

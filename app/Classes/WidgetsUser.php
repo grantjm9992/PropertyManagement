@@ -61,6 +61,12 @@ class WidgetsUser extends AdminOU
         ));        
     }
 
+    public static function myPropertyCalendar()
+    {
+        $user = \UserLogic::getUser();
+        return view('widgets/property-owner-calendar', array("user" => $user));
+    }
+
     public static function propertyInformation()
     {
         $user = \UserLogic::getUser();
