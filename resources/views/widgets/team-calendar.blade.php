@@ -1,7 +1,7 @@
 <div class="col-12 col-lg-6">
     <div class="card">
         <div class="card-header card-header-tabs card-header-primary">
-            My property calendar
+            My team's taks
         </div>
         <div class="card-body">
             <div id="taskcalendar"></div>
