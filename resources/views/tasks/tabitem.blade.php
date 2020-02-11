@@ -24,7 +24,7 @@
                 <td>{{ $task->title }}</td>
                 <td class="td-actions text-right">
                     <a href="Tasks.edit?id={{ $task->id }}" title="Edit Task" class="" onclick="editTask({{ $task->id }})">
-                        <i class="fas fa-pencil text-primary"></i>
+                        <i class="fas fa-pencil-alt text-primary"></i>
                     </a>
                     <div  rel="tooltip" title="Remove" class="d-inline-block" onclick="deleteTask({{$task->id}})">
                         <i class="fas fa-trash text-danger"></i>
