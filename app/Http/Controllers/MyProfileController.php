@@ -77,6 +77,42 @@ class MyProfileController extends BaseController
         }
         return "OK";
     }
+
+    public function updateDashboardAction()
+    {
+        $leftIds = $_REQUEST["leftIds"];
+        $rightIds = $_REQUEST["rightIds"];
+
+        $leftIdArray = explode("@#", $leftIds, -1);
+        $rightIdArray = explode("@#", $rightIds, -1);
+
+        $appConfig = \App\AppConfig::where("id_user", $this->user->id)->first();
+
+        if ( is_object( $appConfig ) )
+        {        
+
+            $config = json_decode($appConfig->config);
+            $config->dashboard->left = $leftIdArray;
+            $config->dashboard->right = $rightIdArray;
+    
+        }
+        else
+        {
+            $appConfig = new \App\AppConfig();
+            $appConfig->id_user = $this->user->id;
+            $config = array(
+                "dashboard" => array(
+                    "left" => $leftIdArray,
+                    "right" => $rightIdArray
+                )
+            );
+        }
+
+        $appConfig->config = json_encode($config);
+        $appConfig->save();
+
+        return "OK";
+    }
 }
 
 

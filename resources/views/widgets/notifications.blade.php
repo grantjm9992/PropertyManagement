@@ -1,4 +1,3 @@
-<div class="col-12 col-lg-6">
     <div class="card message-widget">
         <div class="card-header">
             New notifications
@@ -30,4 +29,3 @@
             </a>
         </div>
     </div>
-</div>

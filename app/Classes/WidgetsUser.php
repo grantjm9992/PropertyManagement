@@ -33,38 +33,61 @@ class WidgetsUser extends AdminOU
                 $html .= self::$execute();
             }
         }*/
-        $widgets = \App\WidgetsRoles::where('code_role', $user->role)->orderBy('order', 'ASC')->get();
-        foreach ( $widgets as $widgetrole )
+        $appConfig = \App\AppConfig::where("id_user", $user->id)->first();
+        if ( is_object( $appConfig ) ) 
         {
-            $widget = \App\Widgets::where('id', $widgetrole->id_widget)->first();
-            $execute = $widget->function;
-            if ( $widgetrole->side == "R" )
+            $config = json_decode($appConfig->config);
+            foreach ( $config->dashboard->right as $id )
             {
-                $htmlRight .= self::$execute();
+                $widget = \App\Widgets::where('id', $id)->first();
+                $execute = $widget->function;
+                $htmlRight .= self::$execute($widget);
             }
-            else
+            foreach ( $config->dashboard->left as $id )
             {
-                $htmlLeft .= self::$execute();
+                $widget = \App\Widgets::where('id', $id)->first();
+                $execute = $widget->function;
+                $htmlLeft .= self::$execute($widget);
             }
-            
+        }
+        else
+        {
+            $widgets = \App\WidgetsRoles::where('code_role', $user->role)->orderBy('order', 'ASC')->get();
+            foreach ( $widgets as $widgetrole )
+            {
+                $widget = \App\Widgets::where('id', $widgetrole->id_widget)->first();
+                $execute = $widget->function;
+                if ( $widgetrole->side == "R" )
+                {
+                    $htmlRight .= self::$execute($widget);
+                }
+                else
+                {
+                    $htmlLeft .= self::$execute($widget);
+                }
+                
+            }
         }
 
         return array($htmlLeft, $htmlRight);
     }
 
-    public static function Messages()
+    public static function Messages($widget)
     {
         $messages = \App\Messages::getUnreadForUser();
         
     }
 
-    public static function teamTaskCalendar()
+    public static function teamTaskCalendar($widget)
     {
         $user = \UserLogic::getUser();
-        return view('widgets/team-calendar', array("user" => $user));
+        return view('widgets/team-calendar', array(
+            "user" => $user,
+            "widgetId" => $widget->id
+        ));
     }
 
-    public static function Notifications()
+    public static function Notifications($widget)
     {
         $notifications = \App\Notifications::getUnseenForUser();
         $user = \UserLogic::getUser();
@@ -79,28 +102,35 @@ class WidgetsUser extends AdminOU
         }
 
         return view("notifications/skeleton", array(
-            "notifications" => $ntf
+            "notifications" => $ntf,
+            "widgetId" => $widget->id
         ));        
     }
 
-    public static function myPropertyCalendar()
+    public static function myPropertyCalendar($widget)
     {
         $user = \UserLogic::getUser();
-        return view('widgets/property-owner-calendar', array("user" => $user));
+        return view('widgets/property-owner-calendar', array(
+            "user" => $user,
+            "widgetId" => $widget->id
+        ));
     }
 
-    public static function propertyInformation()
+    public static function propertyInformation($widget)
     {
         $user = \UserLogic::getUser();
         $property = \App\Properties::where("id_property_owner", $user->id)->orderBy("information_complete", "ASC")->first();
         return view("adminproperties/informationprogress", array(
-            "property" => $property
+            "property" => $property,
+            "widgetId" => $widget->id
         ));
     }
 
-    public static function getMyCalendar()
+    public static function getMyCalendar($widget)
     {
-        return view('tasks/calendarskeleton');
+        return view('tasks/calendarskeleton', array(
+            "widgetId" => $widget->id
+        ));
     }
 
     public static function getMyPropertyCalendar()
@@ -113,7 +143,7 @@ class WidgetsUser extends AdminOU
         
     }
 
-    public static function Tasks()
+    public static function Tasks($widget)
     {
         $user = \UserLogic::getUser();
         $tasks = \App\Tasks::join("tasks_users", "tasks_users.id_task", "=", "tasks.id")->where("tu_id_user", $user->id)->where("status", 1)->where("archived", 0)->orderBy("date_start", "ASC")->take(20)->get();
@@ -148,12 +178,13 @@ class WidgetsUser extends AdminOU
         }
         return view('tasks/skeleton', array(
             "tabs" => $tabs,
-            "tabInfo" => $tabinfo
+            "tabInfo" => $tabinfo,
+            "widgetId" => $widget->id
         ));
     }
 
 
-    public static function directMessage()
+    public static function directMessage($widget)
     {        
         $user = \UserLogic::getUser();
         $conversationHTML = "";
@@ -194,7 +225,7 @@ class WidgetsUser extends AdminOU
     }
 
     
-    public function defaultAction() {
+    public function defaultAction($widget) {
         $convo = ( isset( $_REQUEST["id"] ) && $_REQUEST["id"] != "" ) ? $this->getConversationAction() : "";
         $this->pageTitle = "Messages";
         $this->iconClass = "fa-envelope";

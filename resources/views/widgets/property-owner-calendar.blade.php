@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card widget-s" widget-id="{{ $widgetId }}">
     <div class="card-header">
         <h3 class="card-title"> My property calendar</h3>
         <div class="card-tools">
