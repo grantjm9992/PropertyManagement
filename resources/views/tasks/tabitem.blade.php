@@ -26,7 +26,7 @@
                     <a href="Tasks.edit?id={{ $task->id }}" title="Edit Task" class="" onclick="editTask({{ $task->id }})">
                         <i class="fas fa-pencil text-primary"></i>
                     </a>
-                    <div type="button" rel="tooltip" title="Remove" class="" onclick="deleteTask({{$task->id}})">
+                    <div  rel="tooltip" title="Remove" class="d-inline-block" onclick="deleteTask({{$task->id}})">
                         <i class="fas fa-trash text-danger"></i>
                     </div>
                 </td>
