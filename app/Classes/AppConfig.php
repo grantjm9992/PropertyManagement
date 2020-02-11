@@ -235,7 +235,11 @@ class AppConfig
         if ( $user->role == "SA" ) $response = true;
         if ( (int)$task->id_company === (int)$user->id_company && $user->role == "AA"  ) $response = true;
         if ( (int)$task->id_created_by === (int)$user->id ) $response = true;
-        if ( (int)$task->id_user === (int)$user->id ) $response = true;
+        $taskUsers = \App\TasksUsers::where("id_task", $task->id )->get();
+        foreach( $taskUsers as $row )
+        {
+            if ( (int)$row->tu_id_user === (int)$user->id ) $response = true;
+        }
         if ( (int)$task->id_property != "" )
         {
             $property = \App\Properties::where( "id", $task->id_property )->first();
@@ -276,6 +280,11 @@ class AppConfig
         if ( $user->role == "SA" ) $response = true;
         if ( (int)$task->id_created_by === (int)$user->id ) $response = true;
         if ( (int)$task->id_user === (int)$user->id ) $response = true;
+        $taskUsers = \App\TasksUsers::where("id_task", $task->id )->get();
+        foreach( $taskUsers as $row )
+        {
+            if ( (int)$row->tu_id_user === (int)$user->id ) $response = true;
+        }
 
         return $response;
     }
