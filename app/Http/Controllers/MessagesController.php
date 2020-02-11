@@ -49,12 +49,18 @@ class MessagesController extends BaseController
 
     public function newModalAction()
     {
-        return view("modal/addmessage");
+        $users = \UserLogic::getUsersForUser();
+        return view("modal/addmessage", array(
+            "users" => $users
+        ));
     }
 
     public function genericAddModalAction()
     {
-        return view("modal/add_message");        
+        $users = \UserLogic::getUsersForUser();
+        return view("modal/add_message", array(
+            "users" => $users
+        ));        
     }
 
     public function addFromConversationAction()

@@ -30,8 +30,13 @@
         @if ( $user->role != "SA" )
         <div class="col-12 col-lg-4 form-group">
             <label for="">Assigned to</label>
-            <input type="text" name="id_user" id="id_user" hidden />
-            <input type="text" id="user" class="form-control" autocomplete="off">
+            <div class="select2-purple">
+                <select class="select2" multiple="multiple" data-placeholder="Select a State" name="assignedTo[]" id="assignedTo" data-dropdown-css-class="select2-purple" style="width: 100%;">
+                    @foreach( $users as $user )
+                    <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         @endif
         <div class="col-12 col-lg-4 form-group">
@@ -67,12 +72,7 @@
 
 <script>
     $(document).ready( function() {
-        $('#user').mention({
-            url: "Users.getMention?mycompany=1",
-            selectFunction: selectContact
-        });
-
-
+        $('.select2').select2()
         $('#from').datepicker({
             dateFormat: "yy-mm-dd"
         });
@@ -87,7 +87,7 @@
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 url: "Tasks.getTasks",
                 data: {
-                    id_user: $('#id_user').val(),
+                    id_user: $('#assignedTo').val(),
                     id_company: $('#id_company').val(),
                     id_type: $("#id_type").val(),
                     to: $('#to').val(),
@@ -107,7 +107,7 @@
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 url: "Tasks.getTasks",
                 data: {
-                    id_user: $('#id_user').val(),
+                    id_user: $('#assignedTo').val(),
                     id_company: $('#id_company').val(),
                     id_type: $("#id_type").val(),
                     to: $('#to').val(),
@@ -122,44 +122,4 @@
             })  
         });
     });
-	function refreshMention()
-	{
-		$('#id_user').val('');
-		$('#user').val('');
-		$('#user').show();
-		$('.mention-alert').remove();
-		$('#mentionAlert').remove();
-		$('#user').focus();
-        $.ajax({
-            type: "POST",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            url: "Tasks.getTasks",
-            data: {
-                id_user: $('#id_user').val(),
-                id_company: $('#id_company').val(),
-                id_type: $("#id_type").val()
-            },
-            success: function (data)
-            {
-                $('#tasks').html(data);
-            }
-        })
-	}
-	function selectContact( info )
-	{
-        $('#id_user').val( info.id );
-        $.ajax({
-            type: "POST",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            url: "Tasks.getTasks",
-            data: {
-                id_user: $('#id_user').val(),
-                id_company: $('#id_company').val()
-            },
-            success: function (data)
-            {
-                $('#tasks').html(data);
-            }
-        })
-	}
 </script>

@@ -11,7 +11,7 @@ class Tasks extends Model
     public static function getForUser( $id_user )
     {
         
-        $tasks = self::where('id_user', $id_user )->whereRaw( self::makeWhere() )->orderBy('date_start', 'ASC')->get();
+        $tasks = self::join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $id_user )->whereRaw( self::makeWhere() )->orderBy('date_start', 'ASC')->get();
         foreach ( $tasks as $task )
         {
             $task->creator = User::where("id", $task->id_created_by )->first();
@@ -22,7 +22,7 @@ class Tasks extends Model
 
     public static function getUpcomingForUser( $id_user )
     {
-        $task = self::where("id_user", $id_user )->whereRaw("date_start > NOW() " )->orderBy("date_start", "ASC")->get();
+        $tasks = self::join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $id_user )->whereRaw("date_start > NOW() " )->orderBy("date_start", "ASC")->get();
         foreach ( $tasks as $task )
         {
             $task->creator = User::where("id", $task->id_created_by )->first();
@@ -33,7 +33,7 @@ class Tasks extends Model
 
     public static function getPendingForUser( $id_user )
     {
-        $task = self::where("id_user", $id_user )->where("status", 1 )->orderBy("date_start", "ASC")->get();
+        $tasks = self::join("tasks_users", "tasks_users.id_task", "=", "tasks.id")->where("tu_id_user", $id_user )->where("status", 1 )->orderBy("date_start", "ASC")->get();
         foreach ( $tasks as $task )
         {
             $task->creator = User::where("id", $task->id_created_by )->first();
@@ -143,7 +143,7 @@ class Tasks extends Model
 
     public static function getMyCalendar()
     {
-        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->where("id_user", \UserLogic::getUserId() )->whereRaw(self::makeWhere() )->get();
+        $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $id_user )->whereRaw(self::makeWhere() )->get();
         $arr = array();
         foreach ( $tasks as $row )
         {

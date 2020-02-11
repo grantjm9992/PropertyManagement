@@ -23,16 +23,22 @@ class AdminController extends BaseController
     }
     
     public function defaultAction() {
-        $this->cont->body = "<div class='row'>".\WidgetsUser::getWidgets()."</div>";
+        list($leftWidgets, $rightWidgets) = \WidgetsUser::getWidgets();
+        $this->cont->body = view('admin/index', array(
+            "user" => $this->user,
+            "leftwidgets" => $leftWidgets,
+            "rightwidgets" => $rightWidgets
+        ));
         return $this->RenderView();
     }
 
     protected function SuperAdmin()
     {
-        $widgets = \WidgetsUser::getWidgets();
-        return view('admin/index', array(
+        list($leftWidgets, $rightWidgets) = \WidgetsUser::getWidgets();
+        view('admin/index', array(
             "user" => $this->user,
-            "widgets" => $this->widgets
+            "leftwidgets" => $leftWidgets,
+            "rightWidgets" => $rightWidgets
         ));
     }
 

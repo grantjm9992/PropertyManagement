@@ -1,12 +1,18 @@
 
-<div class="col-lg-6 col-md-12">
-    <div class="card">
-        <div class="card-header card-header-tabs card-header-primary">
-            My calendar
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"> My calendar</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
         </div>
-        <div class="card-body">
-            <div id="usertaskcalendar"></div>
-        </div>
+    </div>
+    <div class="card-body">
+        <div id="usertaskcalendar"></div>
     </div>
 </div>
 <input id="type" hidden />

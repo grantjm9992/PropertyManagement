@@ -41,6 +41,13 @@ class Conversations extends Model
         $this->id_sender = $last_message->id_sender;
     }
 
+    public static function getLastForUser()
+    {
+        $id = \UserLogic::getUserId();
+        $conversation = ConversationsUsers::where("id_user", $id)->orderBy("last_message", "DESC")->first();
+        return $conversation;
+    }
+
 
     public static function getUnseenForUser()
     {

@@ -21,10 +21,10 @@ class TasksController extends BaseController
     public function defaultAction() {
         if ( !is_object( $this->user ) ) return \Redirect::to("Admin");
         
-
         $listado = $this->getTasksAction();
         $companies = \App\Companies::orderBy("name", "ASC")->get();
         $types = \App\TaskType::orderBy("description", "ASC")->get();
+        $users = \UserLogic::getUsersForUser();
 
         $this->pageTitle = "Tasks";
         $this->iconClass = "fa-calendar";
@@ -33,7 +33,8 @@ class TasksController extends BaseController
             "tasks" => $listado,
             "user" => $this->user,
             "companies" => $companies,
-            "types" => $types
+            "types" => $types,
+            "users" => $users
         ));
         return $this->RenderView();
     }
@@ -49,7 +50,7 @@ class TasksController extends BaseController
         {
             $this->decorateRow();
             $this->campos[] = array(
-                "title" => "User",
+                "title" => "User(s)",
                 "name" => "user"
             );
         }
@@ -70,35 +71,37 @@ class TasksController extends BaseController
     {
         foreach ( $this->data as $row )
         {
-            $user = \App\User::where("id", $row->id_user )->first();
-            $row->user = $user->name." ".$user->surname;
+            $users = \App\TasksUsers::Where("id_task", $row->id)->get();
+            foreach ( $users as $user ) 
+            {
+                $user = \App\User::where("id", $user->tu_id_user)->first();
+                $row->user .= "$user->name $user->surname; ";
+            }
         }
     }
 
     public function makeWhere()
     {
         $where = " 1 ";
-        if ( !isset( $_REQUEST["id_user"] ) || $_REQUEST["id_user"] == "")
+
+        if ( $this->user->role != "SA" ) $where .= " AND id_company = ".$this->user->id_company;
+
+        if ( isset( $_REQUEST["id_user"] ) && count($_REQUEST["id_user"]) > 0 )
         {
-            if ( $this->user->role == "AA" )
+            $where .= " AND id IN (SELECT id_task FROM tasks_users WHERE tu_id_user IN (";
+            foreach( $_REQUEST["id_user"] as $user )
             {
-                $where .= " AND id_company = ".$this->user->id_company;
+                $where .= " $user,";
             }
-            if ( $this->user->role == "M" )
-            {
-                $where .= " AND ( id_user = ".$this->user->id." OR id_user IN ( SELECT id_property_owner FROM properties WHERE id_assigned_to = ".$this->user->id." ) ) ";
-            }
-            if ( $this->user->role == "PO" )
-            {
-                $where .= " AND ( id_user = ".$this->user->id." OR id_property IN (SELECT id FROM properties WHERE id_property_owner = ".$this->user->id." )  ) ";
-            }
+            $where = rtrim($where, ",");
+            $where .= ") ) ";
         }
+
         if ( !isset( $_REQUEST["from"] ) ) $where .= " AND ( DATE( date_start )  >= DATE( NOW() ) OR date_start IS NULL ) ";
         if ( isset( $_REQUEST["id_type"] ) && $_REQUEST["id_type"] != "" ) $where .= " AND id_type = ".$_REQUEST["id_type"];
         if ( isset( $_REQUEST["status"] ) && $_REQUEST["status"] != "" ) $where .= " AND status = ".$_REQUEST["status"];
         if ( isset( $_REQUEST["id_company"] ) && $_REQUEST["id_company"] != "" ) $where .= " AND id_company = ".$_REQUEST["id_company"];
         if ( isset( $_REQUEST["id_property"] ) && $_REQUEST["id_property"] != "" ) $where .= " AND id_property = ".$_REQUEST["id_property"];
-        if ( isset( $_REQUEST["id_user"] ) && $_REQUEST["id_user"] != "" ) $where .= " AND id_user = ".$_REQUEST["id_user"];
         if ( isset( $_REQUEST["pp"] ) && $_REQUEST["pp"] == "1" ) $where .= " AND date_start < NOW() ";
         if ( isset( $_REQUEST["pp"] ) && $_REQUEST["pp"] == "all" ) $where .= "  ";
         if ( isset( $_REQUEST["from"] ) && $_REQUEST["from"] != "" ) $where .= " AND DATE( date_start ) >= DATE( '".$_REQUEST["from"]."' ) ";
@@ -137,6 +140,15 @@ class TasksController extends BaseController
         $tw = \App\TasksWatching::where("id_user", $this->user->id)->where("id_task", $task->id)->first();
         $watching = ( is_object( $tw ) ) ? 1 : 0;
 
+        $usersTask = \App\TasksUsers::where("id_task", $task->id)->get();
+        $userArray = array();
+        foreach ( $usersTask as $row )
+        {
+            $userArray[] = $row->tu_id_user;
+        }
+
+        $users = \UserLogic::getUsersForUser();
+
         $this->botonera = view("tasks/editbtn", array(
             "url" => "Tasks",
             "watch" => $watching,
@@ -148,7 +160,10 @@ class TasksController extends BaseController
             "task" => $task,
             "types" => $types,
             "files" => $files,
-            "subtasks" => $subtasks
+            "subtasks" => $subtasks,
+            "users" => $users,
+            "assigned" => \json_encode($userArray)
+
         ));
 
         return $this->RenderView();
@@ -323,10 +338,19 @@ class TasksController extends BaseController
         $date = new \DateTime();
         $task = \App\Tasks::create( $_REQUEST );
         $task->id_created_by = $_SESSION['id'];
+        $task->id_company = $this->user->id_company;
         $task->created_on = $date->format('Y-m-d H:i:s');
         $task->status = 1;
         $task->save();
         
+        foreach ( $_REQUEST["assignedTo"] as $row )
+        {
+            $userTask = new \App\TasksUsers();
+            $userTask->id_task = $task->id;
+            $userTask->tu_id_user = $row;
+            $userTask->save();
+        }
+
         \NotificationLogic::newTask( $task );
 
         if ( isset ( $_SERVER["HTTP_REFERER"] ) ) return \Redirect::to( $_SERVER["HTTP_REFERER"] );
@@ -340,6 +364,19 @@ class TasksController extends BaseController
         if ( (int)$task->status !== 3 && (int)$_REQUEST["status"] === 3 ) $task->completed = $date->format("Y-m-d H:i:s");
         $task->save();
         $task->update( $_REQUEST );
+
+        $usersTask = \App\TasksUsers::where("id_task", $task->id)->get();
+        foreach ( $usersTask as $row )
+        {
+            $row->delete();
+        }
+        foreach ( $_REQUEST["assignedTo"] as $row )
+        {
+            $userTask = new \App\TasksUsers();
+            $userTask->id_task = $task->id;
+            $userTask->tu_id_user = $row;
+            $userTask->save();
+        }
         
         \NotificationLogic::editTask( $task );
 
@@ -364,7 +401,8 @@ class TasksController extends BaseController
     {
         $types = \App\TaskType::get();
         return view('modal/addtask', array(
-            "types" => $types
+            "types" => $types,
+            "users" => \UserLogic::getUsersForUser()
         ));
     }
 

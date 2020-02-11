@@ -119,7 +119,7 @@ class ReservationsController extends BaseController
     {
         $id_property = $_REQUEST["id_property"];
         $rental = \App\Rentals::create( $_REQUEST );
-        return \Redirect::to("Reservations.detail?id=$rental->id")->send();
+        return \Redirect::to("PropertyCalendar??id=$rental->id")->send();
     }
 
     public function getUntiWhenAction()

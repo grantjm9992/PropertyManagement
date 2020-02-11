@@ -14,7 +14,7 @@
         {!! $message->message !!}
     </div>
     <div class="d-inline-flex justify-content-between w-100">
-        <div class="msg-sender">{{ $sender->name }} {{ $sender->surname }}</div>
+        <div class="msg-sender">{{ $message->sender }}</div>
         <div class="msg-sender">{{ $message->date_sent }}</div>
     </div>
 </div>

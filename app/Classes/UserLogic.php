@@ -18,4 +18,10 @@ class UserLogic extends AdminOU
 
         return (int)$user->id;
     }
+
+    public static function getUsersForUser()
+    {
+        $user = self::getUser();
+        return \App\User::get();
+    }
 }

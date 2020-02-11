@@ -7,7 +7,7 @@
     {!! $notification->date !!}
     @if ( (int)$notification->is_seen === 0 )
         <button type="button" class="close" onclick="seenNotification({{ $notification->id }})">
-            <i class="material-icons">close</i>
+            <i class="fas fa-times-circle"></i>
         </button>
     @endif
 </div>

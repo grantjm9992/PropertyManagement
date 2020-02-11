@@ -1,21 +1,22 @@
 
-<div class="col-lg-6 col-md-12">
-    <div class="card">
-        <div class="card-header card-header-tabs card-header-warning">
-            <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                    <span class="nav-tabs-title">Notifications:</span>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Notifications</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
         </div>
-        <div class="card-body">
-            <div class="tab-content">
-                {!! $notifications !!}
-            </div>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            {!! $notifications !!}
         </div>
     </div>
 </div>
-
 <script>
     function seenNotification( id )
     {

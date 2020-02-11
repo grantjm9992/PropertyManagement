@@ -40,7 +40,7 @@ class User extends Model
         }
         if ( $user->role == "M" || $user->role == "AA" )
         {
-            $users = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company $where ")->get();
+            $users = self::whereRaw("id IN (SELECT id_property_owner FROM properties WHERE id_assigned_to = $user->id ) OR id_company = $user->id_company AND $where ")->get();
         }
         if ( $user->role == "WA" || $user->role = "SA" )
         {

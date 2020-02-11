@@ -50,9 +50,13 @@
             </div>
             <div class="col-12 col-md-6 form-group">
                 <label for="">Assigned to</label>
-                <input type="text" id="user" style="display:none;" class="form-control" autocomplete="off">
-                <input type="text" name="id_user" id="id_user" hidden value="{{ $task->id_user }}" />
-                <div id="mentionAlert" class="alert alert-primary mention-alert" style=""><div>{{ $task->assigned_to }}</div>&nbsp;&nbsp;<i onclick="refreshMention()" class="fas fa-times-circle"></i></div>
+                <div class="select2-purple">
+                <select class="select2" multiple="multiple" data-placeholder="Select a State" name="assignedTo[]" id="assignedTo" data-dropdown-css-class="select2-purple" style="width: 100%;">
+                    @foreach( $users as $user )
+                    <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
+                    @endforeach
+                </select>
+                </div>
             </div>
         </div>
     </div>
@@ -121,27 +125,7 @@
             value: "{{ $task->date_end }}"
         });
     })
-
-    $(document).ready( function() {
-        $('#user').mention({
-            url: "Users.getMention",
-            selectFunction: selectContact
-        });
-    });
-	function refreshMention()
-	{
-		$('#id_user').val('');
-		$('#user').val('');
-		$('#user').show();
-		$('.mention-alert').remove();
-		$('#mentionAlert').remove();
-		$('#user').focus();
-	}
-
-	function selectContact( info )
-	{
-		$('#id_user').val( info.id );
-	}
+    
 
     function submitForm()
     {
@@ -209,6 +193,8 @@
                 updateOrder();
             }
         });
+        $('#assignedTo').val({!! $assigned !!});
+        $('.select2').select2()
         animateTaskStatusBar("items");
     })
 
@@ -334,7 +320,6 @@
     }
 
     $(document).ready( function() {
-
         $('body').delegate('[divid]', 'click', function() {
             $(this).hide();
             var val = $(this).attr('divid');

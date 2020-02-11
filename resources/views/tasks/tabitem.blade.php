@@ -27,7 +27,7 @@
                         <i class="material-icons">edit</i>
                     </a>
                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" onclick="deleteTask({{$task->id}})">
-                        <i class="material-icons">close</i>
+                        <i class="fas fa-trash"></i>
                     </button>
                 </td>
             </tr>

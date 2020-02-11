@@ -12,8 +12,11 @@
             <div class="row">
               <div class="col-12 form-group">
                 <label for="user">To</label>
-                <input type="text" id="user" required class="form-control" autocomplete="off">
-                <input type="text" hidden name="id_user" id="id_user" required>
+                <select class="form-control select2" name="id_user" id="id_user" data-dropdown-css-class="select2-purple" style="width: 100%;">
+                    @foreach( $users as $user )
+                    <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
+                    @endforeach
+                </select>
               </div>
               <div class="form-group col-12">
                 <textarea name="message" id="message" cols="30" rows="5" placeholder="Message" class="form-control"></textarea>
@@ -31,11 +34,8 @@
 
 <script>
   $(document).ready( function() {
+    $('.select2').select2();
     $('#modal').modal("show");
-    $('#user').mention({
-			url: "Users.getMention",
-			selectFunction: selectContact
-		});
   });
 
   function submitTaskForm()
@@ -58,19 +58,4 @@
       }
     }
   }
-
-	function selectContact( info )
-	{
-		$('#id_user').val( info.id );
-	}
-
-	function refreshMention()
-	{
-		$('#id_user').val('');
-		$('#user').val('');
-		$('#user').show();
-		$('.mention-alert').remove();
-		$('#mentionAlert').remove();
-		$('#user').focus();
-	}
 </script>

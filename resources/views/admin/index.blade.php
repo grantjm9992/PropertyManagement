@@ -1,69 +1,85 @@
-@inject('translator', 'App\Providers\TranslationProvider')
-@if ( $user->role == "SA" )
-<div class="container-fluid">
-    <div class="row">
-            <h5 class="width100">Popular actions</h5>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Users.new">
-                    <i class="fas fa-user-plus"></i> Add User
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Admin.viewAs">
-                    <i class="fas fa-user-secret"></i> Virtual Session
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Users.new">
-                    <i class="fas fa-user-plus"></i> Add User
-                </a>
-            </div>
-    </div>
-</div>
-@elseif ( $user->role == "WA" )
 
-@elseif ( $user->role == "AA" )
-<div class="container-fluid">
-    <div class="row">
-            <h5 class="width100">Popular actions</h5>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Users.new">
-                    <i class="fas fa-user-plus"></i> Add User
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Admin.viewAs">
-                    <i class="fas fa-user-secret"></i> Virtual Session
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
-                <a class="btn btn-black width100" href="Users.new">
-                    <i class="fas fa-user-plus"></i> Add User
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-@elseif ( $user->role == "M" )
-<div class="container-fluid">
-    <div class="row">
-            <h5 class="width100">Quick actions</h5>
-            <div class="col-12 text-center pt-3">
-                <span onclick="addTask()" title="Add task" class="quick-action">
-                   <i class="fas fa-calendar-plus"></i>
-                </span>
-                <span onclick="addPerson()" title="Add person" class="quick-action">
-                   <i class="fas fa-address-book"></i>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-@elseif ( $user->role == "PO" )
-
-@endif
+<script src="js/pages/dashboard.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <div class="container-fluid" style="margin-top: 30px;">
+    <!-- Small boxes (Stat box) -->
     <div class="row">
-        {!! $widgets !!}
+        <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+            <h3>150</h3>
+
+            <p>New Orders</p>
+            </div>
+            <div class="icon">
+            <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+            <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+            <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+            <h3>44</h3>
+
+            <p>User Registrations</p>
+            </div>
+            <div class="icon">
+            <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+            <div class="inner">
+            <h3>65</h3>
+
+            <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        </div>
+        <!-- ./col -->
     </div>
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+        {!! $leftwidgets !!}
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5 connectedSortable">
+        {!! $rightwidgets !!}
+        </section>
+        <!-- right col -->
+    </div>
+    <!-- /.row (main row) -->
 </div>
