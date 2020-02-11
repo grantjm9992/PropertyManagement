@@ -29,6 +29,7 @@
               </p>
             </a>
           </li>
+          @if ( $user->role != "PO" )
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -57,6 +58,7 @@
               @endforeach
             </ul>
           </li>
+          @endif
           <li class="nav-item">
             <a href="Notifications" class="nav-link">
               <i class="nav-icon fas fa-bell"></i>
@@ -76,6 +78,7 @@
               </p>
             </a>
           </li>
+          @if ( $user->role != "PO" )
           <li class="nav-item">
             <a href="AdminProperties" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
@@ -92,6 +95,16 @@
               </p>
             </a>
           </li>
+          @else
+          <li class="nav-item">
+            <a href="MyProperties" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                My properties
+              </p>
+            </a>
+          </li>
+          @endif
           <li class="nav-item">
             <a href="Messages" class="nav-link">
               <i class="nav-icon fas fa-comment"></i>
@@ -100,6 +113,7 @@
               </p>
             </a>
           </li>
+          @if ( $user->role == "SA" )
           <li class="nav-header">
             <i class="nav-icon fas fa-code"></i>
             WEBSITE ADMIN
@@ -160,6 +174,7 @@
               </p>
             </a>
           </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
