@@ -143,6 +143,7 @@ class Tasks extends Model
 
     public static function getMyCalendar()
     {
+        $id_user = \UserLogic::getUserId();
         $tasks = self::select('tasks.*', 'task_type.colour', 'task_type.text_colour')->join('task_type', 'tasks.id_type', '=', 'task_type.id')->join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $id_user )->whereRaw(self::makeWhere() )->get();
         $arr = array();
         foreach ( $tasks as $row )
