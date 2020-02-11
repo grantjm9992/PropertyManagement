@@ -138,7 +138,7 @@ class WidgetsUser extends AdminOU
                 "type" => $type,
                 "i" => $i
             ));
-            $tasks = \App\Tasks::join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $id_user )->where("id_type", $type->id)->where("status", 1)->get();
+            $tasks = \App\Tasks::join("tasks_users", "tasks.id", "=", "tasks_users.id_task")->where("tu_id_user", $user->id )->where("id_type", $type->id)->where("status", 1)->get();
             $tabinfo .= view("tasks/tabitem", array(
                 "type" => $type,
                 "tasks" => $tasks,
