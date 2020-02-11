@@ -23,12 +23,12 @@
                 </td>
                 <td>{{ $task->title }}</td>
                 <td class="td-actions text-right">
-                    <a href="Tasks.edit?id={{ $task->id }}" title="Edit Task" class="btn btn-primary btn-link btn-sm" onclick="editTask({{ $task->id }})">
-                        <i class="material-icons">edit</i>
+                    <a href="Tasks.edit?id={{ $task->id }}" title="Edit Task" class="" onclick="editTask({{ $task->id }})">
+                        <i class="fas fa-pencil text-primary"></i>
                     </a>
-                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" onclick="deleteTask({{$task->id}})">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <div type="button" rel="tooltip" title="Remove" class="" onclick="deleteTask({{$task->id}})">
+                        <i class="fas fa-trash text-danger"></i>
+                    </div>
                 </td>
             </tr>
             @endforeach

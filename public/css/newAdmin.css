@@ -473,3 +473,16 @@ input:checked + .slider:before {
   margin: 0 3px;
   border-radius: 50%;
 }
+
+
+.table .td-total {
+  font-weight: 500;
+  font-size: 1.0625rem;
+  padding-top: 20px;
+  text-align: right;
+}
+
+.table .td-actions .btn {
+  margin: 0px;
+  padding: 5px;
+}
