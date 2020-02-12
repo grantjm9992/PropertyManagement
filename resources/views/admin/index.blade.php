@@ -25,12 +25,12 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <h3>{{ $property_count }}</h3>
 
-            <p>Bounce Rate</p>
+            <p>Properties Registered</p>
             </div>
             <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="ion ion-home"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -40,9 +40,9 @@
         <!-- small box -->
         <div class="small-box bg-warning">
             <div class="inner">
-            <h3>44</h3>
+            <h3>{{ $user_count }}</h3>
 
-            <p>User Registrations</p>
+            <p>User Registered</p>
             </div>
             <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -55,9 +55,9 @@
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-            <h3>65</h3>
+            <h3>{{ $tasks_monnth }}</h3>
 
-            <p>Unique Visitors</p>
+            <p>Tasks Completed This Month</p>
             </div>
             <div class="icon">
             <i class="ion ion-pie-graph"></i>
