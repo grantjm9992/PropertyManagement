@@ -57,7 +57,7 @@
 
                         <div class="lower-content">
                             <h3>Description</h3>
-                            {!! $row->description !!}
+                            {!! $property->description !!}
                         </div>
 
                         <!-- Property Features -->
