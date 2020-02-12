@@ -115,6 +115,8 @@ class AdminPropertiesController extends BaseController
         $propertytypes = \App\PropertyTypes::get();
         $sections = \App\InfoSections::where('id_company', $property->id_company)->get();
         $images = \App\PropertiesImages::where('id_property', $property->id)->orderBy('order', 'ASC')->get();
+        $staff = \App\User::where("role", "!=", "PO")->where("id_company", $this->user->id_company)->get();
+        $property_owners = \App\User::where("role", "PO")->where("id_company", $this->user->id_company)->get();
 
         $this->cont->body = view('adminproperties/detail', array(
             "property" => $property,
@@ -123,7 +125,9 @@ class AdminPropertiesController extends BaseController
             "sections" => $sections,
             "images" => $images,
             "featuresGrid" => $this->featuresGridAction(),
-            "specialurl" => $this->createURL( $property->id )
+            "specialurl" => $this->createURL( $property->id ),
+            "property_owners" => $property_owners,
+            "staff" => $staff
         ));
 
         return $this->RenderView();

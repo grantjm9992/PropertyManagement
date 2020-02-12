@@ -78,29 +78,27 @@
                 <label for="">Bathrooms</label>
                 <input type="number" name="bath" value="{{ $property->bath }}" class="form-control">
             </div>
-            <div class="col-12 col-lg-6 form-group">
+            <div class="col-12 col-lg-4 form-group">
                 <label for="">Location</label>
                 <input type="text" name="location" value="{{ $property->location }}" class="form-control" placeholder="Town, Country">
             </div>
-            <div class="col-12 col-lg-6 form-group">
+            <div class="col-12 col-lg-4 form-group">
                 <label for="">Property owner</label>
-                <input type="text" name="id_property_owner" id="id_property_owner" hidden value="{{ $property->id_property_owner }}" />
-                @if ( $property->id_property_owner != "" )
-                <input type="text" id="owner" style="display:none;" class="form-control" autocomplete="off">
-                <div id="mentionAlert" class="alert alert-primary mention-alert" style=""><div>{{ $property->owner }}</div>&nbsp;&nbsp;<i onclick="refreshMention()" class="fas fa-times-circle"></i></div>
-                @else
-                <input type="text" id="owner" style="" class="form-control" autocomplete="off">
-                @endif
+                <select class="form-control select2" name="id_property_owner" id="id_property_owner" style="width: 100%;">
+                    <option selected="selected" value="">All</option>
+                    @foreach( $property_owners as $po )
+                    <option value="{{ $po->id }}">{{ $po->name }} {{ $po->surname }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="col-12 form-group">
+            <div class="col-12 col-lg-4 form-group">
                 <label for="">Assigned to</label>
-                <input type="text" name="id_assigned_to" id="id_assigned_to" hidden value="{{ $property->id_assigned_to }}" />
-                @if ( $property->id_assigned_to != "" )
-                <input type="text" id="user" style="display:none;" class="form-control" autocomplete="off">
-                <div id="mentionAlert" class="alert alert-primary mention-alert" style=""><div>{{ $property->assigned_to }}</div>&nbsp;&nbsp;<i onclick="refreshMentionAssign()" class="fas fa-times-circle"></i></div>
-                @else
-                <input type="text" id="user" style="" class="form-control" autocomplete="off">
-                @endif
+                <select class="form-control select2" name="id_assigned_to" id="id_assigned_to" style="width: 100%;">
+                    <option selected="selected" value="">All</option>
+                    @foreach( $staff as $po )
+                    <option value="{{ $po->id }}">{{ $po->name }} {{ $po->surname }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-12 form-group">
                 <label for="">Description</label>
@@ -234,45 +232,10 @@
 
 
     $(document).ready( function() {
-        $('#owner').mention({
-            url: "Users.getMention?role=PO",
-            selectFunction: selectContact
-        });
-        $('#user').mention({
-            url: "Users.getMention?assignproperty=1",
-            selectFunction: selectUser,
-            alertHash: "#userAlert",
-            alertId: "userAlert"
-        });
+        $('#id_property_owner').val('{{ $property->id_property_owner }}');
+        $('#id_assigned_to').val('{{ $property->id_assigned_to }}');
+        $('.select2').select2();
     });
-	function refreshMention()
-	{
-		$('#id_property_owner').val('');
-		$('#owner').val('');
-		$('#owner').show();
-		$('.mention-alert').remove();
-		$('#mentionAlert').remove();
-		$('#owner').focus();
-	}
-	function refreshMentionAssign()
-	{
-		$('#id_assigned_to').val('');
-		$('#user').val('');
-		$('#user').show();
-		$('.mention-alert').remove();
-		$('#userAlert').remove();
-		$('#user').focus();
-    }
-    
-    function selectUser( info )
-    {
-		$('#id_assigned_to').val( info.id );        
-    }
-
-	function selectContact( info )
-	{
-		$('#id_property_owner').val( info.id );
-	}
 
     function copyLink()
     {

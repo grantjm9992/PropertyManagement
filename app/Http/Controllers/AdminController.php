@@ -26,6 +26,7 @@ class AdminController extends BaseController
         $tasks = \App\Tasks::where("id_company", $this->user->id_company)->whereRaw("MONTH(completed) = MONTH(NOW())")->get();
         $users = \App\User::where("id_company", $this->user->id_company)->get();
         $properties = \App\Properties::where("id_company", $this->user->id_company)->get();
+        $bookings = \App\Rentals::join("properties", "rentals.id_property", "=", "properties.id")->where("id_company", $this->user->id_company)->get();
         list($leftWidgets, $rightWidgets) = \WidgetsUser::getWidgets();
         $this->cont->body = view('admin/index', array(
             "user" => $this->user,
@@ -33,7 +34,8 @@ class AdminController extends BaseController
             "rightwidgets" => $rightWidgets,
             "property_count" => count($properties),
             "user_count" => count($users),
-            "tasks_monnth" => count($tasks)
+            "tasks_monnth" => count($tasks),
+            "count_bookings" => count($bookings)
         ));
         return $this->RenderView();
     }

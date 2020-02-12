@@ -1,9 +1,25 @@
-<div id="propertyrentalcalendar"></div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Rentlas for {{ $property->title }}</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="propertyrentalcalendar"></div>
+    </div>
+</div>
 <script>
     $(document).ready( function() {
         
         $('#propertyrentalcalendar').fullCalendar({
-            defaultView: 'month',
+            defaultView: 'listMonth',
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -18,7 +34,7 @@
             }
             ],
             eventClick: function(calEvent, jsEvent, view) {
-                window.location.href = "Tasks.edit?id="+calEvent.id;
+                window.location.href = "Reservations.detail?id="+calEvent.id;
             }
         });
     })

@@ -22,6 +22,49 @@ class ReservationsController extends BaseController
     
     public function defaultAction() {
         if ( isset( $_REQUEST["id_property"] ) ) return $this->forPropertyAction();
+        $this->pageTitle = "Rentals";
+        $this->iconClass = "fas fa-umbrella-beach";
+        $resorts = \App\Resorts::where("id_company", $this->user->id_company)->get();
+        $this->cont->body = view("admin/reservations/index", array(
+            "user" => $this->user,
+            "listado" => $this->getListAction(),
+            "resorts" => $resorts
+        ));
+
+        return $this->RenderView();
+    }
+
+    public function getListAction()
+    {
+        $this->detailURL = "Reservations.detail?id=";
+        $this->campos[] = array(
+            "name" => "property",
+            "title" => "Property"
+        );
+        $this->campos[] = array(
+            "name" => "dates",
+            "title" => "Dates",
+        );
+        $this->campos[] = array(
+            "name" => "guest",
+            "title" => "Guest"
+        );
+        $this->campos[] = array(
+            "name" => "resort",
+            "title" => "Resort"
+        );
+
+        $this->data = \App\Rentals::select("rentals.*", "properties.title as property", "resorts.name as resort")
+                                    ->join("properties", "rentals.id_property", "=", "properties.id")
+                                    ->join("resorts", "properties.id_resort", "=", "resorts.id")
+                                    ->where("properties.id_company", $this->user->id_company)
+                                    ->whereRaw( $this->makeWhere() )
+                                    ->get();
+        
+        $this->decorateRow( $this->data );
+
+        if ( count( $this->data ) > 0 ) return $this->createTable();
+        return view("comun/nodata");
     }
 
     public function detailAction()
@@ -36,7 +79,7 @@ class ReservationsController extends BaseController
             "url" => "PropertyCalendar?id=$rental->id_property"
         ));
 
-        $this->returnURL = "PropertyCalendar?id=$rental->id_property";
+        $this->returnURL = ( isset( $_SERVER["HTTP_REFERER"] ) ) ? $_SERVER["HTTP_REFERER"] : "PropertyCalendar?id=$rental->id_property";        
 
         $this->cont->body = view("admin/reservations/detail", array(
             "data" => $rental,
@@ -178,5 +221,31 @@ class ReservationsController extends BaseController
         $reservation->delete();
 
         die( "OK" );
+    }
+
+    protected function decorateRow()
+    {
+        foreach ( $this->data as $row )
+        {
+            $from = new \DateTime($row->date_start);
+            $to = new \DateTime($row->date_end);
+            $row->dates = $from->format("d/m/Y")." - ".$to->format("d/m/Y");
+
+            $row->guest = "$row->name $row->surname";
+
+        }
+    }
+
+    protected function makeWhere()
+    {
+        $where = " 1 ";
+
+        if (!isset( $_REQUEST["from"] ) && !isset($_REQUEST["to"] ) ) $where .= " AND date_end > NOW() ";
+        if (isset($_REQUEST["from"]) && $_REQUEST["from"] != "" ) $where .= " AND date_end >= '".$_REQUEST["from"]."' ";
+        if (isset($_REQUEST["to"]) && $_REQUEST["to"] != "" ) $where .= " AND date_end <= '".$_REQUEST["to"]."' ";
+        if (isset($_REQUEST["id_resort"]) && $_REQUEST["id_resort"] != "" ) $where .= " AND resorts.id = ".$_REQUEST["id_resort"]. " ";
+        if (isset($_REQUEST["search_guest"]) && $_REQUEST["search_guest"] != "" ) $where .= " AND (rentals.name LIKE '%".$_REQUEST["search_guest"]. "%' OR surname LIKE'% ".$_REQUEST["search_guest"]."%' OR email LIKE '%".$_REQUEST["search_guest"]."%' OR phone LIKE '%".$_REQUEST["search_guest"]."%' ) ";
+
+        return $where;
     }
 }

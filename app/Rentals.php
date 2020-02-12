@@ -36,7 +36,8 @@ class Rentals extends Model
                 "start" => $start->format("Y-m-d")."T".$start->format("H:i:s"),
                 "end" => $end->format("Y-m-d")."T".$end->format("H:i:s"),
                 "color" => "#5816a0",
-                "textColor" => "#fff"
+                "textColor" => "#fff",
+                "id" => $row->id
             );
         }
 

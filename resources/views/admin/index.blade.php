@@ -5,14 +5,15 @@
 <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <div class="container-fluid" style="margin-top: 30px;">
     <!-- Small boxes (Stat box) -->
+    @if ( $user->role != "PO" )
     <div class="row">
         <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-            <h3>150</h3>
+            <h3>{{ $count_bookings }}</h3>
 
-            <p>New Orders</p>
+            <p>Bookings</p>
             </div>
             <div class="icon">
             <i class="ion ion-bag"></i>
@@ -67,6 +68,7 @@
         </div>
         <!-- ./col -->
     </div>
+    @endif
     <!-- /.row -->
     <!-- Main row -->
     <div class="row">
