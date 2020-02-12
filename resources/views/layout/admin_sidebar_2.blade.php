@@ -88,8 +88,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="AdminProperties" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
+            <a href="Reservations" class="nav-link">
+              <i class="nav-icon fas fa-umbrella-beach"></i>
               <p>
                 Reservations
               </p>
@@ -105,8 +105,8 @@
           </li>
           @else
           <li class="nav-item">
-            <a href="Reservations" class="nav-link">
-              <i class="nav-icon fas fa-umbrella-beach"></i>
+            <a href="MyProperties" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
               <p>
                 My properties
               </p>
