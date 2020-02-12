@@ -23,7 +23,8 @@ class Properties extends Model
         "bed",
         "bath",
         "location",
-        "id_info_section"
+        "id_info_section",
+        "public_title",
     ];
 
 

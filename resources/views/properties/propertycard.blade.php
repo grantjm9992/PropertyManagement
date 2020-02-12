@@ -20,7 +20,7 @@
                 <li><a href="property-detail.html">House</a>,</li>
             </ul>-->
             <div class="thumb"><img src="{{ $property->image }}" alt=""></div>
-            <h3><a href="Properties.detail?id={{ base64_encode( $property->id ) }}">{{ $property->title }}</a></h3>
+            <h3><a href="Properties.detail?id={{ base64_encode( $property->id ) }}">{{ $property->public_title }}</a></h3>
             <div class="lucation"><i class="la la-map-marker"></i> {{ $property->resort }}</div>
             <ul class="property-info clearfix">
                 <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>

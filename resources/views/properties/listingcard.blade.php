@@ -6,7 +6,7 @@
                 </div>
                 <div class="col-xl-8">
                     <h4 class="title-real-estates">
-                        <strong><a href="Properties.detail?id={{ $property->id }}">{{ $property->title }}</a></strong> <span class="pull-right">{{ $property->resort }}</span>
+                        <strong><a href="Properties.detail?id={{ $property->id }}">{{ $property->public_title }}</a></strong> <span class="pull-right">{{ $property->resort }}</span>
                     </h4>
                     <hr>
                     <p>{{ $property->description }}</p>

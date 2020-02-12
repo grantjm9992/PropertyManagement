@@ -19,7 +19,7 @@
             <div class="upper-info-box">
                 <div class="row">
                     <div class="about-property col-lg-8 col-md-12 col-sm-12">
-                        <h2>{{ $property->title }}</h2>
+                        <h2>{{ $property->public_title }}</h2>
                         <div class="location"><i class="la la-map-marker"></i> {{ $property->resort }}</div>
                         <ul class="property-info clearfix">
                             <li><i class="flaticon-bed"></i> {{ $property->bedrooms }} Bedrooms</li>

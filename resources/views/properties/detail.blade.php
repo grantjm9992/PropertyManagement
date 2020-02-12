@@ -7,7 +7,7 @@
                 </a>
             </div>
             <h3 class="w-100 p-4 native-under">
-                {{ $property->title }}
+                {{ $property->public_title }}
             </h3>
         </div>
     </div>
