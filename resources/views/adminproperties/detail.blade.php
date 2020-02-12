@@ -18,7 +18,7 @@
             @endisset
             <div class="col-12 form-group">
                 <label for="">Public title</label>
-                <input type="text" class="form-control" name="public_title" value="{{ $property->public_title }">
+                <input type="text" class="form-control" name="public_title" value="{{ $property->public_title }}">
             </div>
             <div class="col-12 col-lg-6 form-group">
                 <label for="">Title</label>
