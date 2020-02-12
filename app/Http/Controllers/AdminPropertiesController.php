@@ -29,20 +29,26 @@ class AdminPropertiesController extends BaseController
 
         $companies = \App\Companies::get();
         $resorts = \App\Resorts::get();
+        $property_owners = \App\User::where("role", "PO")->where("id_company", $this->user->id_company)->get();
+        
         $this->cont->body = view('adminproperties/index', array(
             "listado" => $listado,
             "user" => $this->user,
             "companies" => $companies,
-            "resorts" => $resorts
+            "resorts" => $resorts,
+            "property_owners" => $property_owners
         ));
         return $this->RenderView();
     }
     
     public function listadoAction()
     {
-        $this->data = \App\Properties::whereRaw( $this->makeWhere() )->get();
+        $this->data = \App\Properties::select("properties.*", "users.name", "users.surname")
+                                    ->join("users", "properties.id_property_owner", "=", "users.id")
+                                    ->whereRaw( $this->makeWhere() )->get();
         foreach ( $this->data as $row )
         {
+            $row->owner = "$row->name $row->surname";
             $row->btn = "<a class='btn btn-primary' href='PropertyCalendar?id=$row->id'>View property calendar</a>";
         }
         $this->campos[] = array(
@@ -50,10 +56,15 @@ class AdminPropertiesController extends BaseController
             "name" => "title"
         );
         $this->campos[] = array(
+            "title" => "Property owner",
+            "name" => "owner"
+        );
+        $this->campos[] = array(
             "title" => "Actions",
             "name" => "btn",
             "width" => 80
         );
+        if ( count($this->data) === 0  ) return view("comun/nodata");
         $this->detailURL = "AdminProperties.detail?id=";
         return $this->createTable();
     }
@@ -79,6 +90,8 @@ class AdminPropertiesController extends BaseController
         $propertytypes = \App\PropertyTypes::get();
         $sections = \App\InfoSections::where('id_company', $this->user->id_company)->get();
         $images = \App\PropertiesImages::where('id_property', $property->id)->orderBy('order', 'ASC')->get();
+        $property_owners = \App\User::where("role", "PO")->where("id_company", $this->user->id_company)->get();
+        $staff = \App\User::where("role", "!=", "PO")->where("id_company", $this->user->id_company)->get();
 
         $this->cont->body = view('adminproperties/detail', array(
             "property" => $property,
@@ -86,6 +99,8 @@ class AdminPropertiesController extends BaseController
             "propertytypes" => $propertytypes,
             "sections" => $sections,
             "images" => $images,
+            "property_owners" => $property_owners,
+            "staff" => $staff,
             "featuresGrid" => $this->featuresGridAction()
         ));
 
@@ -318,8 +333,7 @@ class AdminPropertiesController extends BaseController
     {
 
         $where = " 1 ";
-        
-        $where .= " AND id_company = ".$this->user->id_company." ";
+        $where .= " AND properties.id_company = ".$this->user->id_company." ";
 
         if ( $this->user->role == "M" )
         {
@@ -331,8 +345,8 @@ class AdminPropertiesController extends BaseController
         }
 
         if ( isset( $_REQUEST["title"] ) && $_REQUEST["title"] != "" ) $where .= " AND title LIKE '%".$_REQUEST["title"]."%' ";
-        if ( isset( $_REQUEST["id_company"] ) && $_REQUEST["id_company"] != "" ) $where .= " AND id_company = ".$_REQUEST["id_company"];
         if ( isset( $_REQUEST["id_resort"] ) && $_REQUEST["id_resort"] != "" ) $where .= " AND id_resort = ".$_REQUEST["id_resort"];
+        if ( isset( $_REQUEST["id_property_owner"] ) && $_REQUEST["id_property_owner"] != "" ) $where .= " AND id_property_owner = ".$_REQUEST["id_property_owner"];
 
         return $where;
     }
