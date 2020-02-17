@@ -121,6 +121,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="Timeline" class="nav-link">
+              <i class="nav-icon fas fa-clock"></i>
+              <p>
+                Timeline
+              </p>
+            </a>
+          </li>
           @if ( $user->role == "SA" )
           <li class="nav-header">
             <i class="nav-icon fas fa-code"></i>

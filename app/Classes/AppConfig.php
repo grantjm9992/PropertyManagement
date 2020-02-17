@@ -340,4 +340,28 @@ class AppConfig
         return true;
     }
 
+    public static function makeTimelineTime($date)
+    {
+        $date = new \DateTime($date);
+        $now = new \DateTime();
+        $sting = array(
+            "y", "m", "d"
+        );
+        $diff = $now->diff( $date );
+        foreach ($sting as $p )
+        {
+            if ( $diff->$p > 0 ) return $date->format("d/m/Y H:i:s");
+        }
+        
+        if ( $diff->h > 0 )
+        {
+            return ($diff->h > 1 ) ? $diff->h." hours ago" : $diff->h." hour ago";
+        }
+        if ( $diff->i > 0 )
+        {
+            return ($diff->i > 1 ) ? $diff->i." minutes ago" : $diff->i. " minute ago";
+        }
+        return " just now";
+    }
+
 }

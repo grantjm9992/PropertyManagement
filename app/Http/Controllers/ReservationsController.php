@@ -118,7 +118,7 @@ class ReservationsController extends BaseController
         $reservation = \App\Rentals::where("id", $id)->first();
         $reservation->update( $_REQUEST );
         $reservation->save();
-
+        \NotificationLogic::logEditReservation($reservation);
         return \Redirect::to("Reservations?id_property=$reservation->id_property")->send();
     }
 
@@ -162,6 +162,7 @@ class ReservationsController extends BaseController
     {
         $id_property = $_REQUEST["id_property"];
         $rental = \App\Rentals::create( $_REQUEST );
+        \NotificationLogic::logNewReservation($rental);
         return \Redirect::to("PropertyCalendar??id=$rental->id")->send();
     }
 
@@ -218,6 +219,7 @@ class ReservationsController extends BaseController
             $task->delete();
         }
 
+        \NotificationLogic::logDeleteReservation($reservation);
         $reservation->delete();
 
         die( "OK" );

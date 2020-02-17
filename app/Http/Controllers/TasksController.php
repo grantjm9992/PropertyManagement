@@ -206,6 +206,7 @@ class TasksController extends BaseController
         }
         else
         {
+            \NotificationLogic::logCompletedSubtaskTask( $task );
             $subtask->completed = 1;
             $subtask->date_completed = $date->format("Y-m-d H:i:s");
             $subtask->completed_by = $this->user->id;
@@ -241,6 +242,10 @@ class TasksController extends BaseController
         $subTask->id_task = $_REQUEST["id_task"];
         $subTask->save();
         $subTask->updateOrder();
+
+        $task = \App\Tasks::where("id", $_REQUEST["id"])->first();
+        \NotificationLogic::logAddedSubtaskTask( $task );
+
         return view("tasks/subtask", array(
             "subtask" => $subTask
         ));
@@ -318,6 +323,9 @@ class TasksController extends BaseController
         $file->route = $_FILES['file']['name'];
         $file->id_task = $id;
         $file->save();
+
+        $task = \App\Tasks::where("id", $id)->first();
+        \NotificationLogic::logUploadedToTask( $task );
      
         $targetFile =  $targetDir. "/".$_FILES['file']['name'];  //5
         \move_uploaded_file($tempFile,$targetFile); //6
@@ -351,6 +359,7 @@ class TasksController extends BaseController
             $userTask->save();
         }
 
+        \NotificationLogic::logNewTask( $task );
         \NotificationLogic::newTask( $task );
 
         if ( isset ( $_SERVER["HTTP_REFERER"] ) ) return \Redirect::to( $_SERVER["HTTP_REFERER"] );
@@ -361,7 +370,11 @@ class TasksController extends BaseController
     {
         $date = new \DateTime();
         $task = \App\Tasks::where( "id", $_REQUEST["id"] )->first();
-        if ( (int)$task->status !== 3 && (int)$_REQUEST["status"] === 3 ) $task->completed = $date->format("Y-m-d H:i:s");
+        if ( (int)$task->status !== 3 && (int)$_REQUEST["status"] === 3 )
+        {
+            $task->completed = $date->format("Y-m-d H:i:s");
+            \NotificationLogic::logCompletedTask( $task );
+        }
         $task->save();
         $task->update( $_REQUEST );
 
@@ -378,6 +391,7 @@ class TasksController extends BaseController
             $userTask->save();
         }
         
+        \NotificationLogic::logEditTask( $task );
         \NotificationLogic::editTask( $task );
 
         return \Redirect::to("Tasks");
@@ -411,6 +425,12 @@ class TasksController extends BaseController
         $id = $_REQUEST['id'];
         $task = \App\Tasks::where('id', $id)->first();
         $task->status = ( (int)$task->status === 1 ) ? 3 : 1;
+        if ( $task->status === 3 ) 
+        {
+            $date = new \DateTime();
+            $task->completed = $date->format("Y-m-d H:i:s");
+            \NotificationLogic::logCompletedTask( $task );
+        }
         $task->save();
         \NotificationLogic::updateStatusTask( $task );
         return "OK";
@@ -427,6 +447,7 @@ class TasksController extends BaseController
             if ( \file_exists( $media->route ) ) \unlink($media->route);
             $media->delete();
         }
+        \NotificationLogic::logDeletedTask($task);
         return "OK";
     }
 
