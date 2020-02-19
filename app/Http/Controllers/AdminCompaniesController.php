@@ -153,6 +153,18 @@ class AdminCompaniesController extends BaseController
         $style_file = str_replace("@accentBGColour", $skin->c3, $style_file);
 
         \file_put_contents("css/resorts.css", $style_file);
+
+        if (\file_exists("css/responsive_template.css")) {
+            $style_file = \file_get_contents("css/responsive_template.css");
+            $style_file = str_replace("@headerFontColour", $skin->t1, $style_file);
+            $style_file = str_replace("@headerBGColour", $skin->c1, $style_file);
+            $style_file = str_replace("@footerFontColour", $skin->t2, $style_file);
+            $style_file = str_replace("@footerBGColour", $skin->c2, $style_file);
+            $style_file = str_replace("@accentFontColour", $skin->t3, $style_file);
+            $style_file = str_replace("@accentBGColour", $skin->c3, $style_file);
+    
+            \file_put_contents("css/responsive.css", $style_file);
+        }
     }
 
     public function uploadLogoAction()

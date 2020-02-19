@@ -12,11 +12,7 @@
                     </div>
                     <div class="top-right">
                         <ul class="social-icon-one clearfix">
-                            <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="la la-twitter"></i></a></li>
-                            <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                            <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                            <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                            <li><a href="https://www.facebook.com/condado1handyman/" target="_blank"><i class="la la-facebook-f"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -57,9 +53,6 @@
                                         </li>
                                         <li class="">
 											<a href="Properties">Properties</a>
-                                        </li>
-                                        <li class="">
-											<a href="Resort">The resort</a>
                                         </li>
                                         <li class="">
 											<a href="About">About us</a>

@@ -5,6 +5,11 @@
             <div class="upper-box">
                 <div class="row">
                     <!-- Upper column -->
+                    <div class="col-12 py-2 text-light">
+                        For information about prices
+                        <br>
+                        Add your email address below to receive a detailed breakdown of our costs and services.
+                    </div>
                     <div class="upper-column col-lg-3 col-md-12 col-sm-12">
                         <div class="footer-logo">
                             <figure class="image"><a href="{{ url('') }}"><img style="width: 150px; max-height: 60px;" src="{{ $logo }}" alt=""></a></figure>
@@ -28,10 +33,6 @@
                         <div class="social-links">
                             <ul class="social-icon-two">
                                 <li><a href="#"><i class="la la-facebook"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest-p"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
 
                 <div class="inner-container clearfix">                                             
                     <div class="copyright-text">
-                        <p>© Copyright 2019</p>
+                        <p>© Copyright 2019 My Casa Away</p>
                     </div>
                 </div>
             </div>

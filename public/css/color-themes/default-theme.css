@@ -141,7 +141,7 @@
 .btn-style-three:hover,
 .theme_color,
 a{
-	color: #00c0ff;
+	color: #84c225;
 }
 
 
@@ -210,7 +210,7 @@ a.ui-button:active, .ui-button:active,
 .btn-style-five,
 .btn-style-four,
 .btn-style-one{
-	background-color: #00c0ff;
+	background-color: #84c225;
 }
 
 
@@ -262,12 +262,12 @@ a.ui-button:active, .ui-button:active,
 .main-menu .navigation > li > ul > li  > ul > li > a:hover,
 .main-menu .navigation > li > ul > li:hover > a,
 .btn-style-six{
-	border-color: #00c0ff;
+	border-color: #84c225;
 }
 
 .new-property .status:before,
 .header-style-one .header-lower .logo:after{
-	border-left-color: #00c0ff;
+	border-left-color: #84c225;
 }
 
 
@@ -276,23 +276,23 @@ a.ui-button:active, .ui-button:active,
 .rtl .main-menu .navigation > li > ul > li:hover > a,
 .rtl .property-detail blockquote,
 .rtl .header-style-one .header-lower .logo:after{
-	border-right-color: #00c0ff;
+	border-right-color: #84c225;
 }
 
 .property-block-four .status:before,
 .property-block-three .image-box .featured:before,
 .property-block .image-box .featured:before{
-	border-top-color: #00c0ff;
+	border-top-color: #84c225;
 }
 
 .btn-style-two:hover{
-	box-shadow: #00c0ff 0 0px 0px 40px inset;
+	box-shadow: #84c225 0 0px 0px 40px inset;
 }
 
 @media only screen and (max-width: 767px){
 	
 	.main-menu .navbar-header .navbar-toggle{
-		border-color:#00c0ff;
+		border-color:#84c225;
 	}
 
 	.main-menu .navbar-header .navbar-toggle,
@@ -312,7 +312,7 @@ a.ui-button:active, .ui-button:active,
 	.main-menu .navigation > li .mega-menu-bar .column > ul > li > a:hover,
 	.main-menu .navbar-collapse > .navigation > li.current > a,
 	.main-menu .navbar-collapse > .navigation > li.current-menu-item > a{
-		background-color: #00c0ff;
+		background-color: #84c225;
 	}
 	
 }

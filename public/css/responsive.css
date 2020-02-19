@@ -603,7 +603,7 @@
 	}
 
 /*	.header-style-one .header-lower .main-box{
-		background: #00c0ff;
+		background: #84c225;
 	}*/
 
 	.header-style-seven .outer-box{
@@ -979,14 +979,14 @@
 		padding: 10px 10px !important;
 		line-height:22px;
 		color:#ffffff !important;
-		background:#00c0ff ;
+		background:#84c225 ;
 		font-size:14px;
 		font-weight:600;
 		text-transform:uppercase;
 	}
 
 	.main-menu .navigation > li .mega-menu-bar .column > ul > li > a:hover{
-		background:#00c0ff ;
+		background:#84c225 ;
 	}
 	
 	.main-menu .navigation > li > .mega-menu{
