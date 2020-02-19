@@ -2,7 +2,13 @@
 <div class="property-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
     <div class="inner-box">
         <div class="image-box">
-            <figure class="image"><img src="{{ $property->image }}" alt=""></figure>
+            <figure class="image">
+                @if(file_exists($property->image))
+                <img style="max-height: 270px;" src="{{ $property->image }}" alt="">
+                @else
+                <img style="max-height: 270px;" src="img/no-image.png" alt="">
+                @endif
+            </figure>
             <span class="featured">FEATURED</span>
             <ul class="option-box">
                 <li><a href="{{ $property->image }}" class="lightbox-image" data-fancybox="property"><i class="la la-camera"></i></a></li>
