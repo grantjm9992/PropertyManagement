@@ -6012,7 +6012,7 @@ a.ui-button:active, .ui-button:active,
 	content: "";
 	background: #84c225 padding-box content-box;
 	padding: 25px;
-	opacity: .90;
+	opacity: .0;
 }
 
 .fun-facts-section .video-box .image .link{
@@ -7921,7 +7921,7 @@ a.ui-button:active, .ui-button:active,
 	display: block;
 	font-size: 15px;
 	line-height: 2em;
-	color: #bbbbbb;
+	color: #efefef;
 	font-weight: 400;
 }
 
