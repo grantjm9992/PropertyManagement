@@ -14,11 +14,11 @@
                                 <div class="row">@csrf
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <label>property type</label>
-                                        <select class="custom-select-box" name="id_property_type">
+                                        <label>resort</label>
+                                        <select class="custom-select-box" name="id_resort">
                                             <option value="">All</option>
-                                            @foreach ( $types as $type )
-                                            <option value="{{ $type->id }}">{{ $type->title }}</option>                                            
+                                            @foreach ( $resorts as $resort )
+                                            <option value="{{ $resort->id }}">{{ $resort->name }}</option>                                            
                                             @endforeach
                                         </select>
                                     </div>

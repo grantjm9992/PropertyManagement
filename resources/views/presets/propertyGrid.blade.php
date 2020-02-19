@@ -2,8 +2,8 @@
     <section class="property-section">
         <div class="auto-container">
             <div class="sec-title">
-                <span class="title">FIND YOUR DREAM HOLIDAY HOME</span>
-                <h2>RECENT PROPERTIES</h2>
+                <span class="title">FIND THE PERFECT PROPERTY</span>
+                <h2>HOLIDAY RENTALS</h2>
             </div>
 
             <div class="row">

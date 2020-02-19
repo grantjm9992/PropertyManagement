@@ -11,18 +11,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Magda Anoma</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">Mark Griffiths</a></h4>
+                            <span class="designation">Property Manager</span>
                         </div>
                     </div>
                 </div>
@@ -31,18 +27,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Badoy Ghaly</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">Iain Croakin</a></h4>
+                            <span class="designation">Property Manager</span>
                         </div>
                     </div>
                 </div>
@@ -51,18 +43,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">Robyn Glover</a></h4>
+                            <span class="designation">Customer Service</span>
                         </div>
                     </div>
                 </div>
@@ -71,18 +59,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Magda Anoma</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">Lesley Griffiths</a></h4>
+                            <span class="designation">Administration</span>
                         </div>
                     </div>
                 </div>
@@ -91,18 +75,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Badoy Ghaly</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">James Etherington</a></h4>
+                            <span class="designation">My Casa Away</span>
                         </div>
                     </div>
                 </div>
@@ -111,18 +91,14 @@
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="agent-detail.html"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="#"><i class="la la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
+                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
-                            <h4 class="name"><a href="agent-detail.html">Lora Ptirayto</a></h4>
-                            <span class="designation">Real Estate Agent</span>
+                            <h4 class="name"><a href="#">Spencer Hudson </a></h4>
+                            <span class="designation">My Casa Away</span>
                         </div>
                     </div>
                 </div>

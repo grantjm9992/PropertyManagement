@@ -21,15 +21,15 @@ class PresetSectionProvider
 
     public static function propertySearch()
     {
-        $types = \App\PropertyTypes::get();
+        $resorts = \App\Resorts::where("id_company", \AppConfig::id_company)->get();
         return view("presets/propertySearch", array(
-            "types" => $types
+            "resorts" => $resorts
         ));
     }
 
     public static function propertyGrid()
     {        
-        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(3)->get();
+        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(6)->get();
         foreach ( $properties as $row )
         {
             $row->images = \App\PropertiesImages::where("id_property", $row->id)->get();

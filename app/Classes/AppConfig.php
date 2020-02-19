@@ -4,8 +4,8 @@ namespace App\Classes;
 
 class AppConfig
 {
-    const id_company = -1;
-    const is_project = 1;
+    const id_company = 4;
+    const is_project = 0;
 
     const pages = array(
         "Resort" => array(
