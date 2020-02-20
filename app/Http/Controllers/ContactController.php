@@ -19,7 +19,7 @@ class ContactController extends BaseController
     }
     
     public function defaultAction() {
-        $id_company = \AppConfig::id_company;
+        $id_company = env('ID_COMPANY');
         $company = \App\Companies::where("id", $id_company)->first();
         if( !is_object( $company ) ) die();
         $coordinates = json_decode($company->google_coordinates);

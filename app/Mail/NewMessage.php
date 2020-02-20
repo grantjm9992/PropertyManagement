@@ -31,7 +31,7 @@ class NewMessage extends Mailable
     public function build()
     {
         $sender = \App\User::where("id", $this->message->id_user)->first();
-        $company = \App\Companies::where("id", \AppConfig::id_company)->first();
+        $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
         return $this->view('mail/newmessage', array(
             "notification" => $this->message,
             "company" => $company,

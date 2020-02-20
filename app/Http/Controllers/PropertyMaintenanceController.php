@@ -20,7 +20,7 @@ class PropertyMaintenanceController extends BaseController
     }
     
     public function defaultAction() {
-        $page = \App\Pages::where("id_company", \AppConfig::id_company)->where("url", "PropertyMaintenance")->first();
+        $page = \App\Pages::where("id_company", env('ID_COMPANY'))->where("url", "PropertyMaintenance")->first();
         $this->title = ( $page->meta_title != "" ) ? $page->meta_title : $this->title;
         $this->description = ( $page->meta_description != "" ) ? $page->meta_description : $this->description;
         $this->keywords = ( $page->meta_keywords != "" ) ? $page->meta_keywords : $this->keywords;

@@ -38,7 +38,7 @@ class AdministrationController extends BaseController
             $message->getForCard();
         }
         $count_messages = ( is_null ( $messages ) ) ? 0 : count( $messages );
-        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $skin = \App\Skins::where('id_company', env('ID_COMPANY') )->first();
         $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
 
         $this->cont->footer = view('layout/footer_admin', array(
@@ -76,7 +76,7 @@ class AdministrationController extends BaseController
         ));*/
 
         $types = \App\TaskType::where("menu", "1")->get();
-        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $skin = \App\Skins::where('id_company', env('ID_COMPANY') )->first();
         $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
         $back = ( isset( $_SERVER["HTTP_REFERER"] ) ) ? $_SERVER["HTTP_REFERER"] : url("/Admin");
         $back = $this->returnURL != "" ? $this->returnURL : $back;

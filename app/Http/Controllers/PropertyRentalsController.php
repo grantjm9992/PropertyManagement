@@ -20,7 +20,7 @@ class PropertyRentalsController extends BaseController
     }
     
     public function defaultAction() {
-        $page = \App\Pages::where("id_company", \AppConfig::id_company)->where("url", "PropertyRentals")->first();
+        $page = \App\Pages::where("id_company", env('ID_COMPANY'))->where("url", "PropertyRentals")->first();
         $this->title = ( $page->meta_title != "" ) ? $page->meta_title : $this->title;
         $this->description = ( $page->meta_description != "" ) ? $page->meta_description : $this->description;
         $this->keywords = ( $page->meta_keywords != "" ) ? $page->meta_keywords : $this->keywords;

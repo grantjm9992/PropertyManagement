@@ -107,14 +107,14 @@ class Controller extends BaseController
 
     protected function setHeaderAndFooter()
     {
-        $pages = \App\Pages::where('id_company', \AppConfig::id_company)
+        $pages = \App\Pages::where('id_company', env('ID_COMPANY'))
                             ->where('id', '>', 0)
                             ->where('active', 1)
                             ->orderBy('order', 'ASC')
                             ->get();
         
-        $company = \App\Companies::where("id", \AppConfig::id_company)->first();
-        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
+        $skin = \App\Skins::where('id_company', env('ID_COMPANY') )->first();
         $logo = ( is_object( $skin ) && file_exists( $skin->logo ) ) ? $skin->logo : "img/logo_colour.png";
         $this->cont->footer = view('layout/footer', array("logo" => $logo));
         $this->cont->header = view("layout/header", array( "company" => $company, "logo" => $logo ));
@@ -122,7 +122,7 @@ class Controller extends BaseController
 
     protected function RenderView() {
         $this->setHeaderAndFooter();
-        $skin = \App\Skins::where('id_company', \AppConfig::id_company )->first();
+        $skin = \App\Skins::where('id_company', env('ID_COMPANY') )->first();
         $resorts = ( is_object( $skin ) ) ? "css/resorts.css?v=$skin->version" : "css/resorts.css";
         $style = ( is_object( $skin ) ) ? "css/style_.css?v=$skin->version" : "css/style_.css";
         

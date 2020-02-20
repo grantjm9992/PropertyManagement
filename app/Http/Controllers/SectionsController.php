@@ -114,7 +114,7 @@ class SectionsController extends BaseController
     public function newAction()
     {
         $section = \App\Sections::create($_REQUEST);
-        $section->id_company = \AppConfig::id_company;
+        $section->id_company = env('ID_COMPANY');
         $section->save();
         return view('sections/page_div', array(
             "page" => $section

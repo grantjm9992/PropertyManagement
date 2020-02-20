@@ -31,7 +31,7 @@ class NewNotification extends Mailable
     public function build()
     {
         $reciever = \App\User::where("id", $this->notification->id_user)->first();
-        $company = \App\Companies::where("id", \AppConfig::id_company)->first();
+        $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
         return $this->view('mail/newNotification', array(
             "notification" => $this->notification,
             "company" => $company,

@@ -31,9 +31,9 @@ class HomeController extends BaseController
         if ( isset( $_REQUEST["p"] ) && $_REQUEST["p"] != "" ) return $this->isEncoded();
         
         // If company is MyCasa Away and project is set to 1 in the config. Get our corp. website, not the listings.
-        if ( (int)\AppConfig::id_company === -1 && \AppConfig::is_project === 1 ) return $this->myCasaAway();
+        if ( (int)env('ID_COMPANY') === -1 && (int)env("IS_PROJECT") === 1 ) return $this->myCasaAway();
         
-        $page = \App\Pages::where("url", "Home")->where("id_company", \AppConfig::id_company )->first();
+        $page = \App\Pages::where("url", "Home")->where("id_company", env('ID_COMPANY') )->first();
         $sections = $page->getSections();
 
         $sectionHTML = "";

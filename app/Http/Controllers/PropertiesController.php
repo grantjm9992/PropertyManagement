@@ -49,7 +49,7 @@ class PropertiesController extends BaseController
 
     protected function makeWhere()
     {
-        $where = " id_company = ".\AppConfig::id_company;
+        $where = " id_company = ".env('ID_COMPANY');
 
         if ( isset( $_REQUEST["beds"] ) && $_REQUEST["beds"] != "" ) $where .= " AND bed >= ".$_REQUEST["beds"]." ";
         if ( isset( $_REQUEST["sleeps"] ) && $_REQUEST["sleeps"] != "" ) $where .= " AND sleeps >= ".$_REQUEST["sleeps"]." ";
@@ -86,7 +86,7 @@ class PropertiesController extends BaseController
             "features" => $feats,
             "resort" => $resort,
             "types" => \App\PropertyTypes::get(),
-            "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", \AppConfig::id_company)->take(3)->get()
+            "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", env('ID_COMPANY'))->take(3)->get()
         ));
 
         return $this->RenderView();

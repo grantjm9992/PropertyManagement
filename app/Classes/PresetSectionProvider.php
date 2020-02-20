@@ -13,7 +13,7 @@ class PresetSectionProvider
 
     public static function propertySliderSplash()
     {
-        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(3)->get();
+        $properties = \App\Properties::where("id_company", env('ID_COMPANY') )->take(3)->get();
         return view("presets/propertySlider", array(
             "properties" => $properties
         ));
@@ -21,7 +21,7 @@ class PresetSectionProvider
 
     public static function propertySearch()
     {
-        $resorts = \App\Resorts::where("id_company", \AppConfig::id_company)->get();
+        $resorts = \App\Resorts::where("id_company", env('ID_COMPANY'))->get();
         return view("presets/propertySearch", array(
             "resorts" => $resorts
         ));
@@ -29,7 +29,7 @@ class PresetSectionProvider
 
     public static function propertyGrid()
     {        
-        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(3)->get();
+        $properties = \App\Properties::where("id_company", env('ID_COMPANY') )->take(3)->get();
         foreach ( $properties as $row )
         {
             $row->images = \App\PropertiesImages::where("id_property", $row->id)->get();
@@ -41,7 +41,7 @@ class PresetSectionProvider
 
     public static function testimonialSlider()
     {        /*
-        $testimonials = \App\Testimonials::where("id_company", \AppConfig::id_company )->take(5)->get();
+        $testimonials = \App\Testimonials::where("id_company", env('ID_COMPANY') )->take(5)->get();
         return view("presets/testimonialSlider", array(
             "testimonials" => $testimonials
         ));*/
@@ -53,7 +53,7 @@ class PresetSectionProvider
 
     public static function contactSection()
     {
-        $company = \App\Companies::where("id", \AppConfig::id_company)->first();
+        $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
         $coordinates = json_decode($company->google_coordinates);
         
         return view("presets/contactSection", array(
@@ -65,7 +65,7 @@ class PresetSectionProvider
 
     public static function meetAgents()
     {
-        //$agents = \App\User::where("id_company", \AppConfig::id_company)->where("role", "M")->first();
+        //$agents = \App\User::where("id_company", env('ID_COMPANY'))->where("role", "M")->first();
         return view("presets/meetAgents", array());
     }
 }
