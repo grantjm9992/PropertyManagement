@@ -80,11 +80,15 @@
                         <div class="inner-box">
                             <h4>Follow Us:</h4>
                             <ul class="social-icon-three">
-                                <li><a href="#"><span class="la la-facebook-f"></span></a></li>
-                                <li><a href="#"><span class="la la-twitter"></span></a></li>
-                                <li><a href="#"><span class="la la-google-plus"></span></a></li>
-                                <li><a href="#"><span class="la la-dribbble"></span></a></li>
-                                <li><a href="#"><span class="la la-pinterest"></span></a></li>
+                                @if ( $company->link_facebook != "" )
+                                <li><a href="{{ $company->link_facebook }}"><span class="la la-facebook-f"></span></a></li>
+                                @endif
+                                @if ( $company->link_twitter != "" )
+                                <li><a href="{{ $company->link_twitter }}"><span class="la la-twitter"></span></a></li>
+                                @endif
+                                @if ( $company->link_google != "" )
+                                <li><a href="{{ $company->link_google }}"><span class="la la-google-plus"></span></a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -97,13 +101,12 @@
 		            <!--Map Canvas-->
 		            <div class="map-canvas"
 		                data-zoom="12"
-		                data-lat="-37.817085"
-		                data-lng="144.955631"
+		                data-lat="{{ $lat }}"
+		                data-lng="{{ $long }}"
 		                data-type="roadmap"
-		                data-hue="#ffc400"
 		                data-title="Envato"
 		                data-icon-path="images/icons/map-marker.png"
-		                data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
+		                data-content="{!! $company->address !!}, Australia<br><a href='mailto:{{ $company->email }}'>{{ $company->email }}</a>">
 		            </div>
 		        </div>
 		    </div>

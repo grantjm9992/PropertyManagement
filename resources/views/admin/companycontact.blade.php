@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <form action="">
+    <form id="form" action="AdminCompanies.save">
+        <input type="text" hidden name="id" value="{{ $company->id }}">
         <div class="row">
             <div class="col-12 col-lg-6 form-group">
                 <label for="">Email</label>
@@ -48,3 +49,8 @@
         </div>
     </form>
 </div>
+<script>
+ function submitForm () {
+     $("#form").submit();
+ }
+</script>

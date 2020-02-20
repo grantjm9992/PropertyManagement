@@ -29,7 +29,7 @@ class PresetSectionProvider
 
     public static function propertyGrid()
     {        
-        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(6)->get();
+        $properties = \App\Properties::where("id_company", \AppConfig::id_company )->take(3)->get();
         foreach ( $properties as $row )
         {
             $row->images = \App\PropertiesImages::where("id_property", $row->id)->get();
@@ -54,9 +54,12 @@ class PresetSectionProvider
     public static function contactSection()
     {
         $company = \App\Companies::where("id", \AppConfig::id_company)->first();
-
+        $coordinates = json_decode($company->google_coordinates);
+        
         return view("presets/contactSection", array(
-            "company" => $company
+            "company" => $company,
+            "long" => (is_object($coordinates)) ? $coordinates->long : "",
+            "lat" => (is_objecT($coordinates)) ? $coordinates->lat : ""
         ));
     }
 

@@ -61,7 +61,7 @@
 	<script src="js/appear.js"></script>
 	<script src="js/mixitup.js"></script>
     <script src="js/validate.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeEODj4mnpmSCoPcBVOIPzzHXRZLHHd3Q"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB55VmJTFRfF8Q_luNN4agzzigjpE68bYI"></script>
     <script src="js/map-script.js"></script>
     <script src="js/script.js"></script>
 	<!-- Color Setting -->

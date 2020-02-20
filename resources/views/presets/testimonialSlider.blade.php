@@ -1,6 +1,6 @@
 
     <!-- Testimonial Section -->
-    <section class="testimonial-section" style="background-image: url(images/background/8.jpg);">
+    <section class="testimonial-section" style="background-image: url(img/home-testimonials-background.jpg);">
     	<div class="auto-container">
     		<div class="sec-title light">
     			<span class="title">Testimonials</span>
