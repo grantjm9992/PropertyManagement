@@ -1,6 +1,6 @@
 
     <!--Page Title-->
-    <section class="page-title" style="background-image:url(images/background/16.jpg);">
+    <section class="page-title" style="background-image:url(img/about2.jpg);">
         <div class="auto-container">
             <div class="inner-container clearfix">
                 <h1>Property Detail</h1>

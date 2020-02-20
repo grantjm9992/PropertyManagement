@@ -100,13 +100,13 @@
     			<div class="map-outer">
 		            <!--Map Canvas-->
 		            <div class="map-canvas"
-		                data-zoom="12"
+		                data-zoom="9"
 		                data-lat="{{ $lat }}"
 		                data-lng="{{ $long }}"
 		                data-type="roadmap"
-		                data-title="Envato"
+		                data-title="Contact Us!"
 		                data-icon-path="images/icons/map-marker.png"
-		                data-content="{!! $company->address !!}, Australia<br><a href='mailto:{{ $company->email }}'>{{ $company->email }}</a>">
+		                data-content="{!! $company->address !!}<br><a href='mailto:{{ $company->email }}'>{{ $company->email }}</a>">
 		            </div>
 		        </div>
 		    </div>

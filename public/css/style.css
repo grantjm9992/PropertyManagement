@@ -2337,6 +2337,9 @@ img{
 	line-height: 30px;
 	color: #777777;
 	font-weight: 400;
+	white-space: initial;
+	width: 600px;
+	max-width: 60vw;
 }
 
 .main-slider .info-list{

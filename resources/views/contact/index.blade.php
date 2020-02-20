@@ -1,6 +1,6 @@
 
     <!--Page Title-->
-    <section class="page-title" style="background-image:url(images/background/16.jpg);">
+    <section class="page-title" style="background-image:url(img/about2.jpg);">
         <div class="auto-container">
             <div class="inner-container clearfix">
                 <h1>Contact Us</h1>
@@ -28,7 +28,7 @@
 
                         <!-- Contact Form -->
                         <div class="contact-form">
-                            <form method="post" action="sendemail.php" id="contact-form">
+		                    <form method="post" action="Home.sendMail" id="contact-form">
                                 <div class="form-group">
                                     <input type="text" name="username" placeholder="Name" required>
                                 </div>
@@ -60,10 +60,9 @@
                         <div class="contact-info-box">
                             <div class="inner-box">
                                 <span class="icon la la-phone"></span>
-                                <h4>Phones</h4>
+                                <h4>Phone</h4>
                                 <ul>
-                                    <li>88 867 56 453</li>
-                                    <li>21 535 42 546</li>
+                                    <li>{{ $company->phone }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -74,8 +73,7 @@
                                 <span class="icon la la-envelope-o"></span>
                                 <h4>Emails</h4>
                                 <ul>
-                                    <li>info@yousite.com</li>
-                                    <li>sale@yousite.com</li>
+                                    <li>{{ $company->email }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -86,7 +84,9 @@
                                 <span class="icon la la-globe"></span>
                                 <h4>Address</h4>
                                 <ul>
-                                    <li>123 Ipsum Ave, Lorem City, <br> Dolor Country, Thw World</li>
+                                    <li>
+                                        {!! $company->address !!}
+                                    </li>
                                 </ul> 
                             </div>
                         </div>
@@ -96,11 +96,15 @@
                             <div class="inner-box">
                                 <h4>Follow Us:</h4>
                                 <ul class="social-icon-three">
-                                    <li><a href="#"><span class="la la-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="la la-twitter"></span></a></li>
-                                    <li><a href="#"><span class="la la-google-plus"></span></a></li>
-                                    <li><a href="#"><span class="la la-dribbble"></span></a></li>
-                                    <li><a href="#"><span class="la la-pinterest"></span></a></li>
+                                    @if ( $company->link_facebook != "" )
+                                    <li><a href="{{ $company->link_facebook }}"><span class="la la-facebook-f"></span></a></li>
+                                    @endif
+                                    @if ( $company->link_twitter != "" )
+                                    <li><a href="{{ $company->link_twitter }}"><span class="la la-twitter"></span></a></li>
+                                    @endif
+                                    @if ( $company->link_google != "" )
+                                    <li><a href="{{ $company->link_google }}"><span class="la la-google-plus"></span></a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -116,14 +120,13 @@
         <div class="map-outer">
             <!--Map Canvas-->
             <div class="map-canvas"
-                data-zoom="12"
-                data-lat="-37.817085"
-                data-lng="144.955631"
+                data-zoom="9"
+                data-lat="{{ $lat }}"
+                data-lng="{{ $long }}"
                 data-type="roadmap"
-                data-hue="#ffc400"
-                data-title="Envato"
+                data-title="Contact Us!"
                 data-icon-path="images/icons/map-marker.png"
-                data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
+                data-content="{!! $company->address !!}<br><a href='mailto:{{ $company->email }}'>{{ $company->email }}</a>">
             </div>
         </div>
     </section>
