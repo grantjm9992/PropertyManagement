@@ -9487,6 +9487,7 @@ a.ui-button:active, .ui-button:active,
 .contact-section .form-column .title-box{
 	position: relative;
 	margin-bottom: 40px;
+	max-width: 80vw;
 }
 
 .contact-section .form-column .title-box .title{
