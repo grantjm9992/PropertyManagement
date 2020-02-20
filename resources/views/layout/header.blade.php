@@ -96,16 +96,13 @@
                                 <li class="dropdown"><a href="#">Services</a>
                                     <ul>
                                         <li><a href="PropertyManagement">Property Management</a></li>
-                                        <li><a href="PropertyRentlas">Property Rentals</a></li>
+                                        <li><a href="PropertyRentals">Property Rentals</a></li>
                                         <li><a href="PropertyMaintenance">Property Maintenance</a></li>
                                     </ul>
                                 </li>
                                 <li class="">
 									<a href="Properties">Properties</a>
                                 </li>
-								<li class="">
-									<a href="Resort">The resort</a>
-								</li>
                                 <li>
 									<a href="About">About</a>
 								</li>

@@ -22,9 +22,12 @@ class ContactController extends BaseController
         $id_company = \AppConfig::id_company;
         $company = \App\Companies::where("id", $id_company)->first();
         if( !is_object( $company ) ) die();
+        $coordinates = json_decode($company->google_coordinates);
 
         $this->cont->body = view("contact/index", array(
-            "company" => $company
+            "company" => $company,
+            "long" => (is_object($coordinates)) ? $coordinates->long : "",
+            "lat" => (is_objecT($coordinates)) ? $coordinates->lat : ""
         ));
         return $this->RenderView();
     }
