@@ -63,7 +63,7 @@ class Controller extends BaseController
     public function __construct() {
         $this->cont = new \ArrayObject();
         $this->campos = array();
-        $this->title = "My Casa Away";
+        $this->title = env("APPLICATION_NAME");
         $this->keywords = "";
         $this->selectIds = "@#";
         $this->description = "My Casa Away";
