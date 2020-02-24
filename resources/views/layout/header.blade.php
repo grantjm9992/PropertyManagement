@@ -60,6 +60,9 @@
                                         <li class="">
 											<a href="Contact">Contact us</a>
                                         </li>
+                                        <li class="">
+											<a href="Login">Log in</a>
+                                        </li>
                                     </ul>              
                                 </div>
                             </nav><!-- Main Menu End-->
@@ -108,6 +111,9 @@
 								</li>
                                 <li>
 									<a href="Contact">Contact us</a>
+								</li>
+                                <li>
+									<a href="Login">Log in</a>
 								</li>
                             </ul>
                         </div>

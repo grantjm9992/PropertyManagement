@@ -29,7 +29,7 @@
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option value="5+">5 +</option>
+                                            <option value="5">5 +</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
@@ -39,7 +39,7 @@
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option value="5+">5 +</option>
+                                            <option value="5">5 +</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">

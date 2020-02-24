@@ -2318,13 +2318,13 @@ img{
 .main-slider .title-box{
 	position: relative;
 	margin-bottom: 30px;
-	width: 700px;
 	max-width: 70vw;
 }
 
 .main-slider .title-box h3{
 	position: relative;
 	display: block;
+	white-space: pre-wrap;
 	font-size: 30px;
 	line-height: 1.2em;
 	color: #252525;
@@ -3305,6 +3305,10 @@ a.ui-button:active, .ui-button:active,
 
 .property-block .image-box .image{
 	position: relative;
+	height: 270px;
+	align-items: center;
+	align-content: center;
+	display: flex;
 	margin: 0;
 }
 

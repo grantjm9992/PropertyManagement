@@ -138,12 +138,10 @@
                             </div>
                         </div>
 
-                        <!-- Review Box -->
+                        <!-- Review Box 
                         <div class="review-area">
-                            <!--Reviews Container-->
                             <div class="reviews-container">
                                 <h3>Reviews For Costomer</h3>
-                                <!--Reviews-->
                                 <article class="review-box">
                                     <div class="thumb-box">
                                         <figure class="thumb"><img src="images/resource/review-thumb-1.jpg" alt=""></figure>
@@ -157,7 +155,6 @@
                                     </div>
                                 </article>
                                 
-                                <!--Reviews-->
                                 <article class="review-box reply">
                                     <div class="thumb-box">
                                         <figure class="thumb"><img src="images/resource/review-thumb-2.jpg" alt=""></figure>
@@ -171,7 +168,6 @@
                                     </div>
                                 </article>
 
-                                <!--Reviews-->
                                 <article class="review-box">
                                     <div class="thumb-box">
                                         <figure class="thumb"><img src="images/resource/review-thumb-3.jpg" alt=""></figure>
@@ -187,7 +183,6 @@
                             </div>
                         </div>
 
-                         <!-- Review Comment Form -->
                         <div class="review-comment-form"> 
                             <h3>Leave A Review</h3>
                             <form method="post" action="contact.html">
@@ -214,7 +209,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
@@ -246,7 +241,7 @@
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
-                                                <option value="5+">5 +</option>
+                                                <option value="5">5 +</option>
                                             </select>
                                         </div>
 
@@ -257,7 +252,7 @@
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
-                                                <option value="5+">5 +</option>
+                                                <option value="5">5 +</option>
                                             </select>
                                         </div>
                                         <!-- Form Group -->
