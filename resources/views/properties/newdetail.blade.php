@@ -23,6 +23,7 @@
                         <div class="location"><i class="la la-map-marker"></i> {{ $property->resort }}</div>
                         <ul class="property-info clearfix">
                             <li><i class="flaticon-bed"></i> {{ $property->bedrooms }} Bedrooms</li>
+                            <li><i class="flaticon-house-5"></i> {{ $property->sleeps }} Sleeps</li>
                             <li><i class="flaticon-bathtub"></i> {{ $property->bath }} Bathroom</li>
                         </ul>
                     </div>
@@ -85,38 +86,35 @@
                         <div class="nearest-places">
                             <h3>Near By Place</h3>
                             <div class="outer-box clearfix">
+                                @if (!is_null($nearby))
                                 <div class="places-column">
                                     <ul class="places-list">
+                                        @foreach ( $nearby as $row )
                                         <li>
-                                            <strong>City Center</strong>
-                                            <div class="text"><b>City Stars Mall</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
+                                            <strong>
+                                            @if ($row->iconClass != "")
+                                            <i class="{{$row->iconClass}}"></i>
+                                            @endif
+                                            {{$row->type}}
+                                            </strong>
+                                            @foreach ( $row->examples as $example )
+                                                <div class="text">
+                                                    <b>
+                                                    @if ($example->link != "")
+                                                        <a href="{{ $example->link }}" target="_blank">
+                                                            {{ $example->name}}
+                                                        </a>
+                                                    @else
+                                                        {{ $example->name}}
+                                                    @endif
+                                                    </b>
+                                                    <span>
+                                                        {{$example->distance}}
+                                                    </span>
+                                                </div>
+                                            @endforeach
                                         </li>
-
-                                        <li>
-                                            <strong>School</strong>
-                                            <div class="text"><b>Polar Secondary School,</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                        </li>
-
-                                        <li>
-                                            <strong>Restaurant</strong>
-                                            <div class="text"><b>Spectra Resturant & Cafe, </b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                            <div class="text"><b>Mojesty Resturant, </b>Carrer De Verso Street, Lundon, UK<span>2.5 km</span></div>
-                                        </li>
-
-                                        <li>
-                                            <strong>Bank</strong>
-                                            <div class="text"><b>United Bank</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                        </li>
-
-                                        <li>
-                                            <strong>Airport</strong>
-                                            <div class="text"><b>Lundon International Airport</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                        </li>
-
-                                        <li>
-                                            <strong>Bar</strong>
-                                            <div class="text"><b>Verna Plaza Bar</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -124,17 +122,34 @@
                                     <div class="map-outer">
                                         <!--Map Canvas-->
                                         <div class="map-canvas"
-                                            data-zoom="12"
-                                            data-lat="-37.817085"
-                                            data-lng="144.955631"
+                                            data-zoom="8"
+                                            data-lat="{{ $lat }}"
+                                            data-lng="{{ $long }}"
                                             data-type="roadmap"
                                             data-hue="#ffc400"
-                                            data-title="Envato"
+                                            data-title="{!! $resort->title !!}"
                                             data-icon-path="images/icons/map-marker.png"
-                                            data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
+                                            data-content="{!! $resort->address !!}">
                                         </div>
                                     </div>
                                 </div>
+                                @else
+                                <div class="map-column w-100">
+                                    <div class="map-outer">
+                                        <!--Map Canvas-->
+                                        <div class="map-canvas"
+                                            data-zoom="8"
+                                            data-lat="{{ $lat }}"
+                                            data-lng="{{ $long }}"
+                                            data-type="roadmap"
+                                            data-hue="#ffc400"
+                                            data-title="{!! $resort->title !!}"
+                                            data-icon-path="images/icons/map-marker.png"
+                                            data-content="{!! $resort->address !!}">
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
 
@@ -284,11 +299,15 @@
                                 <article class="post">
                                     <div class="post-thumb">
                                         <a href="Properties.detail?id={{ base64_encode($row->id) }}">
+                                            @if (file_exists($row->image) )
                                             <img src="{{ $row->image }}" alt="">
+                                            @else
+                                            <img src="img/no-image.png" alt="">
+                                            @endif
                                         </a>
                                     </div>
                                     <span class="location">{{ $row->resort }}</span>
-                                    <h3><a href="Properties.detail?id={{ base64_encode($row->id) }}">{{ $row->title }}</a></h3>
+                                    <h3><a href="Properties.detail?id={{ base64_encode($row->id) }}">{{ $row->public_title }}</a></h3>
                                 </article>
                                 @endforeach
                             </div>

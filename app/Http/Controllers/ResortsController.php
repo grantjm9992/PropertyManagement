@@ -147,4 +147,40 @@ class ResortsController extends BaseController
         $resort->save();
         return "OK";
     }
+    
+
+    public function uploadLocalAttractionsAction() 
+    {
+        if (!empty($_FILES)) {
+            
+            $tempFile = $_FILES['file']['tmp_name'];
+            $id = $_REQUEST['id'];
+
+            $targetDir = "data/resorts/$id/";
+            if (!is_dir( $targetDir ) )
+            {
+                mkdir( $targetDir, 0777, true );
+            }
+            $path = $_FILES['file']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $path = $targetDir."localattractions.".$ext;
+            move_uploaded_file($tempFile , $path);
+        }
+        return "OK";
+    }
+
+    public function downloadLocalAttractionsAction() 
+    {
+        $id = $_REQUEST["id"];
+        $resort = \App\Resorts::where("id", $id)->first();
+        header('Content-Disposition: attachment; filename;"local_attraction_information_'.$resort->name.'.json";');
+        header('Content-type: application/json');
+        if ( file_exists( "data/resorts/$id/localattractions.json" ) )
+        {
+            $csv = "";
+            $file = \file_get_contents("data/resorts/$id/localattractions.json");
+            die($file);
+        }
+
+    }
 }

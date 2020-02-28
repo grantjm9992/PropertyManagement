@@ -79,12 +79,24 @@ class PropertiesController extends BaseController
         }
 
         $resort = \App\Resorts::where("id", $property->id_resort)->first();
+        $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
+        $coordinates = json_decode($company->google_coordinates);
+
+        $nearby = null;
+        if ( file_exists( "data/resorts/$resort->id/localattractions.json" ) ) 
+        {
+            $file = file_get_contents("data/resorts/$resort->id/localattractions.json");
+            $nearby = \json_decode( $file );
+        }
 
         $this->cont->body = view("properties/newdetail", array(
             "property" => $property,
             "images" => $images,
             "features" => $feats,
             "resort" => $resort,
+            "nearby" => $nearby,
+            "long" => (is_object($coordinates)) ? $coordinates->long : "",
+            "lat" => (is_objecT($coordinates)) ? $coordinates->lat : "",
             "types" => \App\PropertyTypes::get(),
             "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", env('ID_COMPANY'))->take(3)->get()
         ));

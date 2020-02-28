@@ -3,24 +3,47 @@
     <div class="container-fluid">
         <div class="row">
             <input type="text" name="id" value="{{ $resort->id }}" hidden>
-            <div class="col-12 form-group">
+            <div class="col-12 col-lg-10 mx-auto form-group">
                 <label for="">Name</label>
                 <input type="text" name="title" value="{{ $resort->name }}" class="form-control">
             </div>
-            <div class="col-12 form-group">
+            <div class="col-12 col-lg-10 mx-auto form-group">
                 <label for="">Description</label>
                 <textarea name="description" id="" cols="30" rows="5" class="form-control">{{ $resort->description }}</textarea>
             </div>
         </div>
     </div>
 </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-10 mx-auto">
+            <h4>
+                Nearby attractions file
+            </h4>    
+            <form maxFiles="1" action="Resorts.uploadLocalAttractions" class="dropzone" id="my-awesome-dropzone">
+                <input type="text" name="id" hidden value="{{ $resort->id }}">
+                @csrf()
+            </form>
+            @if (file_exists("data/resorts/$resort->id/localattractions.json"))
+                <a class="btn btn-primary" href="Resorts.downloadLocalAttractions?id={{ $resort->id }}" target="_blank">
+                    <i class="fas fa-download"></i> Download current file
+                </a>
+            @endif
+        </div>
+    </div>
+</div>
 
 
-<div class="row" style="margin-bottom: 20px;">
+<div class="row my-5" style="margin-bottom: 20px;">
+    <div class="col-12 col-lg-10 mx-auto">
+<h4>
+    Image
+</h4>    
+    </div>
     @if ( $image === 1 )
-    <div class="col-12" style="text-align: center;" id="img">
+    <div class="col-12 col-lg-10 mx-auto" style="text-align: center;" id="img">
     @else
-    <div class="col-12" style="text-align: center; display: none;" id="img">
+    <div class="col-12 col-lg-10 mx-auto" style="text-align: center; display: none;" id="img">
     @endif
         <img src="{{ $resort->image }}" style="height: 300px;" alt="">
         <br>
@@ -29,9 +52,9 @@
         </span>
     </div>
     @if ( $image === 1 )
-    <div class="col-12" id="upload" style="display: none;">
+    <div class="col-12 col-lg-10 mx-auto" id="upload" style="display: none;">
     @else
-    <div class="col-12" id="upload">
+    <div class="col-12 col-lg-10 mx-auto" id="upload">
     @endif
         <form action="Resorts.uploadImage" class="dropzone" id="my-awesome-dropzone">
             <input type="text" name="id" hidden value="{{ $resort->id }}">
@@ -40,6 +63,7 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-12 col-lg-10 mx-auto">
     <h4 style="width: 100%;">
         <i class="fas fa-tiles"></i> Sections
         <div class="buttons">
@@ -50,6 +74,7 @@
     </h4>
     <div id="items" style="margin: 20px auto;" class="col-10">
         {!! $sections !!}
+    </div>
     </div>
 </div>
 

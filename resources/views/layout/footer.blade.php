@@ -5,10 +5,10 @@
             <div class="upper-box">
                 <div class="row">
                     <!-- Upper column -->
-                    <div class="col-12 py-2 text-light">
-                        For information about prices
+                    <div class="col-12 py-2 text-light text-center">
+                        For information about our services and prices
                         <br>
-                        Add your email address below to receive a detailed breakdown of our costs and services.
+                        Add your email address below and a member of our team will be in contact soon.
                     </div>
                     <div class="upper-column col-lg-3 col-md-12 col-sm-12">
                         <div class="footer-logo">

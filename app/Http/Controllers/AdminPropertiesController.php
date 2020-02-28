@@ -148,6 +148,22 @@ class AdminPropertiesController extends BaseController
         return $this->RenderView();
     }
 
+    public function updateImageOrderAction() 
+    {
+        $id_property = $_REQUEST["id"];
+        $ids = $_REQUEST['ids'];
+        $id_array = explode('@#', $ids, -1);
+        $i = 1;
+        foreach ( $id_array as $id )
+        {
+            $image = \App\PropertiesImages::where("id", $id)->first();
+            $image->order = $i;
+            $image->save();
+            $i++;
+        }
+        return "OK";
+    }
+
     protected function createURL( $id, $paid = false )
     {
         $base = url("/");
@@ -256,6 +272,7 @@ class AdminPropertiesController extends BaseController
             $image->id_property = $id;
             $image->save();
             $image->path = "$targetDir$image->id.$ext";
+            $image->updateOrder();
             $image->save();
 
             move_uploaded_file($tempFile , $image->path);

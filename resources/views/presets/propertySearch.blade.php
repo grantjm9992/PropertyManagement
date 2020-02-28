@@ -4,7 +4,7 @@
         <div class="auto-container">
             <div class="property-search-tabs tabs-box">
                 <ul class="tab-buttons">
-                    <li data-tab="#rent" class="tab-btn active-btn">Rent</li>
+                    <li data-tab="#rent" class="tab-btn active-btn">Find a property</li>
                 </ul>
                 <div class="tabs-content">
                     <!--Tab -->

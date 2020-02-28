@@ -26,17 +26,17 @@
                         </div>
                         <div class="lower-content"><!--
                             <ul class="tags">
-                                <li><a href="property-detail.html">Apartment</a>,</li>
-                                <li><a href="property-detail.html">Bar</a>,</li>
-                                <li><a href="property-detail.html">House</a>,</li>
+                                <li><a href="Properties.detail?id={{ base64_encode($row->id) }}">Apartment</a>,</li>
+                                <li><a href="Properties.detail?id={{ base64_encode($row->id) }}">Bar</a>,</li>
+                                <li><a href="Properties.detail?id={{ base64_encode($row->id) }}">House</a>,</li>
                             </ul>-->
-                            <h3><a href="property-detail.html">{{ $row->title }}</a></h3>
+                            <h3><a href="Properties.detail?id={{ base64_encode($row->id) }}">{{ $row->title }}</a></h3>
                             <div class="lucation"><i class="la la-map-marker"></i> {{ $row->resort }} </div>
                             <ul class="property-info clearfix">
-                                <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
+                                <li><i class="flaticon-dimension"></i> {{$row->type}}</li>
                                 <li><i class="flaticon-bed"></i> {{ $row->bedrooms }} Bedrooms</li>
-                                <li><i class="flaticon-car"></i> {{ $row->sleeps }} Garage</li>
-                                <li><i class="flaticon-bathtub"></i> {{ $row->bath }} Bathroom</li>
+                                <li><i class="flaticon-car"></i> {{ $row->sleeps }} Sleep(s)</li>
+                                <li><i class="flaticon-bathtub"></i> {{ $row->bath }} Bathroom(s)</li>
                             </ul>
                             <div class="property-price clearfix">
                                 <div class="read-more"><a href="Properties.detail?id={{ base64_encode( $row->id ) }}" class="theme-btn">More Detail</a></div>

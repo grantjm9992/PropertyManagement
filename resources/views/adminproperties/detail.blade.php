@@ -138,6 +138,9 @@
             <i style="font-size: 20px; color: red; position: absolute; top: 4px; right: 4px; cursor: pointer;" onclick="deleteImage({{ $image->id }})" class="fas fa-times-circle"></i>
         </div>
     @endforeach
+    <h3 style="width: 100%; padding-bottom: 8px; border-bottom: 1px solid;">
+        Nearby attractions file
+    </h3>
 </div>
 
 
@@ -146,7 +149,6 @@
     {
         $('#form').submit();
     }
-
 
     function manageFeatures()
     {
@@ -162,6 +164,40 @@
             success: function(data)
             {
                 $('body').append(data);
+            }
+        })
+    }
+    
+
+    $(document).ready( function() {
+        $('#sortable').sortable({
+            update: function() {
+                updateOrder();
+            }
+        });
+    })
+
+    function updateOrder()
+    {        
+        var elements = $('[imageId]');
+        var ids = "";
+        for ( var i = 0; i < elements.length; i++ ) {
+            ids += $(elements[i]).attr('imageId')+"@#";
+        }
+        $.ajax({
+            type: "POST",
+            url: "AdminProperties.updateImageOrder",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                id: '{{ $property->id }}',
+                ids: ids
+            },
+            success: function(data)
+            {
+                if ( data == "OK" )
+                {
+                    md.showNotification("top", "center", "Order updated correctly");
+                }
             }
         })
     }
