@@ -43,6 +43,7 @@ class ResortsController extends BaseController
         $id = $_REQUEST["id"];
         $resort = \App\Resorts::where("id", $id)->first();
         $sections = \App\ResortsSections::where("id_resort", $id)->get();
+        $this->botonera = '<div onclick="submitForm()" class="btn btn-primary"><i class="fas fa-save"></i> Save</div>   ';
         $sectionHTML = "";
         foreach ( $sections as $section )
         {
@@ -146,6 +147,15 @@ class ResortsController extends BaseController
         $resort->name = $name;
         $resort->save();
         return "OK";
+    }
+
+    public function saveAction()
+    {
+        $id = $_REQUEST["id"];
+        $resort = \App\Resorts::where("id", $id)->first();
+        $resort->update($_REQUEST);
+        $resort->save();
+        \Redirect::to("/Resorts")->send();
     }
     
 

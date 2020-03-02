@@ -190,6 +190,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="AdminPropertyFeatures" class="nav-link">
+              <i class="nav-icon fas fa-hotel"></i>
+              <p>
+                Property Features
+              </p>
+            </a>
+          </li>
           @endif
         </ul>
       </nav>

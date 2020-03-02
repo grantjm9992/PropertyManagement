@@ -54,12 +54,9 @@ class PresetSectionProvider
     public static function contactSection()
     {
         $company = \App\Companies::where("id", env('ID_COMPANY'))->first();
-        $coordinates = json_decode($company->google_coordinates);
         
         return view("presets/contactSection", array(
             "company" => $company,
-            "long" => (is_object($coordinates)) ? $coordinates->long : "",
-            "lat" => (is_objecT($coordinates)) ? $coordinates->lat : ""
         ));
     }
 

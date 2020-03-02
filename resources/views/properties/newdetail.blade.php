@@ -123,8 +123,8 @@
                                         <!--Map Canvas-->
                                         <div class="map-canvas"
                                             data-zoom="8"
-                                            data-lat="{{ $lat }}"
-                                            data-lng="{{ $long }}"
+                                            data-lat="{{ $resort->latitude }}"
+                                            data-lng="{{ $resort->longitude }}"
                                             data-type="roadmap"
                                             data-hue="#ffc400"
                                             data-title="{!! $resort->title !!}"
@@ -139,8 +139,8 @@
                                         <!--Map Canvas-->
                                         <div class="map-canvas"
                                             data-zoom="8"
-                                            data-lat="{{ $lat }}"
-                                            data-lng="{{ $long }}"
+                                            data-lat="{{ $resort->latitude }}"
+                                            data-lng="{{ $resort->longitude }}"
                                             data-type="roadmap"
                                             data-hue="#ffc400"
                                             data-title="{!! $resort->title !!}"

@@ -101,8 +101,8 @@
 		            <!--Map Canvas-->
 		            <div class="map-canvas"
 		                data-zoom="9"
-		                data-lat="{{ $lat }}"
-		                data-lng="{{ $long }}"
+		                data-lat="{{ $company->latitude }}"
+		                data-lng="{{ $company->longitude }}"
 		                data-type="roadmap"
 		                data-title="Contact Us!"
 		                data-icon-path="images/icons/map-marker.png"

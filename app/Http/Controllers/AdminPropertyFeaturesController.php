@@ -21,8 +21,8 @@ class AdminPropertyFeaturesController extends BaseController
     
 
     public function defaultAction() {
-        $this->pageTitle = "Information Sections";
-        $this->iconClass = "fa-info-circle";
+        $this->pageTitle = "Property Features";
+        $this->iconClass = "fa-hotel";
 
         $features = \App\Features::orderBy("order", "ASC")->get();
         $featureHTML = "";

@@ -11,6 +11,18 @@
                 <label for="">Description</label>
                 <textarea name="description" id="" cols="30" rows="5" class="form-control">{{ $resort->description }}</textarea>
             </div>
+            <div class="col-12 col-lg-10 mx-auto form-group">
+                <label for="">Address</label>
+                <textarea name="address" id="" cols="30" rows="5" class="form-control">{{ $resort->address }}</textarea>
+            </div>
+            <div class="col-12 col-lg-5 offset-lg-1 form-group">
+                <label for="">Longitude</label>
+                <input type="text" class="form-control" name="longitude" value="{{ $resort->longitude }}">
+            </div>
+            <div class="col-12 col-lg-5 form-group">
+                <label for="">Latitude</label>
+                <input type="text" class="form-control" name="latitude" value="{{ $resort->latitude }}">                
+            </div>
         </div>
     </div>
 </form>
