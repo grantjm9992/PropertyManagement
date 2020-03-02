@@ -20,6 +20,7 @@ class MyProfileController extends BaseController
     }
     
     public function defaultAction() {
+        $this->botonera = '<div class="btn btn-primary" onclick="submitForm()"><i class="fas fa-save"></i> Save</div>';
         $widgets = \App\Widgets::get();
         $widgetsUser = \App\WidgetsUser::where( 'id_user', $this->user->id )->orderBy('order', 'ASC')->get();
         $idArray = array();
@@ -61,6 +62,15 @@ class MyProfileController extends BaseController
         return view('admin/profile/widgetrow', array(
             "widget" => $widget
         ));
+    }
+
+    public function saveAction() {
+        
+        $user = $this->user;
+        $user->update( $_REQUEST );
+        if ( isset( $_REQUEST["password"] ) && $_REQUEST["password"] != "" ) $user->password = md5($_REQUEST["password"]);
+        $user->save();
+        return \Redirect::to('MyProfile')->send();
     }
 
     public function updateWidgetOrderAction()

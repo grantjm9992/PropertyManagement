@@ -74,7 +74,8 @@ class UsersController extends BaseController
         if ( !isset( $_REQUEST['id'] ) ) return \Redirect::to('Users')->send();
         $user = \App\User::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $user ) ) return \Redirect::to('Users')->send();
-        $roles = \App\Roles::get();
+        $whereRaw = ($this->user->role != "SA" ) ? "RANK > 3" : "1";
+        $roles = \App\Roles::whereRaw($where)->get();
         $companies = \App\Companies::get();
         $this->botonera = view('users/botonera', array(
             "user" => $this->user,
@@ -95,7 +96,8 @@ class UsersController extends BaseController
         $this->iconClass = "fa-user-plus";
         $this->botonera = view('users/newbotonera');
         $user = new \App\User();
-        $roles = \App\Roles::get();
+        $whereRaw = ($this->user->role != "SA" ) ? "RANK > 3" : "1";
+        $roles = \App\Roles::whereRaw($where)->get();
         $companies = \App\Companies::get();
         $this->cont->body = view('users/detail', array(
             "user" => $user,

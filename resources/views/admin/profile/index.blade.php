@@ -73,6 +73,10 @@
 </div>
 
 <script>
+
+  function submitForm() {
+    $('#form').submit();
+  }
   $(document).ready( function() {
     $('#holder').sortable({
       
