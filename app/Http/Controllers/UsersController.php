@@ -75,7 +75,7 @@ class UsersController extends BaseController
         $user = \App\User::where('id', $_REQUEST['id'])->first();
         if ( !is_object( $user ) ) return \Redirect::to('Users')->send();
         $whereRaw = ($this->user->role != "SA" ) ? "RANK > 3" : "1";
-        $roles = \App\Roles::whereRaw($where)->get();
+        $roles = \App\Roles::whereRaw($whereRaw)->get();
         $companies = \App\Companies::get();
         $this->botonera = view('users/botonera', array(
             "user" => $this->user,
@@ -97,7 +97,7 @@ class UsersController extends BaseController
         $this->botonera = view('users/newbotonera');
         $user = new \App\User();
         $whereRaw = ($this->user->role != "SA" ) ? "RANK > 3" : "1";
-        $roles = \App\Roles::whereRaw($where)->get();
+        $roles = \App\Roles::whereRaw($whereRaw)->get();
         $companies = \App\Companies::get();
         $this->cont->body = view('users/detail', array(
             "user" => $user,
