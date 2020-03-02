@@ -189,7 +189,7 @@ class AdminPropertiesController extends BaseController
             $property->id_created_by = $this->user->id;
             $property->id_company = $this->user->id_company;
             $property->save();
-            \NotifiationLogic::logNewProperty( $property );
+            \NotificationLogic::logNewProperty( $property );
         }
 
         return \Redirect::to('AdminProperties')->send();
@@ -214,7 +214,7 @@ class AdminPropertiesController extends BaseController
                 $row->delete();
             }
             
-            NotificationLogic::logDeleteProperty($property);
+            \NotificationLogic::logDeleteProperty($property);
             $property->delete(); 
             $success = 1;
         }
