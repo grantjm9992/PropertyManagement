@@ -39,7 +39,7 @@
               <div class="form-group col-12">
                 <label for="">End</label>
                 <input type="text" name="date_end" id="date_endTask" class="form-control" required autocomplete="off">
-              </div>
+              </div><!--
               <div class="form-group col-12">
                 <label for="">Is a recurring task?</label>
                 <select name="recurring" id="recurring" class="form-control">
@@ -57,7 +57,7 @@
                 </select>
               </div>
               <div class="col-12 form-group weekly rec" style="display: none;">
-                <label class="d-block" for="">Days</label>
+                <label class="d-block" for="">Days</label>-->
                 <!--
                 <select multiple name="days[]" id="days" class="form-control">
                   <option value="1">Monday</option>
