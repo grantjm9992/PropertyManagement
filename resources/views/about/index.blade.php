@@ -82,51 +82,14 @@
     <!-- About Us -->
 
     <!-- Fun Fact -->
-    <section class="fun-facts-section" style="background-image:url(img/about-3.jpg);">
+    <section class="fun-facts-section" style="background-image:url(img/Home2.jpg);">
         <div class="auto-container">
             <div class="row">
-                <div class="video-column col-lg-8 col-sm-12 col-xs-12">
+                <div class="video-column col-lg-8 offset-lg-2 offset-0 col-sm-12 col-xs-12">
                     <div class="video-box">
                         <figure class="image">
                             <video src="img/mycasaaway/intro.mp4" style="max-width: 100%; max-height: 100%;" controls></video>
                         </figure>
-                    </div>
-                </div>
-                <div class="counter-column col-lg-4 col-md-12 col-sm-12">
-                    <div class="inner-column">
-                        <!--Column-->
-                        <div class="column count-box">
-                            <div class="content">
-                                <div class="icon-box"><span class="la la-home"></span></div>
-                                <div class="counter-title">Increase Rentals </div>
-                            </div>
-                        </div>
-                        
-
-                        <!--Column-->
-                        <div class="column count-box">
-                            <div class="content">
-                                <div class="icon-box"><i class="fas fa-stopwatch"></i> </div>
-                                <div class="counter-title">Faster Response Times</div>
-                            </div>
-                        </div>
-                        
-
-                        <!--Column-->
-                        <div class="column count-box">
-                            <div class="content">
-                                <div class="icon-box"><i class="fas fa-file-invoice"></i> </div>
-                                <div class="counter-title">Accountability</div>
-                            </div>
-                        </div>
-                        
-                        <!--Column-->
-                        <div class="column count-box">
-                            <div class="content">
-                                <div class="icon-box"><i class="fas fa-mobile"></i> </div>
-                                <div class="counter-title"> Innovative Mobile Application</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -211,8 +174,8 @@
     <section class="process-section" style="background-image: url(img/about-3.jpg);">
         <div class="auto-container">
             <div class="sec-title light">
-                <span class="title">PROPERTY MANAGEMENT SERVICES</span>
-                <h2>REQUEST A QUOTE</h2>
+                <span class="title">PROPERTY MANAGEMENT & RENTAL SERVICES COSTA CALIDA</span>
+                <h2>GET IN TOUCH TODAY</h2>
             </div>
 
             <div class="row">
@@ -221,7 +184,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-phone-square"></i> </div>
                         <h4><a href="#">Contact us</a></h4>
-                        <div class="text">Send us a message and a member of our team will be in touch</div>
+                        <div class="text">Send us a message and a member of our team will be in touch soon.</div>
                     </div>
                 </div>
 
@@ -229,8 +192,8 @@
                 <div class="process-block col-lg-3 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-home"></i> </div>
-                        <h4><a href="#">Property Details</a></h4>
-                        <div class="text">We will ask you some simple questions about the property</div>
+                        <h4><a href="#">Property Management</a></h4>
+                        <div class="text">Our property management services cover all of the Costa Calida region of Spain.</div>
                     </div>
                 </div>
 
@@ -238,8 +201,8 @@
                 <div class="process-block col-lg-3 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-file-invoice"></i> </div>
-                        <h4><a href="#">Quick Quote</a></h4>
-                        <div class="text">Next we can provide a quick quote via email or telephone</div>
+                        <h4><a href="#">Property Maintenance</a></h4>
+                        <div class="text">Our experienced team can take on any maintenance or home improvement task you require. </div>
                     </div>
                 </div>
 
@@ -247,13 +210,14 @@
                 <div class="process-block col-lg-3 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-user-check"></i> </div>
-                        <h4><a href="#">Confirmation</a></h4>
-                        <div class="text">Lastly, we will complete a free inspection of your property</div>
+                        <h4><a href="#">Property Rentals</a></h4>
+                        <div class="text">If you are interested in renting your property get a free rental analysis today. </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>    
+    {!! $contact !!}
     <!--End Process Section -->
 
     <!-- Why Choose Us --><!--

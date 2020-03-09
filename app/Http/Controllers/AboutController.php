@@ -25,8 +25,14 @@ class AboutController extends BaseController
         $this->description = ( $page->meta_description != "" ) ? $page->meta_description : $this->description;
         $this->keywords = ( $page->meta_keywords != "" ) ? $page->meta_keywords : $this->keywords;
         $data = \App\Sections::where('id_page', $page->id)->get();
+
+        $company = \App\Companies::where("id", env("ID_COMPANY") )->first();
         
-        $this->cont->body = view("about/index");
+        $this->cont->body = view("about/index", array(
+            "contact" => view("presets/contactSection", array(
+                "company" => $company
+            ))
+        ));
         return $this->RenderView();
     }
 

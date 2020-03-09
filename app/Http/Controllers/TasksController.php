@@ -206,6 +206,7 @@ class TasksController extends BaseController
         }
         else
         {
+            $task = \App\Tasks::where("id", $subtask->id_task)->first();
             \NotificationLogic::logCompletedSubtaskTask( $task );
             $subtask->completed = 1;
             $subtask->date_completed = $date->format("Y-m-d H:i:s");
@@ -243,7 +244,7 @@ class TasksController extends BaseController
         $subTask->save();
         $subTask->updateOrder();
 
-        $task = \App\Tasks::where("id", $_REQUEST["id"])->first();
+        $task = \App\Tasks::where("id", $_REQUEST["id_task"])->first();
         \NotificationLogic::logAddedSubtaskTask( $task );
 
         return view("tasks/subtask", array(

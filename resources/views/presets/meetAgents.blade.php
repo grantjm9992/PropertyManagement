@@ -13,7 +13,7 @@
                         <div class="image-box">
                             <figure class="image"><a href="#"><img src="images/agents/markgriffiths430.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
@@ -29,7 +29,7 @@
                         <div class="image-box">
                             <figure class="image"><a href="#"><img src="images/agents/iaincroakin430.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
@@ -39,13 +39,13 @@
                     </div>
                 </div>
 
-                <!-- Agent Block 
+                <!-- Agent Block -->
                 <div class="agent-block">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><a href="#"><img src="images/resource/agent-1.jpg" alt=""></a></figure>
+                            <figure class="image"><a href="#"><img src="images/agents/robynteam.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
@@ -61,7 +61,7 @@
                         <div class="image-box">
                             <figure class="image"><a href="#"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
@@ -77,7 +77,7 @@
                         <div class="image-box">
                             <figure class="image"><a href="#"><img src="images/resource/agent-2.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">
@@ -93,7 +93,7 @@
                         <div class="image-box">
                             <figure class="image"><a href="#"><img src="images/resource/agent-3.jpg" alt=""></a></figure>
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/condado1handyman/"><i class="la la-facebook-f"></i></a></li>
                             </ul>
                         </div>
                         <div class="info-box">

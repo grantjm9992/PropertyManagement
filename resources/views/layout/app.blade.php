@@ -10,7 +10,7 @@
 <link href="plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css?v=1" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
 <!--Color Themes-->
 <link id="theme-color-file" href="css/color-themes/default-theme.css" rel="stylesheet">

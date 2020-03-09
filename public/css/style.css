@@ -2285,16 +2285,6 @@ img{
 	content: "";
 }
 
-.main-slider .content-box:after{
-	position: absolute;
-	left: -115px;
-	top: 0;
-	width: 0;
-	height: 0;
-	border-bottom: 381px solid #ffffff;
-	border-left: 115px solid transparent;
-	content: "";
-}
 
 .main-slider .content-box .inner-box{
 	position: relative;
@@ -2303,17 +2293,6 @@ img{
 	text-align: right;
 }
 
-.main-slider .content-box .inner-box:after{
-	position: absolute;
-	left: -145px;
-	top: 25px;
-	width: 0;
-	height: 0;
-	border-bottom: 381px solid #ffffff;
-	border-left: 115px solid transparent;
-	opacity: .45;
-	content: "";
-}
 
 .main-slider .title-box{
 	position: relative;
