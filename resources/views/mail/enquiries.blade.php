@@ -20,7 +20,7 @@
 					Phone: {{ $enq->phone }}
 				</li>
 				<li>
-					Price Range: {{ $enq->price_range }}
+					Message: {{ $enq->message }}
 				</li>
 				<li>
 					Bedrooms: {{ $enq->bedrooms }}

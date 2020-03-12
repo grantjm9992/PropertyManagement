@@ -33,7 +33,7 @@ class Properties extends Model
             parent::boot();
     
             self::retrieved(function($model){
-                $image = \App\PropertiesImages::where("id_property", $model->id)->first();
+                $image = \App\PropertiesImages::where("id_property", $model->id)->orderBy("order", "ASC")->first();
                 $model->image = ( \is_object( $image ) ) ? $image->path : "";
                 $resort = \App\Resorts::where("id", $model->id_resort )->first();
                 $model->resort = ( \is_object( $resort ) ) ? $resort->name : ""; 

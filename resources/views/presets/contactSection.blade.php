@@ -14,9 +14,13 @@
 
     				<!-- Contact Form -->
 		            <div class="contact-form">
-		                <form method="post" action="Home.sendMail" id="contact-form">
+		                <form method="post" action="Home.register" id="contact-form">
+                            @csrf()
 	                        <div class="form-group">
-	                            <input type="text" name="username" placeholder="Name" required>
+	                            <input type="text" name="name" placeholder="Name" required>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" name="surname" placeholder="Surname" required>
 	                        </div>
 	                        
 	                        <div class="form-group">
@@ -28,7 +32,7 @@
 	                        </div>
 
 	                        <div class="form-group">
-	                            <textarea name="message" placeholder="Massage"></textarea>
+	                            <textarea name="message" placeholder="Message"></textarea>
 	                        </div>
 	                        
 	                        <div class="form-group">
