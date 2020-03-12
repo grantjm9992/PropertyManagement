@@ -140,8 +140,9 @@ class HomeController extends BaseController
     public function registerAction()
     {
         $date = new \DateTime();
-        $enq = \App\Enquiry::create( $_REQUEST );
+        $enq = \App\Enquiries::create( $_REQUEST );
         $enq->date_joined = $date->format('Y-m-d H:i:s');
+        $enq->id_company = env("ID_COMPANY");
         $enq->save();
     
         $apt = ( isset( $_REQUEST['id_apartment'] ) && $_REQUEST['id_apartment'] != "" ) ? \App\Apartments::where('id', $_REQUEST['id_apartment'])->first() : null;
