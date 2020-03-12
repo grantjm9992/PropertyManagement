@@ -19,8 +19,9 @@
                     <!-- Upper column -->
                     <div class="upper-column col-lg-6 col-md-12 col-sm-12">
                         <div class="subscribe-form">
-                            <form method="post" action="blog.html">
+                            <form method="post" action="Home.register">
                                 <div class="form-group">
+                                    @csrf()
                                     <input type="email" name="email" value="" placeholder="Enter Your Email" required="">
                                     <button type="submit" class="theme-btn btn-style-four"><i class="icon la la-paper-plane"></i></button>
                                 </div>
