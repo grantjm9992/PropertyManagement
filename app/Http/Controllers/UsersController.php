@@ -35,6 +35,9 @@ class UsersController extends BaseController
     public function listadoAction()
     {
         $where = " 1 ";
+        if (isset($_REQUEST["name"]) && $_REQUEST["name"] != "" ) $where .= " AND (name LIKE '%".$_REQUEST["name"]."%' or surname LIKE '%".$_REQUEST["name"]."%' ) ";
+        if (isset($_REQUEST["email"]) && $_REQUEST["email"] != "" ) $where .= " AND email LIKE '%".$_REQUEST["email"]."%' ";
+        if (isset($_REQUEST["phone"]) && $_REQUEST["phone"] != "" ) $where .= " AND phone LIKE '%".$_REQUEST["phone"]."%' ";
         if ( (int)$this->user->id_company !== -1 ) $where .= " AND id_company = ".$this->user->id_company;
         $this->data = \App\User::whereRaw( $where )->get();
         foreach ( $this->data as $row )
