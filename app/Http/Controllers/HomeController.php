@@ -140,7 +140,7 @@ class HomeController extends BaseController
     public function registerAction()
     {
         $date = new \DateTime();
-        $enq = \App\Enquiries::create( $_REQUEST );
+        $enq = \App\Enquiry::create( $_REQUEST );
         $enq->date_joined = $date->format('Y-m-d H:i:s');
         $enq->save();
     
