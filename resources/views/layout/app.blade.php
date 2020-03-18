@@ -30,6 +30,12 @@
 <div class="page-wrapper">
     <!-- Preloader -->
     <div class="preloader"></div>
+    {!! $header !!}
+    <!--End Main Header -->
+    
+    {!! $content !!}
+
+    {!! $footer !!}
 
 	<script src="js/jquery.js"></script> 
 	<script src="js/popper.min.js"></script>
@@ -61,11 +67,5 @@
     <script src="js/script.js?v=1"></script>
 	<!-- Color Setting -->
 	<script src="js/color-settings.js"></script>
-    {!! $header !!}
-    <!--End Main Header -->
-    
-    {!! $content !!}
-
-    {!! $footer !!}
 </body>
 </html>
