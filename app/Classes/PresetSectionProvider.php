@@ -13,7 +13,7 @@ class PresetSectionProvider
 
     public static function propertySliderSplash()
     {
-        $properties = \App\Properties::where("id_company", env('ID_COMPANY') )->take(3)->get();
+        $properties = \App\Properties::where("id_company", env('ID_COMPANY') )->where("is_rental", 1)->take(3)->get();
         return view("presets/propertySlider", array(
             "properties" => $properties
         ));
@@ -29,7 +29,7 @@ class PresetSectionProvider
 
     public static function propertyGrid()
     {        
-        $properties = \App\Properties::select("properties.*", "property_types.title as type")->join("property_types", "properties.id_property_type", "=", "property_types.id")->where("id_company", env('ID_COMPANY') )->take(3)->get();
+        $properties = \App\Properties::select("properties.*", "property_types.title as type")->join("property_types", "properties.id_property_type", "=", "property_types.id")->where("is_rental", 1)->where("id_company", env('ID_COMPANY') )->take(3)->get();
         foreach ( $properties as $row )
         {
             $row->images = \App\PropertiesImages::where("id_property", $row->id)->get();

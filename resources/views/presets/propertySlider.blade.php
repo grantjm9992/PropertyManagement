@@ -29,7 +29,7 @@
                             <div class="content-box">
                                 <div class="inner-box">
                                     <div class="title-box">
-                                        <h3>{{ $row->title }}</h3>
+                                        <h3>{{ $row->public_title }}</h3>
                                         <p>{{ $row->resort }}</p>
                                     </div>
                                     <ul class="info-list">

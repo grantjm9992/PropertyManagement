@@ -35,7 +35,7 @@ class PropertiesController extends BaseController
     public function getListingsAction()
     {
         $html = "";
-        $properties = \App\Properties::whereRaw( $this->makeWhere() )->get();
+        $properties = \App\Properties::whereRaw( $this->makeWhere() )->where("is_rental", 1)->get();
         foreach( $properties as $row )
         {
             $html .= view("properties/propertycard", array(
@@ -95,7 +95,7 @@ class PropertiesController extends BaseController
             "resort" => $resort,
             "nearby" => $nearby,
             "types" => \App\PropertyTypes::get(),
-            "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", env('ID_COMPANY'))->take(3)->get()
+            "properties" => \App\Properties::orderBy("id", "DESC")->where("id_company", env('ID_COMPANY'))->where("is_rental", 1)->take(3)->get()
         ));
 
         return $this->RenderView();
