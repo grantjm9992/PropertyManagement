@@ -44,13 +44,13 @@
                             <div class="carousel-outer">
                                 <ul class="image-carousel owl-carousel owl-theme">
                                     @foreach ( $images as $row )
-                                    <li><a href="{{ $row->path }}" class="lightbox-image" title="Image Caption Here"><img src="{{ $row->path }}" alt=""></a></li>
+                                    <li><a href="{{ $row->path }}" class="lightbox-image" title="Image Caption Here"><img style="max-height: 570px;" src="{{ $row->path }}" alt=""></a></li>
                                     @endforeach
                                 </ul>
                                 
                                 <ul class="thumbs-carousel owl-carousel owl-theme">
                                     @foreach ( $images as $row )
-                                    <li><img src="{{ $row->path }}" alt=""></li>
+                                    <li><img style="max-height: 230px;" src="{{ $row->path }}" alt=""></li>
                                     @endforeach
                                 </ul>
                             </div>
