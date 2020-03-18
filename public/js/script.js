@@ -710,6 +710,7 @@
 		handlePreloader();
 		enableMasonry();
 		defaultMasonry();
+		$(".my-date-picker").datepicker();
 	});	
 
 })(window.jQuery);

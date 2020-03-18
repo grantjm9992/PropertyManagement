@@ -339,10 +339,10 @@
 	                            <input type="email" name="email" placeholder="Email" required>
 	                        </div>
 	                        <div class="col-6 form-group">
-                                <input type="text" autocomplete="off" placeholder="From" name="date_start" id="date_start">
+                                <input type="text" autocomplete="off" class="my-date-picker" placeholder="From" name="date_start" id="date_start">
 	                        </div>
                             <div class="col-6 form-group">
-                                <input type="text" autocomplete="off" placeholder="To" name="date_end" id="date_end">
+                                <input type="text" autocomplete="off" class="my-date-picker" placeholder="To" name="date_end" id="date_end">
                             </div>
 	                        <div class="form-group col-12">
 	                            <textarea name="message" placeholder="Message"></textarea>
@@ -362,10 +362,6 @@
     </div>
     <!-- End Sidebar Container -->
     <script>
-        $(document).ready( function() {
-            $("#date_start").datepicker();
-            $("#date_end").datepicker();
-        })
         function submitPropertyForm() {
             $("#subject").val($("#subject").val()+": "+$("#date_start").val()+" - "+$("#date_end").val() );
             $("#submitProperty").click();
