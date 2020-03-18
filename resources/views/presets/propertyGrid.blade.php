@@ -13,11 +13,15 @@
                 <div class="property-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="image-box">
+                            @if (count($row->images) > 0 )
                             <div class="single-item-carousel owl-carousel owl-theme">
-                                @foreach( $row->images as $image )
-                                    <figure class="image"><img src="{{ $image->path }}" alt=""></figure>
-                                @endforeach
+                                    @foreach( $row->images as $image )
+                                        <figure class="image"><img src="{{ $image->path }}" alt=""></figure>
+                                    @endforeach
                             </div>
+                            @else
+                                <figure class="image"><img src="img/no-image.png" alt=""></figure>
+                            @endif
                             <span class="featured">FEATURED</span><!--
                             <ul class="info clearfix">
                                 <li><a href="properties.html"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
