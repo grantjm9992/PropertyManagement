@@ -713,3 +713,18 @@
 	});	
 
 })(window.jQuery);
+
+
+
+function submitPropertyModal() {
+	$("#submitPropertyDialog").remove();
+	$.ajax({
+		type: "POST",
+		url: "Home.submitPropertyModal",
+		headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+		success: function(data)
+		{
+			$("body").append(data);
+		}
+	});
+}

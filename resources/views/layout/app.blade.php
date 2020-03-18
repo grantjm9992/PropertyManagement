@@ -10,7 +10,7 @@
 <link href="plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-<link href="css/style.css?v=2" rel="stylesheet">
+<link href="css/style.css?v=3" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
 <!--Color Themes-->
 <link id="theme-color-file" href="css/color-themes/default-theme.css" rel="stylesheet">
@@ -20,6 +20,7 @@
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
@@ -29,12 +30,6 @@
 <div class="page-wrapper">
     <!-- Preloader -->
     <div class="preloader"></div>
-    {!! $header !!}
-    <!--End Main Header -->
-    
-    {!! $content !!}
-
-    {!! $footer !!}
 
 	<script src="js/jquery.js"></script> 
 	<script src="js/popper.min.js"></script>
@@ -63,8 +58,14 @@
     <script src="js/validate.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB55VmJTFRfF8Q_luNN4agzzigjpE68bYI"></script>
     <script src="js/map-script.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=1"></script>
 	<!-- Color Setting -->
 	<script src="js/color-settings.js"></script>
+    {!! $header !!}
+    <!--End Main Header -->
+    
+    {!! $content !!}
+
+    {!! $footer !!}
 </body>
 </html>

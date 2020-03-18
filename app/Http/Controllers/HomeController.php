@@ -57,6 +57,10 @@ class HomeController extends BaseController
         return $this->RenderView();
     }
 
+    public function submitPropertyModalAction() {
+        return view("modal/submitproperty");
+    }
+
     protected function myCasaAway()
     {
         return view("mycasaaway/splash");

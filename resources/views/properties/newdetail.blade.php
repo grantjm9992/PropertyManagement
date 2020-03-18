@@ -314,7 +314,60 @@
                         </div>
                     </aside>
                 </div>
+                <div class="col-12">
+    		<!-- Form Column -->
+    		<div class="form-column">
+    			<div class="inner-column">
+    				<div class="title-box">
+    					<h2>Contact Us</h2>
+    					<div class="text">Interested in renting this apartment? Get in touch</div>
+    				</div>
+
+    				<!-- Contact Form -->
+		            <div class="contact-form">
+		                <form method="post" action="Home.register" id="contact-form" class="row">
+                            @csrf()
+                            <input type="text" name="id_property" value="{{ $property->id }}" hidden>
+                            <input type="text" id="subject" name="subject" value="Property Enquiry" hidden>
+	                        <div class="form-group col-12">
+	                            <input type="text" name="name" placeholder="Name" required>
+	                        </div>
+	                        <div class="form-group col-12">
+	                            <input type="text" name="surname" placeholder="Surname" required>
+	                        </div>
+	                        <div class="form-group col-12">
+	                            <input type="email" name="email" placeholder="Email" required>
+	                        </div>
+	                        <div class="col-6 form-group">
+                                <input type="text" autocomplete="off" placeholder="From" name="date_start" id="date_start">
+	                        </div>
+                            <div class="col-6 form-group">
+                                <input type="text" autocomplete="off" placeholder="To" name="date_end" id="date_end">
+                            </div>
+	                        <div class="form-group col-12">
+	                            <textarea name="message" placeholder="Message"></textarea>
+	                        </div>
+	                        
+	                        <div class="form-group col-12">
+	                            <button hidden class="theme-btn btn-style-one" type="submit" id="submitProperty" name="submit-form">Send Now</button>
+	                            <div class="theme-btn btn-style-one" onclick="submitPropertyForm()" name="submit-form">Send Now</div>
+	                        </div> 
+		                </form>
+		            </div>
+    			</div>
+    		</div>
+                </div>
             </div>
         </div>
     </div>
     <!-- End Sidebar Container -->
+    <script>
+        $(document).ready( function() {
+            $("#date_start").datepicker();
+            $("#date_end").datepicker();
+        })
+        function submitPropertyForm() {
+            $("#subject").val($("#subject").val()+": "+$("#date_start").val()+" - "+$("#date_end").val() );
+            $("#submitProperty").click();
+        }
+    </script>

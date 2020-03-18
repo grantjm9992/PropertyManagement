@@ -70,7 +70,7 @@
                             <!-- Main Menu End-->
                             <div class="outer-box">
                                <div class="btn-box">
-                                   <a href="#" class="theme-btn btn-style-five">Submit Property</a>
+                                   <div onclick="submitPropertyModal()" class="theme-btn btn-style-five">Submit Property</div>
                                </div>
                             </div>
                         </div>
