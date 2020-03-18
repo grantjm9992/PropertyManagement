@@ -30,7 +30,7 @@
                                 <li><a href="Properties.detail?id={{ base64_encode($row->id) }}">Bar</a>,</li>
                                 <li><a href="Properties.detail?id={{ base64_encode($row->id) }}">House</a>,</li>
                             </ul>-->
-                            <h3><a href="Properties.detail?id={{ base64_encode($row->id) }}">{{ $row->title }}</a></h3>
+                            <h3><a href="Properties.detail?id={{ base64_encode($row->id) }}">{{ $row->public_title }}</a></h3>
                             <div class="lucation"><i class="la la-map-marker"></i> {{ $row->resort }} </div>
                             <ul class="property-info clearfix">
                                 <li><i class="flaticon-dimension"></i> {{$row->type}}</li>
